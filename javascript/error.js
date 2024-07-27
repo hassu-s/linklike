@@ -4,7 +4,4 @@ window.addEventListener('error', function(event) {
     }
 }, true);
 
-if (window.navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode) {
-    // Internet Explorer detected
-    window.location.href = 'IE.html';
-}
+
