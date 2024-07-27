@@ -3,5 +3,3 @@ window.addEventListener('error', function(event) {
         window.location.href = '/404.html';
     }
 }, true);
-
-
