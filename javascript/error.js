@@ -3,3 +3,8 @@ window.addEventListener('error', function(event) {
         window.location.href = '/404.html';
     }
 }, true);
+
+if (window.navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode) {
+    // Internet Explorer detected
+    window.location.href = 'IE.html';
+}
