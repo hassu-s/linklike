@@ -11,7 +11,7 @@ button {
     background: linear-gradient(to right, #00B0F0, #7030A0);
     border: none;
     border-radius: 5px; /* 角をもう少し角ばらせる */
-    box-shadow: 0px 0px 3px 1px rgba(100,100,100);
+    box-shadow: 0px 0px 3px 0px rgba(100,100,100);
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -19,6 +19,7 @@ button {
     transition: transform 0.2s ease-in-out; /* マウスオーバー時の動きを滑らかにする */
     position: relative;
     overflow: hidden;
+    text-align: center;
   }
   
   button::before, button::after {
