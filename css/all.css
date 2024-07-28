@@ -8,21 +8,46 @@
 }
 
 button {
-    background-color: #4CAF50; /* 背景色 */
-    border: none; /* 枠線なし */
-    color: white; /* 文字色 */
-    padding: 15px 32px; /* パディング */
-    text-align: center; /* テキストの中央揃え */
-    text-decoration: none; /* テキストの装飾なし */
-    display: inline-block; /* インラインブロック表示 */
-    font-size: 16px; /* フォントサイズ */
-    margin: 4px 2px; /* マージン */
-    cursor: pointer; /* カーソルをポインターに */
-    border-radius: 12px; /* 角を丸くする */
-    transition: transform 0.2s; /* トランジションの時間 */
+    background: linear-gradient(to right, #00B0F0, #7030A0);
+    border: none;
+    border-radius: 5px; /* 角をもう少し角ばらせる */
+    box-shadow: 0px 0px 3px 1px rgba(100,100,100);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* マウスオーバー時の動きを滑らかにする */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button::before, button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid rgba(255, 255, 255, 0.2); /* 三角のサイズを大きくし、透明度を若干濃くする */
+    border-bottom: 30px solid transparent;
+  }
+  
+  button::before {
+    top: 0;
+    left: 0;
+  }
+  
+  button::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
   }
   
   button:active {
-    transform: scale(0.95); /* タップ時に小さくする */
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
   }
   
