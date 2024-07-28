@@ -6,3 +6,23 @@
     font-family: 'Noto Sans JP' , sans-serif;
     font-weight: 300;
 }
+
+button {
+    background-color: #4CAF50; /* 背景色 */
+    border: none; /* 枠線なし */
+    color: white; /* 文字色 */
+    padding: 15px 32px; /* パディング */
+    text-align: center; /* テキストの中央揃え */
+    text-decoration: none; /* テキストの装飾なし */
+    display: inline-block; /* インラインブロック表示 */
+    font-size: 16px; /* フォントサイズ */
+    margin: 4px 2px; /* マージン */
+    cursor: pointer; /* カーソルをポインターに */
+    border-radius: 12px; /* 角を丸くする */
+    transition: transform 0.2s; /* トランジションの時間 */
+  }
+  
+  button:active {
+    transform: scale(0.95); /* タップ時に小さくする */
+  }
+  
