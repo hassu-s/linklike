@@ -1,125 +1,36 @@
-body {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    -ms-flex-pack: center; /* IE10 */
-    justify-content: center;
-    -ms-flex-align: center; /* IE10 */
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f7f8f8;
-    -ms-flex-direction: column; /* IE10 */
-    flex-direction: column;
-}
-
-h1 {
-    font-size: 33px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 900;
-    text-align: center;
-    background-color: transparent; /* IE */
-}
-
-h4 {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: center;
-    background-color: transparent; /* IE */
-}
-
-#h4-2 {
-    text-align: center;
-    font-weight: 600;
+* {
+    font-family: 'Noto Sans JP' , sans-serif;
+    font-weight: 800;
+    font-size: 25px;
+    text-align: left;
 }
 
 p {
-    font-size: 16px;
-    text-align: center;
-    background-color: transparent; /* IE */
+    font-size: 15px;
+    text-align: left;
 }
 
-#p2 {
-    font-size: 8px;
-    line-height: 1; /* Adjusted for IE */
-    background-color: transparent; /* IE */
+hr {
+    width: 100%;
 }
 
-button {
-    padding: 10px 20px;
-    width: 150px;
-    height: 50px;
-    font-size: 16px;
-    text-align: center;
-    white-space: pre-wrap;
-    display: -ms-flexbox; /* IE10 */
+.boxcontents {
     display: flex;
-    -ms-flex-pack: center; /* IE10 */
-    justify-content: center;
-    -ms-flex-align: center; /* IE10 */
-    align-items: center;
-    -ms-flex-direction: column; /* IE10 */
-    flex-direction: column;
-    background-color: transparent; /* IE */
+    gap: 5px; /* ボックス同士の間隔を5pxに設定 */
 }
-
-#button-content {
-    display: -ms-flexbox; /* IE10 */
+.box {
+    width: 100px;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
     display: flex;
-    gap: 10px;
-    white-space: pre-wrap;
-    -ms-flex-pack: center; /* IE10 */
-    justify-content: center;
-    -ms-flex-align: center; /* IE10 */
     align-items: center;
-    background-color: transparent; /* IE */
-}
-
-.container {
+    justify-content: center;
+    border: 1px solid #000;
+    font-size: 15px;
     border-radius: 5px;
-    overflow: hidden;
-    width: 96%;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
-    background-color: transparent; /* IE */
 }
 
-.header {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    -ms-flex-pack: justify; /* IE10 */
-    justify-content: space-between;
-    -ms-flex-align: center; /* IE10 */
-    align-items: center;
-    background: linear-gradient(to right, #00B0F0, #7030A0);
-    padding: 10px;
-    color: white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    height: 25px;
-    -ms-flex-pack: center; /* IE10 */
-    justify-content: center;
-    -ms-flex-align: center; /* IE10 */
-    align-items: center;
-}
-
-.content {
-    padding: 20px;
-    background-color: #fff;
-}
-
-.bg {
-    background-color: #f7f8f8;
-    border-radius: 5px;
-    padding-top: 2px;
-    padding-bottom: 21px;
-}
-
-
-#h4-2 {
-    background-color: rgba(0, 0, 0, 0);
-}
-
-#p2 {
-    background-color: rgba(0, 0, 0, 0);
+.imgbr {
+    width: 40px;
+    height: 40px;
 }

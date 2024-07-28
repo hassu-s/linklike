@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4つの横並びボックス</title>
+    <style>
+        .boxcontents {
+            display: flex;
+            gap: 5px; /* ボックス同士の間隔を5pxに設定 */
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="boxcontents">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+        <div class="box">Box 4</div>
+    </div>
+</body>
+</html>
