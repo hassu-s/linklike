@@ -1,3 +1,4 @@
-if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.userAgent.indexOf('Trident/') !== -1) {
+if (window.navigator.userAgent.indexOf('MSIE') !== -1 || !!document.documentMode) {
+    // Internet Explorer detected
     window.location.href = 'IE.html';
 }
