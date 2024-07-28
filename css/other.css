@@ -4,7 +4,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f5f5f5;
+    background-color: #f7f8f8;
     flex-direction: column;
 }
 
@@ -96,7 +96,7 @@ a {
 }
 
 .bg {
-    background-color: #efefef;
+    background-color: #f7f8f8;
     border-radius: 5px;
     padding-top: 2px;
     padding-bottom: 21px;
