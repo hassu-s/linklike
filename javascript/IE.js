@@ -12,6 +12,11 @@
         return window.location.pathname.endsWith('IE.html');
     }
 
+    // 現在のページが404.htmlかどうかを確認する関数
+    function is404Page() {
+        return window.location.pathname.endsWith('404.html');
+    }
+
     // メインのロジック
     if (isIE()) {
         if (!isIEPage()) {
