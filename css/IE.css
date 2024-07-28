@@ -10,6 +10,11 @@ p {
     text-align: left;
 }
 
+.p3 {
+    font-size: 10px;
+    font-weight: 300;
+}
+
 hr {
     width: 100%;
 }
