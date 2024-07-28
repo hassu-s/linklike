@@ -4,7 +4,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    flex-direction: column; /* 縦方向に配置 */
+    background-color: #f5f5f5;
+    flex-direction: column;
 }
 
 h1 {
@@ -12,6 +13,7 @@ h1 {
     font-family: 'Noto Sans JP' , sans-serif;
     font-weight: 900;
     text-align: center;
+    background-color: #ffffff00;
 }
 
 h4 {
@@ -23,6 +25,7 @@ h4 {
 
 #h4-2 {
     text-align: center;
+    font-weight: 600;
 }
 
 p {
@@ -48,6 +51,7 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: #ffffff00;
 }
 
 #button-content {
@@ -56,20 +60,22 @@ button {
     white-space: pre-wrap;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff00;
 }
 
 a {
     text-decoration: none;
+    background-color: #ffffff00;
 }
 
 .container {
     border-radius: 5px;
     overflow: hidden;
-    width: 98%;
+    width: 96%;
     max-width: 800px;
     margin: 0 auto;
     box-shadow: 0px 0px 3px 0px rgba(100,100,100);
-    background-color: white;
+    background-color: #ffffff00;
 }
 .header {
     display: flex;
@@ -86,5 +92,12 @@ a {
 }
 .content {
     padding: 20px;
+    background-color: #fff;
 }
 
+.bg {
+    background-color: #efefef;
+    border-radius: 5px;
+    padding-top: 2px;
+    padding-bottom: 21px;
+}

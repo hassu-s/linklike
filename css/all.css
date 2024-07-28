@@ -2,7 +2,7 @@
 
 *{
     font-family: 'Noto Sans JP' , sans-serif;
-    background-color: rgb(251, 251, 251);
+    background-color: rgb(241, 241, 241);
     font-family: 'Noto Sans JP' , sans-serif;
     font-weight: 300;
 }
@@ -52,3 +52,6 @@ button {
     transition: transform 0.1s ease-in-out;
   }
   
+  #bodybg {
+    background-color: #fff;
+  }
