@@ -72,12 +72,15 @@ window.onload = function() {
 
 
 
-fetch('https://hassu-s.github.io')
-  .then(response => {
-    if (!response.ok) {
-      window.location.href = "https://hassu-s.github.io/linklike";
-    }
-  })
-  .catch(error => {
-    window.location.href = "https://hassu-s.github.io/linklike";
-  });
+if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    fetch('https://hassu-s.github.io')
+      .then(response => {
+        if (response.status === 404) {
+          window.location.href = "https://hassu-s.github.io/linklike";
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching the URL:', error);
+      });
+  }
+  
