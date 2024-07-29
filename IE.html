@@ -39,97 +39,78 @@
             お問い合わせの前に、原因の端末を検査するために下記情報をコピーして、メールへ貼り付けてください。こちらで調査させていただきます。
         </p>
 
-
-        <!DOCTYPE html>
-        <html lang="ja">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>システム情報表示</title>
-            <style>
-                #info {
-                    font-size: 1.5em;
-                    margin-bottom: 10px;
-                }
-                #sendButton {
-                    padding: 10px 20px;
-                    font-size: 1em;
-                    cursor: pointer;
-                }
-            </style>
-        </head>
-        <body>
-            <div id="info"></div>
-            <button id="sendButton">メール送信</button>
-        
+            <title>Device Info</title>
             <script>
-                function getOS() {
-                    let os = "Otr";
-                    if (navigator.userAgent.indexOf("Windows NT 11.0") !== -1) os = "Win11";
-                    else if (navigator.userAgent.indexOf("Windows NT 10.0") !== -1) os = "Win10";
-                    else if (navigator.userAgent.indexOf("Windows NT 6.3") !== -1) os = "Win8.1";
-                    else if (navigator.userAgent.indexOf("Windows NT 6.2") !== -1) os = "Win8";
-                    else if (navigator.userAgent.indexOf("Windows NT 6.1") !== -1) os = "Win7";
-                    else if (navigator.userAgent.indexOf("Android") !== -1) os = "And";
-                    else if (navigator.userAgent.indexOf("iPhone") !== -1 || navigator.userAgent.indexOf("iPad") !== -1) os = "Ios";
-                    else if (navigator.userAgent.indexOf("CrOS") !== -1) os = "Chr";
-                    else if (navigator.userAgent.indexOf("Linux") !== -1) os = "Lin";
-                    return os;
-                }
+                function getDeviceInfo() {
+                    var os = "Otr";
+                    var browser = "OB";
+                    var browserVersion = "N/A";
         
-                function getBrowser() {
-                    let browser = "OB";
-                    if (navigator.userAgent.indexOf("Edg") !== -1) browser = "ED";
-                    else if (navigator.userAgent.indexOf("Chrome") !== -1 && navigator.userAgent.indexOf("Edg") === -1) browser = "CH";
-                    else if (navigator.userAgent.indexOf("Safari") !== -1 && navigator.userAgent.indexOf("Chrome") === -1) browser = "SA";
-                    else if (navigator.userAgent.indexOf("Firefox") !== -1) browser = "FI";
-                    else if (navigator.userAgent.indexOf("Opera") !== -1 || navigator.userAgent.indexOf("OPR") !== -1) browser = "OP";
-                    else if (navigator.userAgent.indexOf("Brave") !== -1) browser = "BR";
-                    else if (navigator.userAgent.indexOf("Vivaldi") !== -1) browser = "VI";
-                    else if (navigator.userAgent.indexOf("MSIE") !== -1 || !!document.documentMode) browser = "IE";
-                    else if (navigator.userAgent.indexOf("Chromium") !== -1) browser = "CM";
-                    else if (navigator.userAgent.indexOf("Firefox") !== -1) browser = "OF";
-                    return browser;
-                }
-        
-                function getBrowserVersion() {
-                    let userAgent = navigator.userAgent;
-                    let browserVersion = "Unknown";
-                    let match = userAgent.match(/(Edg|Chrome|Safari|Firefox|Opera|OPR|Brave|Vivaldi|MSIE|Trident|Chromium)\/?\s*(\d+)/i);
-                    if (match && match[2]) {
-                        browserVersion = match[2];
+                    // Detect OS
+                    var userAgent = navigator.userAgent;
+                    if (userAgent.indexOf("Windows") != -1) {
+                        os = "Win";
+                    } else if (userAgent.indexOf("Android") != -1) {
+                        os = "And";
+                    } else if (userAgent.indexOf("iPhone") != -1 || userAgent.indexOf("iPad") != -1) {
+                        os = "Ios";
+                    } else if (userAgent.indexOf("CrOS") != -1) {
+                        os = "Chr";
+                    } else if (userAgent.indexOf("Linux") != -1) {
+                        os = "Lin";
                     }
-                    return browserVersion;
+        
+                    // Detect Browser and Browser Version
+                    if (userAgent.indexOf("Edg") != -1) {
+                        browser = "ED";
+                        browserVersion = userAgent.match(/Edg\/(\d+\.\d+)/)[1];
+                    } else if (userAgent.indexOf("Chrome") != -1 && userAgent.indexOf("Edg") == -1 && userAgent.indexOf("OPR") == -1 && userAgent.indexOf("Brave") == -1 && userAgent.indexOf("Vivaldi") == -1) {
+                        browser = "CH";
+                        browserVersion = userAgent.match(/Chrome\/(\d+\.\d+)/)[1];
+                    } else if (userAgent.indexOf("Safari") != -1 && userAgent.indexOf("Chrome") == -1) {
+                        browser = "SA";
+                        browserVersion = userAgent.match(/Version\/(\d+\.\d+)/)[1];
+                    } else if (userAgent.indexOf("Firefox") != -1) {
+                        browser = "FI";
+                        browserVersion = userAgent.match(/Firefox\/(\d+\.\d+)/)[1];
+                    } else if (userAgent.indexOf("OPR") != -1) {
+                        browser = "OP";
+                        browserVersion = userAgent.match(/OPR\/(\d+\.\d+)/)[1];
+                    } else if (userAgent.indexOf("Brave") != -1) {
+                        browser = "BR";
+                        browserVersion = userAgent.match(/Chrome\/(\d+\.\d+)/)[1]; // Brave uses Chrome's version
+                    } else if (userAgent.indexOf("Vivaldi") != -1) {
+                        browser = "VI";
+                        browserVersion = userAgent.match(/Chrome\/(\d+\.\d+)/)[1]; // Vivaldi uses Chrome's version
+                    } else if (userAgent.indexOf("MSIE") != -1 || !!document.documentMode) {
+                        browser = "IE";
+                        browserVersion = userAgent.match(/MSIE (\d+\.\d+)/)[1];
+                    } else if (userAgent.indexOf("Chromium") != -1) {
+                        browser = "CM";
+                        browserVersion = userAgent.match(/Chromium\/(\d+\.\d+)/)[1];
+                    } else if (userAgent.indexOf("Firefox") != -1) {
+                        browser = "OF";
+                        browserVersion = userAgent.match(/Firefox\/(\d+\.\d+)/)[1];
+                    }
+        
+                    var deviceInfo = os + "/" + browser + "/" + browserVersion;
+                    document.getElementById("deviceInfo").innerText = deviceInfo;
+        
+                    // Prepare mailto link
+                    var mailtoLink = "mailto:hassus.linklikelovelive@gmail.com?subject=表示不具合に関する問い合わせ&body=" + encodeURIComponent(deviceInfo + "\n\n不具合内容に追加の説明が必要な際は以下にご記入ください\n\n※本メールは返信は行いません\n※不具合解消までにお時間をいただく場合がございますが、ご了承ください\n※早急にサイトを閲覧したい場合、別のブラウザやOSをご利用ください");
+                    document.getElementById("sendEmail").setAttribute("href", mailtoLink);
                 }
-        
-                function getDeviceName() {
-                    return navigator.platform; // デバイス名を端末から取得
-                }
-        
-                function displayInfo() {
-                    let os = getOS();
-                    let browser = getBrowser();
-                    let browserVersion = getBrowserVersion();
-                    let deviceName = getDeviceName();
-                    let info = `${os}/${browser}/${browserVersion}/${deviceName}`;
-                    document.getElementById("info").innerText = info;
-                }
-        
-                function sendEmail() {
-                    let info = document.getElementById("info").innerText;
-                    let email = "hassus.linklikelovelive@gmail.com";
-                    let subject = "表示不具合に関する問い合わせ";
-                    let body = `${info}\n\n不具合内容に追加の説明が必要な際は以下にご記入ください\n\n\n※本メールは返信は行いません\n※不具合解消までにお時間をいただく場合がございますが、ご了承ください\n※早急にサイトを閲覧したい場合、別のブラウザやOSをご利用ください`;
-                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                }
-        
-                document.getElementById("sendButton").addEventListener("click", sendEmail);
-        
-                displayInfo();
             </script>
-        </body>
-        </html>
-              
+        </head>
+        <body onload="getDeviceInfo()">
+            <p id="deviceInfo">Loading...</p>
+            <div id="content-ie">
+                <a id="sendEmail" href="#"><button>メール送信</button></a>
+            </div>
+        </body>              
         
 
 
