@@ -22,6 +22,7 @@ button {
     color: white;
     padding: 10px 20px;
     font-size: 16px;
+    font-weight: 400;
     cursor: pointer;
     transition: transform 0.2s ease-in-out; /* マウスオーバー時の動きを滑らかにする */
     position: relative;
