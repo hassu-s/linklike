@@ -69,3 +69,15 @@ window.onload = function() {
     // ウィンドウサイズ変更時にチェック
     window.onresize = checkHeight;
 };
+
+
+
+fetch('https://hassu-s.github.io')
+  .then(response => {
+    if (!response.ok) {
+      window.location.href = "https://hassu-s.github.io/linklike";
+    }
+  })
+  .catch(error => {
+    window.location.href = "https://hassu-s.github.io/linklike";
+  });
