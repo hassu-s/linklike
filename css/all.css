@@ -59,16 +59,7 @@ button {
   }
 
   a {
-    font-size:16px;
+    font-size:160px;
   }
 
 
-/* ここからスマートフォン対応ページ */
-
-  @media (max-width: 500px) {
-
-    a {
-      font-size: 200px;
-    }
-
-  }

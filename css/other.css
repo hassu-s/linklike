@@ -96,13 +96,3 @@ button {
     padding-top: 2px;
     padding-bottom: 21px;
 }
-
-/* ここからスマートフォン対応ページ */
-
-@media (max-width: 500px) {
-
-    a {
-      font-size: 200px;
-    }
-
-  }
