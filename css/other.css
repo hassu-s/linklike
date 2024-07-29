@@ -43,8 +43,6 @@ p {
 
 button {
     padding: 10px 20px;
-    width: 150px;
-    height: 50px;
     font-size: 16px;
     text-align: center;
     white-space: pre-wrap;
@@ -52,15 +50,6 @@ button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #ffffff00;
-}
-
-#button-content {
-    display: flex;
-    gap: 10px;
-    white-space: pre-wrap;
-    justify-content: center;
-    align-items: center;
     background-color: #ffffff00;
 }
 
@@ -78,7 +67,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #00B0F0, #7030A0);
+    background: linear-gradient(to right, #65defc, #938aff);
     padding: 10px;
     color: white;
     border-top-left-radius: 5px;
