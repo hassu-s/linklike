@@ -9,6 +9,10 @@
     background-color: #ffffff00;
   }
 
+  body {
+    background-color: #f7f8f8;
+  }
+
 h1 {
     font-size: 30px;
     font-weight: 900;
