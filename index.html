@@ -9,6 +9,24 @@
     <script src="../linklike/javascript/IE.js"></script>
     <script src="../linklike/javascript/rule.js"></script>
     <script src="../linklike/javascript/launcher.js"></script>
+    <script defer src="https://www.pushcode.jp/dist/js/pushcode.js"></script>
+    <script>
+    window.PushCodeInit = function() {
+    try {
+        if (PushCode && PushCode.isSupport()) {
+        PushCode.init({ domainToken: 'f88240957e2f6344de5f1355e9b53b33786cf392c32ecde863ea44c5d2050875', userid: '' });
+        PushCode.components.openSubscribeDialog();
+        }
+    }
+    catch (err) {
+        console.error(err);
+        if (PushCode) {
+        PushCode.sendError(err);
+        }
+    }
+    };
+    </script>
+
 </head>
 <body>
     <h1>サイトindex</h1>

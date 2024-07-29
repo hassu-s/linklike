@@ -122,7 +122,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const popupMenu = document.createElement('div');
     popupMenu.id = 'popup-menu';
     popupMenu.innerHTML = `
-        <button>ボタン1</button>
+        <br>
+        <a class="alink" href="../linklike/html/calendar.html"><button>リンクラカレンダー</button></a><hr class="nohr">
+        <button>A/</button>
     `;
     document.body.append(popupMenu);
 
