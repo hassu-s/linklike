@@ -48,8 +48,3 @@ hr {
     margin-top: -150px;
 }
 
-@media (max-width: 500px) {
-    .content-ie {
-        margin-top: -300px;
-    }
-  }
