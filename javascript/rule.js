@@ -72,17 +72,5 @@ window.onload = function() {
 
 
 
-if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-    if (window.location.href !== 'https://hassu-s.github.io/linklike') {
-      fetch('https://hassu-s.github.io')
-        .then(response => {
-          if (response.status === 404) {
-            window.location.href = "https://hassu-s.github.io/linklike";
-          }
-        })
-        .catch(error => {
-          console.error('Error fetching the URL:', error);
-        });
-    }
-  }
+
   
