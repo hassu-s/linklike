@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中央に配置されたボタン</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column; /* 縦方向に配置 */
+        }
+        .animated-button {
+  background-color: #4CAF50; /* 背景色 */
+  border: none; /* 枠線なし */
+  color: white; /* 文字色 */
+  padding: 15px 32px; /* パディング */
+  text-align: center; /* テキストの中央揃え */
+  text-decoration: none; /* テキストの装飾なし */
+  display: inline-block; /* インラインブロック表示 */
+  font-size: 16px; /* フォントサイズ */
+  margin: 4px 2px; /* マージン */
+  cursor: pointer; /* カーソルをポインターに */
+  border-radius: 12px; /* 角を丸くする */
+  position: relative; /* 相対位置 */
+  overflow: hidden; /* オーバーフローを隠す */
+  transition: transform 0.2s ease-in-out; /* トランジションの時間 */
+}
+
+.animated-button:active {
+  animation: bounce 0.6s ease-in-out 2; /* 2回のアニメーション */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="animated-button">
+        <button>ボタン1\n改行</button>
+        <button>ボタン2\n改行</button>
+    </div>
+    <div class="content">
+        <!-- 他のコンテンツをここに追加 -->
+        <p>ここに他のコンテンツが入ります。</p>
+    </div>
+</body>
+</html>
