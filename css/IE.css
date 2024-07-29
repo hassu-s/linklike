@@ -35,6 +35,10 @@ hr {
     border-radius: 5px;
 }
 
+.boxa {
+    font-size: 0px;
+}
+
 .imgbr {
     width: 40px;
     height: 40px;

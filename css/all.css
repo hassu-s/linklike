@@ -7,7 +7,12 @@
     font-weight: 300;
     text-decoration: none;
     background-color: #ffffff00;
-}
+  }
+
+h1 {
+    font-size: 30px;
+    font-weight: 900;
+  }
 
 button {
     background: linear-gradient(to right, #00B0F0, #7030A0);
