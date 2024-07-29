@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: white;
             color: black;
             text-align: center;
-            height: 45px;
+            height: 55px;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
             align-items: center;
         }
         #launcher-menu img {
-            width: 35px;
-            height: 35px;
+            width: 45px;
+            height: 45px;
         }
         .vertical-line {
             display: inline-block;
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         #popup-menu {
             position: fixed;
-            bottom: 55px;
+            bottom: 65px;
             background-color: rgba(255, 255, 255, 0.95);
             padding: 10px;
             border-radius: 10px;
@@ -76,16 +76,16 @@ document.addEventListener("DOMContentLoaded", function() {
             border-radius: 10px;
         }
         .menu-icon-line:nth-child(1) {
-            top: 40%;
+            top: 35%;
         }
         .menu-icon-line:nth-child(2) {
-            top: 60%;
+            top: 65%;
         }
         .menu-icon.open .menu-icon-line:nth-child(1) {
-            transform: translate(0px, 3.1px) rotate(-45deg);
+            transform: translate(0px, 4.5px) rotate(-45deg);
         }
         .menu-icon.open .menu-icon-line:nth-child(2) {
-            transform: translate(0px, -3.1px) rotate(45deg);
+            transform: translate(0px, -4.5px) rotate(45deg);
         }
         .vertical-hr {
         border: none;
