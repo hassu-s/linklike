@@ -99,7 +99,7 @@ button {
     padding-bottom: 21px;
 }
 
-/* モバイルデバイス対応 */
+/* Media Queries for Mobile Devices */
 @media (max-width: 700px) {
     body {
         flex-direction: column;
@@ -125,8 +125,8 @@ button {
     }
 
     .container {
-        width: 100%;
-        margin: 0 10px;
+        width: 96%;
+        margin: 0 auto;
     }
 
     .header {
