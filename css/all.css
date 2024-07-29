@@ -58,6 +58,15 @@ button {
     transform: scale(0.9);
     transition: transform 0.1s ease-in-out;
   }
+
+button:focus {
+  outline: none;
+  }
+
+a:focus {
+  outline: none;
+  }
+
   
   #bodybg {
     background-color: #fff;
