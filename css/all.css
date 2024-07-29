@@ -65,7 +65,7 @@ button {
 
 /* ここからスマートフォン対応ページ */
 
-  @media screen and (max-width: 500px) {
+  @media (max-width: 500px) {
 
     a {
       font-size: 200px;
