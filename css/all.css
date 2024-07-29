@@ -105,3 +105,44 @@ button, a {
     text-align: center;
   }
 }
+
+.p2 {
+  font-size: 13px;
+}
+
+input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 0px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s, border-radius 0.3s;
+  outline: none; /* デフォルトの選択ラインを表示させない */
+  box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+  width: 300px;
+  height: 30px;
+  background-color: #f7f8f8;
+}
+
+input:hover {
+  border-color: #555; /* マウスオーバーで線の色を濃くする */
+}
+
+input:focus {
+  border: 2px solid transparent; /* 角が出ないようにする */
+  border-image: linear-gradient(to right, #65defc, #938aff) 1; /* グラデーション */
+  animation: gradient-animation 3s infinite; /* グラデーションがぐるぐる動く */
+  border-radius: 0px; /* 形が変わらないようにする */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* フォーカス時のデザイン性を向上 */
+}
+
+@keyframes gradient-animation {
+  0% {
+    border-image: linear-gradient(to right, #65defc, #938aff) 1;
+  }
+  50% {
+    border-image: linear-gradient(to right, #938aff, #65defc) 1;
+  }
+  100% {
+    border-image: linear-gradient(to right, #65defc, #938aff) 1;
+  }
+}

@@ -16,36 +16,56 @@ document.addEventListener('wheel', function(e) {
 }, { passive: false });
 
 
-// JavaScript code to lock screen orientation to portrait mode on Android and iOS only when the device is in landscape mode
-if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    if (window.matchMedia("(orientation: landscape)").matches) {
-        if (screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock('portrait').catch(function(error) {
-                alert('縦画面で閲覧してください');
-                console.error('Screen orientation lock failed:', error);
-            });
-        } else if (window.screen.lockOrientation) {
-            window.screen.lockOrientation('portrait').catch(function(error) {
-                alert('縦画面で閲覧してください');
-                console.error('Screen orientation lock failed:', error);
-            });
-        } else if (window.screen.mozLockOrientation) {
-            window.screen.mozLockOrientation('portrait').catch(function(error) {
-                alert('縦画面で閲覧してください');
-                console.error('Screen orientation lock failed:', error);
-            });
-        } else if (window.screen.msLockOrientation) {
-            window.screen.msLockOrientation('portrait').catch(function(error) {
-                alert('縦画面で閲覧してください');
-                console.error('Screen orientation lock failed:', error);
-            });
+
+
+window.onload = function() {
+    function checkHeight() {
+        if (window.innerHeight < 500) {
+            if (!document.getElementById('error-message')) {
+                // エラーメッセージの要素を作成
+                var errorMessage = document.createElement('div');
+                errorMessage.id = 'error-message';
+                errorMessage.style.position = 'fixed';
+                errorMessage.style.top = '0';
+                errorMessage.style.left = '0';
+                errorMessage.style.width = '100%';
+                errorMessage.style.height = '100%';
+                errorMessage.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                errorMessage.style.color = 'white';
+                errorMessage.style.display = 'flex';
+                errorMessage.style.flexDirection = 'column';
+                errorMessage.style.justifyContent = 'center';
+                errorMessage.style.alignItems = 'center';
+                errorMessage.style.zIndex = '1000';
+                errorMessage.innerHTML = `
+                    <p>お使いの端末の高さでは、本サイトは正常に動作しません</p>
+                    <p class="p2">こちらのパスワード入力欄はデベロッパー専用です。<br>お使いの端末の高さをある程度高くしてください</p>
+                    <input type="password" id="password-input" placeholder="パスワードを入力"><br>
+                    <button id="submit-button">送信</button>
+                `;
+                document.body.appendChild(errorMessage);
+
+                // パスワード入力欄とボタンのイベントリスナーを設定
+                document.getElementById('submit-button').addEventListener('click', function() {
+                    var password = document.getElementById('password-input').value;
+                    if (password === 'dev.hassu') {
+                        document.body.removeChild(errorMessage);
+                    } else {
+                        alert('パスワードが間違っています');
+                    }
+                });
+            }
         } else {
-            alert('縦画面で閲覧してください');
-            console.warn('Screen orientation lock not supported on this device.');
+            var errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                document.body.removeChild(errorMessage);
+            }
         }
-    } else {
-        console.log('Device is already in portrait mode.');
     }
-} else {
-    console.log('This script is not applicable for desktop devices.');
-}
+
+    // 初回チェック
+    checkHeight();
+
+    // ウィンドウサイズ変更時にチェック
+    window.onresize = checkHeight;
+};
