@@ -67,6 +67,13 @@ a:focus {
   outline: none;
   }
 
+  /* ボタンやリンクの青いハイライトを消す */
+button, a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari */
+  -webkit-focus-ring-color: rgba(0, 0, 0, 0); /* Chrome */
+  outline: none; /* その他のブラウザ */
+  }
+
   
   #bodybg {
     background-color: #fff;
