@@ -165,22 +165,18 @@ input:focus {
   }
 }
 
-/* プッシュ通知のCSS */
-pushcode-gray-out, pushcode-restock-button, pushcode-subscribe-dialog, pushcode-subscribe-toggle-button {
-  visibility: hidden;
-  background-color: rgb(255, 255, 255);
+div {
+  background-color: #ffffff00;
 }
 
-.subMessage {
-  font-size: 13px;
+img {
+  background-color: #ffffff00;
 }
 
-.accept {
-  width: 105px;
-  font-family: 'Noto Sans JP' , sans-serif;
+P {
+  background-color: #ffffff00;
 }
 
-.deny {
-  width: 105px;
-  font-family: 'Noto Sans JP' , sans-serif;
+a {
+  background-color: #ffffff00;
 }

@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .vertical-line {
             display: inline-block;
             width: 0.5px;
-            height: 90%;
+            height: 32px;
             background-color: #c3c3c3;
             vertical-align: middle;
         }
@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
         .vertical-hr {
         border: none;
         border-left: 2px solid #00000000; /* 縦線の太さと色 */
-        height: 20px; /* 縦線の高さ */
-        width: 0; /* 幅を0に設定 */
+        height: 0px; /* 縦線の高さ */
+        width: 0px; /* 幅を0に設定 */
         }
     `;
     document.head.append(style);
