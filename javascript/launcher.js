@@ -123,8 +123,8 @@ document.addEventListener("DOMContentLoaded", function() {
     popupMenu.id = 'popup-menu';
     popupMenu.innerHTML = `
         <br>
-        <a class="alink" href="../linklike/html/calendar.html"><button>リンクラカレンダー</button></a><hr class="nohr">
-        <a class="alink" href="../linklike/html/item.html"><button>アイテムリスト</button></a><hr class="nohr">
+        <a class="alink" href="https://hassu-s.github.io/linklike/html/calendar.html"><button>リンクラカレンダー</button></a><hr class="nohr">
+        <a class="alink" href="https://hassu-s.github.io/linklike/html/item.html"><button>アイテムリスト</button></a><hr class="nohr">
     `;
     document.body.append(popupMenu);
 
