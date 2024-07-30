@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
     launcherMenu.innerHTML = `
         <div id="launcher-content">
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-                <a href="404.html" class="alink" id="back-button"><img src="../linklike/image/button/mail.png" alt="戻る"></a>
+                <a href="404.html" class="alink" id="back-button"><img src="https://hassu-s.github.io/linklike/image/button/mail.png" alt="戻る"></a>
             </div>
             <div class="vertical-line"><hr class="vertical-hr"></div>
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             <div class="vertical-line"><hr class="vertical-hr"></div>
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-                <a href="https://hassu-s.github.io/linklike/" class="alink" id="link-button"><img src="../linklike/image/button/home.png" alt="リンク"></a>
+                <a href="https://hassu-s.github.io/linklike/" class="alink" id="link-button"><img src="https://hassu-s.github.io/linklike/image/button/home.png" alt="リンク"></a>
             </div>
         </div>
     `;
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
     popupMenu.innerHTML = `
         <br>
         <a class="alink" href="../linklike/html/calendar.html"><button>リンクラカレンダー</button></a><hr class="nohr">
-        <button>A/</button>
+        <a class="alink" href="../linklike/html/item.html"><button>アイテムリスト</button></a><hr class="nohr">
     `;
     document.body.append(popupMenu);
 
