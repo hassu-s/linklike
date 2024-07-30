@@ -1,7 +1,7 @@
 ﻿画像,アイテム名,種別1,種別2,種別3
-gino-sho.png,技能書（初等）,g,1,
-gino-chu.png,技能書（中等）,g,2,
-gino-kou.png,技能書（高等）,g,3,
+gino-sho.png,技能書（初等）,g,1,b
+gino-chu.png,技能書（中等）,g,2,b
+gino-kou.png,技能書（高等）,g,3,b
 garnet1.png,ガーネットピース（R1）,p,1,g
 garnet2.png,ガーネットピース（R2）,p,2,g
 garnet3.png,ガーネットピース（R3）,p,3,g
