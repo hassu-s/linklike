@@ -2,8 +2,8 @@
     const maintenanceUrl = "https://hassu-s.github.io/linklike/html/maintenance?redirected=true";
     const originalUrl = "https://hassu-s.github.io/linklike/?redirected=true";
 
-    const startTime = new Date(2024, 6, 30, 17, 27); // 2024年7月30日17時6分
-    const endTime = new Date(2024, 6, 30, 17, 28); // 2024年7月30日17時8分
+    const startTime = new Date(2024, 6, 30, 17, 31); // 2024年7月30日17時27分
+    const endTime = new Date(2024, 6, 30, 17, 32); // 2024年7月30日17時28分
 
     function checkTime() {
         const now = new Date();
