@@ -165,3 +165,22 @@ input:focus {
     border-image: linear-gradient(to right, #65defc, #938aff) 1;
   }
 }
+
+/* プッシュ通知のCSS */
+.pushcode-subscribe-dialog {
+  background-color: #fff;
+}
+
+.subMessage {
+  font-size: 13px;
+}
+
+.accept {
+  width: 105px;
+  font-family: 'Noto Sans JP' , sans-serif;
+}
+
+.deny {
+  width: 105px;
+  font-family: 'Noto Sans JP' , sans-serif;
+}
