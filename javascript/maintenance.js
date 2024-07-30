@@ -6,6 +6,6 @@
     if (currentTime >= maintenanceStart && currentTime <= maintenanceEnd) {
         window.location.href = '../html/maintenance.html';
     } else {
-        window.location.href = '../linklike/html/404.html';
+        window.location.href = '../linklike/404.html';
     }
 })();
