@@ -167,8 +167,9 @@ input:focus {
 }
 
 /* プッシュ通知のCSS */
-.pushcode-subscribe-dialog {
-  background-color: #fff;
+pushcode-gray-out, pushcode-restock-button, pushcode-subscribe-dialog, pushcode-subscribe-toggle-button {
+  visibility: hidden;
+  background-color: rgb(255, 255, 255);
 }
 
 .subMessage {
