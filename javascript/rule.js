@@ -20,7 +20,7 @@ document.addEventListener('wheel', function(e) {
 
 window.onload = function() {
     function checkHeight() {
-        if (window.innerHeight < 500) {
+        if (window.innerHeight < 520) {
             if (!document.getElementById('error-message')) {
                 // エラーメッセージの要素を作成
                 var errorMessage = document.createElement('div');
@@ -38,8 +38,8 @@ window.onload = function() {
                 errorMessage.style.alignItems = 'center';
                 errorMessage.style.zIndex = '1000';
                 errorMessage.innerHTML = `
-                    <p>お使いの端末の高さでは、本サイトは正常に動作しません</p>
-                    <p class="p2">こちらのパスワード入力欄はデベロッパー専用です。<br>お使いの端末の高さをある程度高くしてください</p>
+                    <p class="pr1">お使いの端末の高さでは、本サイトは正常に動作しません</p>
+                    <p class="pr2">こちらのパスワード入力欄はデベロッパー専用です。<br>お使いの端末の高さをある程度高くしてください</p>
                     <input type="password" id="password-input" placeholder="パスワードを入力"><br>
                     <button id="submit-button">送信</button>
                 `;
