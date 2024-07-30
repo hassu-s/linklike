@@ -1,22 +1,44 @@
-(function() {
-    const maintenanceUrl = "https://hassu-s.github.io/linklike/html/maintenance?redirected=true";
-    const originalUrl = "https://hassu-s.github.io/linklike/?redirected=true";
+document.addEventListener('DOMContentLoaded', function() {
+    // 開始時間と終了時間を設定
+    var startTime = new Date('2024-07-30T17:38:00+09:00');
+    var endTime = new Date('2024-07-30T17:39:00+09:00');
+    var currentTime = new Date();
 
-    const startTime = new Date(2024, 6, 30, 17, 31); // 2024年7月30日17時27分
-    const endTime = new Date(2024, 6, 30, 17, 32); // 2024年7月30日17時28分
+    // ローカル環境では実行しない
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return;
+    }
 
+    // 時間チェック関数
     function checkTime() {
-        const now = new Date();
-        const urlParams = new URLSearchParams(window.location.search);
-        const redirected = urlParams.get('redirected');
-
-        if (now >= startTime && now <= endTime && !redirected) {
-            window.location.href = maintenanceUrl;
-        } else if (now > endTime && !redirected) {
-            window.location.href = originalUrl;
+        currentTime = new Date();
+        if (currentTime >= startTime && currentTime < endTime) {
+            // 画面全体を指定のURLで埋め込む
+            if (!document.getElementById('maintenance-frame')) {
+                var iframe = document.createElement('iframe');
+                iframe.id = 'maintenance-frame';
+                iframe.src = 'https://hassu-s.github.io/linklike/inhtml/maintenance.html';
+                iframe.style.position = 'fixed';
+                iframe.style.top = '0';
+                iframe.style.left = '0';
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+                iframe.style.zIndex = '9999';
+                document.body.appendChild(iframe);
+            }
+        } else {
+            // 表示を消す
+            var iframe = document.getElementById('maintenance-frame');
+            if (iframe) {
+                document.body.removeChild(iframe);
+            }
         }
     }
 
+    // 初回チェック
+    checkTime();
+
     // 1秒ごとに時間をチェック
     setInterval(checkTime, 1000);
-})();
+});
