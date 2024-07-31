@@ -18,8 +18,6 @@
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
-            display: flex;
-            align-items: center;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
@@ -32,6 +30,7 @@
         }
         .box .text {
             font-size: 14px;
+            margin-bottom: 10px;
         }
         .box .text span {
             margin-right: 10px;
@@ -39,6 +38,10 @@
         .box .text .dash {
             margin-right: 10px;
             margin-left: 10px;
+        }
+        .box .items {
+            display: flex;
+            flex-wrap: wrap;
         }
     </style>
 </head>
@@ -52,7 +55,7 @@
             return text.split('\n').slice(1).map(row => row.split(',')); // Skip the first row
         }
 
-        function createBox(content, imageUrl, tooltip) {
+        function createBox(content, items) {
             const box = document.createElement('div');
             box.className = 'box';
 
@@ -62,13 +65,16 @@
             text.innerHTML = `<span>${a}</span><span>${b}</span><span class="dash">-</span><span>${c}</span><span>${d}</span>`;
             box.appendChild(text);
 
-            if (imageUrl) {
+            const itemsDiv = document.createElement('div');
+            itemsDiv.className = 'items';
+            items.forEach(item => {
                 const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = tooltip;
-                img.title = tooltip;
-                box.appendChild(img);
-            }
+                img.src = item.imageUrl;
+                img.alt = item.tooltip;
+                img.title = item.tooltip;
+                itemsDiv.appendChild(img);
+            });
+            box.appendChild(itemsDiv);
 
             return box;
         }
@@ -82,19 +88,11 @@
                 const textContent = itemRow.slice(0, 4).join(' ');
                 const codes = itemRow.slice(4, 16).filter(cell => cell !== '-');
                 if (codes.length > 0) {
-                    const box = createBox(textContent, null, '');
-                    codes.forEach(code => {
+                    const items = codes.map(code => {
                         const itemIdRow = itemIdData.find(row => row[0] === code);
-                        if (itemIdRow) {
-                            const imageUrl = itemIdRow[3];
-                            const tooltip = itemIdRow[4];
-                            const img = document.createElement('img');
-                            img.src = imageUrl;
-                            img.alt = tooltip;
-                            img.title = tooltip;
-                            box.appendChild(img);
-                        }
-                    });
+                        return itemIdRow ? { imageUrl: itemIdRow[3], tooltip: itemIdRow[4] } : null;
+                    }).filter(item => item !== null);
+                    const box = createBox(textContent, items);
                     contentDiv.appendChild(box);
                 }
             });
