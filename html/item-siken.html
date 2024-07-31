@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Data Display</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/other.css">
+    <link rel="stylesheet" href="../css/all.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,14 +71,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: white;
-            padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             z-index: 1001;
             width: 300px;
-            height: 430px;
-            overflow-y: scroll;
+            height: 80%;
+            overflow-y: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            border-radius: 5px;
         }
         .popup::-webkit-scrollbar { 
             display: none;
@@ -86,17 +87,30 @@
             display: block;
         }
         .popup-content {
-            padding-bottom: 60px;
+            padding: 20px;
         }
         .popup-buttons {
-            position: absolute;
-            bottom: 0;
+            display: none;
+            position: fixed;
             left: 50%;
             transform: translateX(-50%);
+            bottom: 30px;
             background-color: white;
-            width: 100%;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            padding: 0px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            width: 300px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        .popup-buttons.active {
+            display: flex;
+            justify-content: center;
+        }
+        .popup-buttons button {
+            margin: 0 5px;
         }
         .overlay {
             display: none;
@@ -121,28 +135,26 @@
             align-items: center;
             margin-bottom: 10px;
         }
-        .shake {
-            animation: shake 0.5s;
+        .alink1 {
+            font-size: 15px;
         }
-        @keyframes shake {
-            0% { transform: translate(-50%, -50%) translateX(0); }
-            25% { transform: translate(-50%, -50%) translateX(-10px); }
-            50% { transform: translate(-50%, -50%) translateX(10px); }
-            75% { transform: translate(-50%, -50%) translateX(-10px); }
-            100% { transform: translate(-50%, -50%) translateX(0); }
+        label {
+            background-color: #ffffff00;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="#" id="filterLink">絞り込み</a>
+        <a class="alink1" href="#" id="filterLink">絞り込み</a>
         <label><input type="checkbox" id="lowProbability" checked> 低確率アイテム表示</label>
     </div>
     <div class="container" id="content"></div>
 
     <div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
-        <h3>絞り込み</h3>
+        <div class="header">
+            <h4 id="h4-2">絞り込み</h4s>
+        </div>
         <div class="popup-content">
             <div>
                 <h4>学期 絞り込み</h4>
@@ -162,14 +174,16 @@
                 <label><input type="checkbox" id="gb"> <img src="sample.png" alt="gb"> 技能書</label>
             </div>
         </div>
-        <div class="popup-buttons">
-            <button id="resetButton">リセット</button>
-            <button id="cancelButton">キャンセル</button>
-            <button id="applyButton">OK（適応）</button>
-        </div>
+    </div>
+    <div class="popup-buttons" id="popup-buttons">
+        <button id="resetButton">リセット</button>
+        <button id="cancelButton">キャンセル</button>
+        <button id="applyButton">OK</button>
     </div>
 
     <script>
+        let initialCheckboxStates = {};
+
         async function fetchCSV(url) {
             const response = await fetch(url);
             const text = await response.text();
@@ -229,8 +243,14 @@
         }
 
         document.getElementById('filterLink').addEventListener('click', () => {
+            // 現在のチェックボックスの状態を保存
+            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
+                initialCheckboxStates[checkbox.id] = checkbox.checked;
+            });
+
             document.getElementById('overlay').classList.add('active');
             document.getElementById('popup').classList.add('active');
+            document.getElementById('popup-buttons').classList.add('active');
         });
 
         document.getElementById('resetButton').addEventListener('click', () => {
@@ -240,8 +260,13 @@
         });
 
         document.getElementById('cancelButton').addEventListener('click', () => {
+            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = initialCheckboxStates[checkbox.id] || false;
+            });
+
             document.getElementById('overlay').classList.remove('active');
             document.getElementById('popup').classList.remove('active');
+            document.getElementById('popup-buttons').classList.remove('active');
         });
 
         document.getElementById('applyButton').addEventListener('click', () => {
@@ -257,7 +282,7 @@
                     const id = checkbox.id;
                     if (['term103', 'term104'].includes(id)) {
                         filters.term.push(id.replace('term', ''));
-                    } else if (['g', 'p', 'c', 'y'].includes(id)) {
+                    } else if (['g', 'gb', 'gy', 'gr', 'gc', 'y'].includes(id)) {
                         filters.type.push(id);
                     } else if (['1', '2', '3', '4'].includes(id)) {
                         filters.level.push(id);
@@ -269,6 +294,7 @@
 
             document.getElementById('overlay').classList.remove('active');
             document.getElementById('popup').classList.remove('active');
+            document.getElementById('popup-buttons').classList.remove('active');
 
             // Apply filters
             const boxes = document.querySelectorAll('.box');
@@ -310,11 +336,13 @@
         });
 
         document.getElementById('overlay').addEventListener('click', () => {
-            const popup = document.getElementById('popup');
-            popup.classList.add('shake');
-            setTimeout(() => {
-                popup.classList.remove('shake');
-            }, 500);
+            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = initialCheckboxStates[checkbox.id] || false;
+            });
+
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('popup').classList.remove('active');
+            document.getElementById('popup-buttons').classList.remove('active');
         });
 
         displayData();
