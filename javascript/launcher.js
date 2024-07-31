@@ -87,6 +87,9 @@ document.addEventListener("DOMContentLoaded", function() {
         .menu-icon.open .menu-icon-line:nth-child(2) {
             transform: translate(0px, -4.5px) rotate(45deg);
         }
+        .menu-icon-line:focus {
+            outline: none;
+        }
         .vertical-hr {
         border: none;
         border-left: 2px solid #00000000; /* 縦線の太さと色 */
