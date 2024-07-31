@@ -115,6 +115,16 @@
             left: 50%;
             transform: translateX(-50%);
         }
+        .shake {
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0% { transform: translate(-50%, -50%) translateX(0); }
+            25% { transform: translate(-50%, -50%) translateX(-10px); }
+            50% { transform: translate(-50%, -50%) translateX(10px); }
+            75% { transform: translate(-50%, -50%) translateX(-10px); }
+            100% { transform: translate(-50%, -50%) translateX(0); }
+        }
         </style>
         
 </head>
@@ -146,6 +156,7 @@
             <label><input type="checkbox" id="gb"> <img src="sample.png" alt="gb"> 技能書</label>
         </div>
         <button id="resetButton">リセット</button>
+        <button id="cancelButton">キャンセル</button>
         <button id="applyButton">OK（適応）</button>
     </div>
 
@@ -219,6 +230,11 @@
             });
         });
 
+        document.getElementById('cancelButton').addEventListener('click', () => {
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('popup').classList.remove('active');
+        });
+
         document.getElementById('applyButton').addEventListener('click', () => {
             const filters = {
                 term: [],
@@ -281,6 +297,14 @@
                     }
                 });
             });
+        });
+
+        document.getElementById('overlay').addEventListener('click', () => {
+            const popup = document.getElementById('popup');
+            popup.classList.add('shake');
+            setTimeout(() => {
+                popup.classList.remove('shake');
+            }, 500);
         });
 
         displayData();
