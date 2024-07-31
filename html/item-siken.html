@@ -90,7 +90,7 @@
         }
         .popup-buttons {
             position: fixed;
-            bottom: 20px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             background-color: white;
@@ -184,7 +184,7 @@
             const text = document.createElement('div');
             text.className = 'text';
             const [a, b, c, d] = content.split(' ');
-            text.innerHTML = `<span>${a}期</span><span>${b}</span><span class="dash"></span><span>${c} - ${d}</span>`;
+            text.innerHTML = `<div><span>${a}期</span><span>${b}</span><span class="dash"></span><span>${c} - ${d}</span></div>`;
             box.appendChild(text);
 
             const itemsDiv = document.createElement('div');
