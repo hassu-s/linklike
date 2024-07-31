@@ -7,121 +7,132 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    }
-    .container {
-        width: 90%;
-    }
-    .box {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin: 10px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        text-align: left;
-    }
-    .box img {
-        width: 20px;
-        height: 20px;
-        margin-left: 10px;
-    }
-    .box .text {
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-    .box .text span {
-        margin-right: 10px;
-    }
-    .box .text .dash {
-        margin-right: 10px;
-    }
-    .box .items {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background-color: #333;
-        color: white;
-        padding: 10px;
-        text-align: center;
-        z-index: 1000;
-    }
-    .navbar a {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px;
-    }
-    .popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        z-index: 1001;
-        width: 300px;
-        height: 430px;
-        overflow-y: scroll;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    }
-    .popup::-webkit-scrollbar { 
-        display: none;  /* Safari and Chrome */
-    }
-    .popup.active {
-        display: block;
-    }
-    .overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-    }
-    .overlay.active {
-        display: block;
-    }
-    .popup img {
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
-    }
-    .popup label {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .popup button {
-        margin-top: 10px;
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    </style>
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            padding-top: 60px; /* ナビゲーションバーの高さ分の余白を追加 */
+        }
+        .container {
+            width: 90%;
+        }
+        .box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: left;
+        }
+        .box img {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+        }
+        .box .text {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .box .text span {
+            margin-right: 10px;
+        }
+        .box .text .dash {
+            margin-right: 10px;
+        }
+        .box .items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: left; /* 左寄せ */
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .navbar label {
+            color: white;
+            margin-left: 20px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            width: 300px;
+            height: 430px;
+            overflow-y: scroll;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        }
+        .popup::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+        .popup.active {
+            display: block;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .overlay.active {
+            display: block;
+        }
+        .popup img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        .popup label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .popup button {
+            margin-top: 10px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        </style>
+        
 </head>
 <body>
     <div class="navbar">
         <a href="#" id="filterLink">絞り込み</a>
+        <label><input type="checkbox" id="lowProbability" checked> 低確率アイテム表示</label>
     </div>
     <div class="container" id="content"></div>
 
     <div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
         <h3>絞り込み</h3>
+        <div>
+            <h4>学期 絞り込み</h4>
+            <label><input type="checkbox" id="term103"> 103</label>
+            <label><input type="checkbox" id="term104"> 104</label>
+        </div>
         <div>
             <h4>種別 絞り込み</h4>
             <label><input type="checkbox" id="g"> <img src="sample.png" alt="g"> 技能書類</label>
@@ -210,6 +221,7 @@
 
         document.getElementById('applyButton').addEventListener('click', () => {
             const filters = {
+                term: [],
                 type: [],
                 level: [],
                 id: []
@@ -218,7 +230,9 @@
             document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
                 if (checkbox.checked) {
                     const id = checkbox.id;
-                    if (['g', 'p', 'c', 'y'].includes(id)) {
+                    if (['term103', 'term104'].includes(id)) {
+                        filters.term.push(id.replace('term', ''));
+                    } else if (['g', 'p', 'c', 'y'].includes(id)) {
                         filters.type.push(id);
                     } else if (['1', '2', '3', '4'].includes(id)) {
                         filters.level.push(id);
@@ -240,7 +254,9 @@
                     const type = item.dataset.type;
                     const level = item.dataset.level;
                     const id = item.dataset.id;
+                    const term = box.querySelector('.text span').textContent.replace('期', '');
                     if (
+                        (filters.term.length === 0 || filters.term.includes(term)) &&
                         (filters.type.length === 0 || filters.type.includes(type)) &&
                         (filters.level.length === 0 || filters.level.includes(level)) &&
                         (filters.id.length === 0 || filters.id.includes(id))
@@ -249,6 +265,21 @@
                     }
                 });
                 box.style.display = showBox ? 'flex' : 'none';
+            });
+        });
+
+        document.getElementById('lowProbability').addEventListener('change', (event) => {
+            const showLowProbability = event.target.checked;
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach(box => {
+                const items = box.querySelectorAll('img');
+                items.forEach((item, index) => {
+                    if (index >= 3 && !showLowProbability) {
+                        item.style.display = 'none';
+                    } else {
+                        item.style.display = 'block';
+                    }
+                });
             });
         });
 
