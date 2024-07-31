@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 開始時間と終了時間を設定
-    var startTime = new Date('2024-07-31T16:20:00+09:00');
-    var endTime = new Date('2024-07-31T16:21:00+09:00');
+    var startTime = new Date('2024-07-31T16:25:00+09:00');
+    var endTime = new Date('2024-07-31T16:26:00+09:00');
     var currentTime = new Date();
 
     // ローカル環境では実行しない
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!document.getElementById('maintenance-frame')) {
                 var iframe = document.createElement('iframe');
                 iframe.id = 'maintenance-frame';
-                iframe.src = 'https://hassu-s.github.io/linklike/inhtml/maintenance.html';
+                iframe.src = 'https://hassu-s.github.io/linklike/inhtml/maintenance';
                 iframe.style.position = 'fixed';
                 iframe.style.top = '0';
                 iframe.style.left = '0';
