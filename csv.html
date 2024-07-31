@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV Reader</title>
+    <style>
+        .box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>CSV Content</h1>
+    <div id="csvContent"></div>
+
+    <script>
+        async function loadCSV() {
+            const response = await fetch('../linklike/csv/item-id.csv');
+            const text = await response.text();
+            const rows = text.split('\n');
+            const contentDiv = document.getElementById('csvContent');
+
+            rows.forEach(row => {
+                const columns = row.split(',');
+                if (columns.some(column => column.trim() !== '')) {
+                    const div = document.createElement('div');
+                    div.className = 'box';
+                    div.textContent = columns.join(' ');
+                    contentDiv.appendChild(div);
+                }
+            });
+        }
+
+        loadCSV();
+    </script>
+</body>
+</html>
