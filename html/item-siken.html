@@ -42,10 +42,108 @@
             display: flex;
             flex-wrap: wrap;
         }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+        .popup.active {
+            display: block;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .overlay.active {
+            display: block;
+        }
+        .popup img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        .popup label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .popup button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="#" id="filterLink">絞り込み</a>
+    </div>
     <div class="container" id="content"></div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h3>絞り込み</h3>
+        <div>
+            <h4>種別 絞り込み</h4>
+            <label><input type="checkbox" id="g"> <img src="sample.png" alt="g"> 技能書類</label>
+            <label><input type="checkbox" id="p"> <img src="sample.png" alt="p"> ピース類</label>
+            <label><input type="checkbox" id="c"> <img src="sample.png" alt="c"> チャーム類</label>
+            <label><input type="checkbox" id="y"> <img src="sample.png" alt="y"> ユメシリーズ</label>
+        </div>
+        <div>
+            <h4>レベル 絞り込み</h4>
+            <label><input type="checkbox" id="1"> <img src="sample.png" alt="1"> R1</label>
+            <label><input type="checkbox" id="2"> <img src="sample.png" alt="2"> R2</label>
+            <label><input type="checkbox" id="3"> <img src="sample.png" alt="3"> R3</label>
+            <label><input type="checkbox" id="4"> <img src="sample.png" alt="4"> R4/ユメシリーズ</label>
+        </div>
+        <div>
+            <h4>アイテム 絞り込み</h4>
+            <label><input type="checkbox" id="gb"> <img src="sample.png" alt="gb"> 技能書</label>
+            <label><input type="checkbox" id="ga"> <img src="sample.png" alt="ga"> ガーネットピース</label>
+            <label><input type="checkbox" id="ca"> <img src="sample.png" alt="ca"> カーネリアンピース</label>
+            <label><input type="checkbox" id="em"> <img src="sample.png" alt="em"> エメラルドピース</label>
+            <label><input type="checkbox" id="di"> <img src="sample.png" alt="di"> ダイヤピース</label>
+            <label><input type="checkbox" id="pe"> <img src="sample.png" alt="pe"> ペリドットピース</label>
+            <label><input type="checkbox" id="ru"> <img src="sample.png" alt="ru"> ルビーピース</label>
+            <label><input type="checkbox" id="sa"> <img src="sample.png" alt="sa"> サファイアピース</label>
+            <label><input type="checkbox" id="to"> <img src="sample.png" alt="to"> トパーズピース</label>
+            <label><input type="checkbox" id="tu"> <img src="sample.png" alt="tu"> ターコイズピース</label>
+            <label><input type="checkbox" id="am"> <img src="sample.png" alt="am"> アメジストピース</label>
+            <label><input type="checkbox" id="so"> <img src="sample.png" alt="so"> ソルチャーム</label>
+            <label><input type="checkbox" id="lu"> <img src="sample.png" alt="lu"> ルナチャーム</label>
+            <label><input type="checkbox" id="st"> <img src="sample.png" alt="st"> ステラチャーム</label>
+            <label><input type="checkbox" id="ka"> <img src="sample.png" alt="ka"> ユメノカケラ</label>
+            <label><input type="checkbox" id="ha"> <img src="sample.png" alt="ha"> ユメノハネ</label>
+        </div>
+        <button id="resetButton">リセット</button>
+        <button id="applyButton">OK（適応）</button>
+    </div>
 
     <script>
         async function fetchCSV(url) {
@@ -61,7 +159,7 @@
             const text = document.createElement('div');
             text.className = 'text';
             const [a, b, c, d] = content.split(' ');
-            text.innerHTML = `<span>${a}</span><span>${b}</span><span class="dash"></span><span>${c}</span>-<span>${d}</span>`;
+            text.innerHTML = `<span>${a}期</span><span>${b}</span><span class="dash"></span><span>${c} - ${d}</span>`;
             box.appendChild(text);
 
             const itemsDiv = document.createElement('div');
@@ -98,6 +196,13 @@
                             type: itemIdRow[5],
                             level: itemIdRow[6],
                             id: itemIdRow[7]
+                        } :
+                        return itemIdRow ? { 
+                            imageUrl: itemIdRow[3], 
+                            tooltip: itemIdRow[4],
+                            type: itemIdRow[5],
+                            level: itemIdRow[6],
+                            id: itemIdRow[7]
                         } : null;
                     }).filter(item => item !== null);
                     const box = createBox(textContent, items);
@@ -105,6 +210,61 @@
                 }
             });
         }
+
+        document.getElementById('filterLink').addEventListener('click', () => {
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('popup').classList.add('active');
+        });
+
+        document.getElementById('resetButton').addEventListener('click', () => {
+            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        });
+
+        document.getElementById('applyButton').addEventListener('click', () => {
+            const filters = {
+                type: [],
+                level: [],
+                id: []
+            };
+
+            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
+                if (checkbox.checked) {
+                    const id = checkbox.id;
+                    if (['g', 'p', 'c', 'y'].includes(id)) {
+                        filters.type.push(id);
+                    } else if (['1', '2', '3', '4'].includes(id)) {
+                        filters.level.push(id);
+                    } else {
+                        filters.id.push(id);
+                    }
+                }
+            });
+
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('popup').classList.remove('active');
+
+            // Apply filters
+            const boxes = document.querySelectorAll('.box');
+            boxes.forEach(box => {
+                const items = box.querySelectorAll('img');
+                let showBox = false;
+                items.forEach(item => {
+                    const type = item.dataset.type;
+                    const level = item.dataset.level;
+                    const id = item.dataset.id;
+                    if (
+                        (filters.type.length === 0 || filters.type.includes(type)) &&
+                        (filters.level.length === 0 || filters.level.includes(level)) &&
+                        (filters.id.length === 0 || filters.id.includes(id))
+                    ) {
+                        showBox = true;
+                    }
+                });
+                box.style.display = showBox ? 'flex' : 'none';
+            });
+        });
 
         displayData();
     </script>
