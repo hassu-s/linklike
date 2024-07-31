@@ -85,6 +85,19 @@
         .popup.active {
             display: block;
         }
+        .popup-content {
+            padding-bottom: 60px; /* ボタンの高さ分の余白を追加 */
+        }
+        .popup-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            width: 300px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
         .overlay {
             display: none;
             position: fixed;
@@ -107,13 +120,6 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
-        }
-        .popup button {
-            margin-top: 10px;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
         }
         .shake {
             animation: shake 0.5s;
@@ -138,26 +144,30 @@
     <div class="overlay" id="overlay"></div>
     <div class="popup" id="popup">
         <h3>絞り込み</h3>
-        <div>
-            <h4>学期 絞り込み</h4>
-            <label><input type="checkbox" id="term103"> 103</label>
-            <label><input type="checkbox" id="term104"> 104</label>
+        <div class="popup-content">
+            <div>
+                <h4>学期 絞り込み</h4>
+                <label><input type="checkbox" id="term103"> 103</label>
+                <label><input type="checkbox" id="term104"> 104</label>
+            </div>
+            <div>
+                <h4>種別 絞り込み</h4>
+                <label><input type="checkbox" id="g"> <img src="sample.png" alt="g"> 技能書類</label>
+            </div>
+            <div>
+                <h4>レベル 絞り込み</h4>
+                <label><input type="checkbox" id="1"> <img src="sample.png" alt="1"> R1</label>
+            </div>
+            <div>
+                <h4>アイテム 絞り込み</h4>
+                <label><input type="checkbox" id="gb"> <img src="sample.png" alt="gb"> 技能書</label>
+            </div>
         </div>
-        <div>
-            <h4>種別 絞り込み</h4>
-            <label><input type="checkbox" id="g"> <img src="sample.png" alt="g"> 技能書類</label>
+        <div class="popup-buttons">
+            <button id="resetButton">リセット</button>
+            <button id="cancelButton">キャンセル</button>
+            <button id="applyButton">OK（適応）</button>
         </div>
-        <div>
-            <h4>レベル 絞り込み</h4>
-            <label><input type="checkbox" id="1"> <img src="sample.png" alt="1"> R1</label>
-        </div>
-        <div>
-            <h4>アイテム 絞り込み</h4>
-            <label><input type="checkbox" id="gb"> <img src="sample.png" alt="gb"> 技能書</label>
-        </div>
-        <button id="resetButton">リセット</button>
-        <button id="cancelButton">キャンセル</button>
-        <button id="applyButton">OK（適応）</button>
     </div>
 
     <script>
