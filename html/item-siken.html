@@ -9,8 +9,10 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+        }
+        .container {
+            width: 90%;
         }
         .box {
             border: 1px solid #ccc;
@@ -21,6 +23,7 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            text-align: left;
         }
         .box img {
             width: 20px;
@@ -33,7 +36,7 @@
     </style>
 </head>
 <body>
-    <div id="content"></div>
+    <div class="container" id="content"></div>
 
     <script>
         async function fetchCSV(url) {
@@ -70,15 +73,22 @@
             itemData.forEach(itemRow => {
                 const textContent = itemRow.slice(0, 4).join(' ');
                 const codes = itemRow.slice(4, 16).filter(cell => cell !== '-');
-                codes.forEach(code => {
-                    const itemIdRow = itemIdData.find(row => row[0] === code);
-                    if (itemIdRow) {
-                        const imageUrl = itemIdRow[3];
-                        const tooltip = itemIdRow[4];
-                        const box = createBox(textContent, imageUrl, tooltip);
-                        contentDiv.appendChild(box);
-                    }
-                });
+                if (codes.length > 0) {
+                    const box = createBox(textContent, null, '');
+                    codes.forEach(code => {
+                        const itemIdRow = itemIdData.find(row => row[0] === code);
+                        if (itemIdRow) {
+                            const imageUrl = itemIdRow[3];
+                            const tooltip = itemIdRow[4];
+                            const img = document.createElement('img');
+                            img.src = imageUrl;
+                            img.alt = tooltip;
+                            img.title = tooltip;
+                            box.appendChild(img);
+                        }
+                    });
+                    contentDiv.appendChild(box);
+                }
             });
         }
 
