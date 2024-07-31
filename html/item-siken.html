@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Display</title>
+    <style>
+        .box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .box img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+
+    <script>
+        const itemCSV = `E,F,G,H,I,J,K,L,M
+        001,002,003,004,005,006,007,008,009
+        010,011,012,013,014,015,016,017,018
+        -,-,-,-,-,-,-,-,-`;
+
+        const itemIdCSV = `A,B,C,D,E
+        001,desc1,code1,https://example.com/image1.jpg,説明1
+        002,desc2,code2,https://example.com/image2.jpg,説明2
+        003,desc3,code3,https://example.com/image3.jpg,説明3`;
+
+        const itemRows = itemCSV.trim().split('\n').map(row => row.split(','));
+        const itemIdRows = itemIdCSV.trim().split('\n').map(row => row.split(','));
+
+        const container = document.getElementById('container');
+
+        itemRows.forEach((row, rowIndex) => {
+            row.forEach((cell, cellIndex) => {
+                if (cell !== '-') {
+                    const itemIdRow = itemIdRows.find(idRow => idRow[0] === cell);
+                    if (itemIdRow) {
+                        const box = document.createElement('div');
+                        box.className = 'box';
+                        const img = document.createElement('img');
+                        img.src = itemIdRow[3];
+                        img.alt = itemIdRow[4];
+                        img.title = itemIdRow[4];
+                        box.appendChild(img);
+                        container.appendChild(box);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
