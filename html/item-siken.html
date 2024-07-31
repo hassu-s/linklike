@@ -16,21 +16,18 @@
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
-            display: inline-block;
-            width: 150px;
-            height: 150px;
-            text-align: center;
-            vertical-align: top;
+            display: flex;
+            align-items: center;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
         .box img {
-            max-width: 100px;
-            max-height: 100px;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
         }
         .box .text {
-            margin-top: 10px;
             font-size: 14px;
         }
     </style>
@@ -49,6 +46,11 @@
             const box = document.createElement('div');
             box.className = 'box';
 
+            const text = document.createElement('div');
+            text.className = 'text';
+            text.textContent = content;
+            box.appendChild(text);
+
             if (imageUrl) {
                 const img = document.createElement('img');
                 img.src = imageUrl;
@@ -56,11 +58,6 @@
                 img.title = tooltip;
                 box.appendChild(img);
             }
-
-            const text = document.createElement('div');
-            text.className = 'text';
-            text.textContent = content;
-            box.appendChild(text);
 
             return box;
         }
@@ -71,9 +68,9 @@
             const contentDiv = document.getElementById('content');
 
             itemData.forEach(itemRow => {
-                const code = itemRow.slice(4, 16).find(cell => cell !== '-');
                 const textContent = itemRow.slice(0, 4).join(' ');
-                if (code) {
+                const codes = itemRow.slice(4, 16).filter(cell => cell !== '-');
+                codes.forEach(code => {
                     const itemIdRow = itemIdData.find(row => row[0] === code);
                     if (itemIdRow) {
                         const imageUrl = itemIdRow[3];
@@ -81,10 +78,7 @@
                         const box = createBox(textContent, imageUrl, tooltip);
                         contentDiv.appendChild(box);
                     }
-                } else {
-                    const box = createBox(textContent, null, '');
-                    contentDiv.appendChild(box);
-                }
+                });
             });
         }
 
