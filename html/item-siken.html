@@ -5,19 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Data Display</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
         .box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
             display: inline-block;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             text-align: center;
             vertical-align: top;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
         .box img {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 100px;
+            max-height: 100px;
+        }
+        .box .text {
+            margin-top: 10px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -41,9 +55,12 @@
                 img.alt = tooltip;
                 img.title = tooltip;
                 box.appendChild(img);
-            } else {
-                box.textContent = content;
             }
+
+            const text = document.createElement('div');
+            text.className = 'text';
+            text.textContent = content;
+            box.appendChild(text);
 
             return box;
         }
@@ -55,14 +72,18 @@
 
             itemData.forEach(itemRow => {
                 const code = itemRow.slice(4, 16).find(cell => cell !== '-');
+                const textContent = itemRow.slice(0, 4).join(' ');
                 if (code) {
                     const itemIdRow = itemIdData.find(row => row[0] === code);
                     if (itemIdRow) {
                         const imageUrl = itemIdRow[3];
                         const tooltip = itemIdRow[4];
-                        const box = createBox(code, imageUrl, tooltip);
+                        const box = createBox(textContent, imageUrl, tooltip);
                         contentDiv.appendChild(box);
                     }
+                } else {
+                    const box = createBox(textContent, null, '');
+                    contentDiv.appendChild(box);
                 }
             });
         }
