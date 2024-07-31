@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 開始時間と終了時間を設定
-    var startTime = new Date('2024-07-31T16:25:00+09:00');
-    var endTime = new Date('2024-07-31T16:26:00+09:00');
+    var startTime = new Date('2024-07-31T16:28:00+09:00');
+    var endTime = new Date('2024-07-31T16:29:00+09:00');
     var currentTime = new Date();
 
     // ローカル環境では実行しない
