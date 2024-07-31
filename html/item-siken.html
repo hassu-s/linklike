@@ -28,7 +28,7 @@
         .box img {
             width: 20px;
             height: 20px;
-            margin-left: 10px;
+            margin: 5px;
         }
         .box .text {
             font-size: 14px;
@@ -51,7 +51,7 @@
             background-color: #333;
             color: white;
             padding: 10px;
-            text-align: left; /* 左寄せ */
+            text-align: left;
             z-index: 1000;
         }
         .navbar a {
@@ -76,25 +76,25 @@
             width: 300px;
             height: 430px;
             overflow-y: scroll;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         .popup::-webkit-scrollbar { 
-            display: none;  /* Safari and Chrome */
+            display: none;
         }
         .popup.active {
             display: block;
         }
         .popup-content {
-            padding-bottom: 60px; /* ボタンの高さ分の余白を追加 */
+            padding-bottom: 60px;
         }
         .popup-buttons {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             background-color: white;
-            width: 300px;
+            width: 100%;
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
@@ -131,8 +131,7 @@
             75% { transform: translate(-50%, -50%) translateX(-10px); }
             100% { transform: translate(-50%, -50%) translateX(0); }
         }
-        </style>
-        
+    </style>
 </head>
 <body>
     <div class="navbar">
@@ -291,6 +290,7 @@
                     }
                 });
                 box.style.display = showBox ? 'flex' : 'none';
+                box.style.flexDirection = showBox ? 'column' : '';
             });
         });
 
