@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV Display</title>
+    <title>CSV Data Display</title>
     <style>
         .box {
             border: 1px solid #ccc;
@@ -22,41 +22,52 @@
     </style>
 </head>
 <body>
-    <div id="container"></div>
+    <div id="content"></div>
 
     <script>
-        const itemCSV = `E,F,G,H,I,J,K,L,M
-        001,002,003,004,005,006,007,008,009
-        010,011,012,013,014,015,016,017,018
-        -,-,-,-,-,-,-,-,-`;
+        async function fetchCSV(url) {
+            const response = await fetch(url);
+            const text = await response.text();
+            return text.split('\n').map(row => row.split(','));
+        }
 
-        const itemIdCSV = `A,B,C,D,E
-        001,desc1,code1,https://example.com/image1.jpg,説明1
-        002,desc2,code2,https://example.com/image2.jpg,説明2
-        003,desc3,code3,https://example.com/image3.jpg,説明3`;
+        function createBox(content, imageUrl, tooltip) {
+            const box = document.createElement('div');
+            box.className = 'box';
 
-        const itemRows = itemCSV.trim().split('\n').map(row => row.split(','));
-        const itemIdRows = itemIdCSV.trim().split('\n').map(row => row.split(','));
+            if (imageUrl) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = tooltip;
+                img.title = tooltip;
+                box.appendChild(img);
+            } else {
+                box.textContent = content;
+            }
 
-        const container = document.getElementById('container');
+            return box;
+        }
 
-        itemRows.forEach((row, rowIndex) => {
-            row.forEach((cell, cellIndex) => {
-                if (cell !== '-') {
-                    const itemIdRow = itemIdRows.find(idRow => idRow[0] === cell);
+        async function displayData() {
+            const itemData = await fetchCSV('../csv/item.csv');
+            const itemIdData = await fetchCSV('../csv/item-id.csv');
+            const contentDiv = document.getElementById('content');
+
+            itemData.forEach(itemRow => {
+                const code = itemRow.slice(4, 16).find(cell => cell !== '-');
+                if (code) {
+                    const itemIdRow = itemIdData.find(row => row[0] === code);
                     if (itemIdRow) {
-                        const box = document.createElement('div');
-                        box.className = 'box';
-                        const img = document.createElement('img');
-                        img.src = itemIdRow[3];
-                        img.alt = itemIdRow[4];
-                        img.title = itemIdRow[4];
-                        box.appendChild(img);
-                        container.appendChild(box);
+                        const imageUrl = itemIdRow[3];
+                        const tooltip = itemIdRow[4];
+                        const box = createBox(code, imageUrl, tooltip);
+                        contentDiv.appendChild(box);
                     }
                 }
             });
-        });
+        }
+
+        displayData();
     </script>
 </body>
 </html>
