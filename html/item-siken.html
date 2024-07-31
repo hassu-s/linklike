@@ -37,7 +37,6 @@
         }
         .box .text .dash {
             margin-right: 10px;
-            margin-left: 10px;
         }
         .box .items {
             display: flex;
@@ -72,6 +71,9 @@
                 img.src = item.imageUrl;
                 img.alt = item.tooltip;
                 img.title = item.tooltip;
+                img.dataset.type = item.type;
+                img.dataset.level = item.level;
+                img.dataset.id = item.id;
                 itemsDiv.appendChild(img);
             });
             box.appendChild(itemsDiv);
@@ -90,7 +92,13 @@
                 if (codes.length > 0) {
                     const items = codes.map(code => {
                         const itemIdRow = itemIdData.find(row => row[0] === code);
-                        return itemIdRow ? { imageUrl: itemIdRow[3], tooltip: itemIdRow[4] } : null;
+                        return itemIdRow ? { 
+                            imageUrl: itemIdRow[3], 
+                            tooltip: itemIdRow[4],
+                            type: itemIdRow[5],
+                            level: itemIdRow[6],
+                            id: itemIdRow[7]
+                        } : null;
                     }).filter(item => item !== null);
                     const box = createBox(textContent, items);
                     contentDiv.appendChild(box);
