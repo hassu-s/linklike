@@ -83,6 +83,10 @@ a:focus {
   outline: none;
   }
 
+div:focus {
+  outline: none;
+  }
+
   /* ボタンやリンクの青いハイライトを消す */
 button, a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari */
