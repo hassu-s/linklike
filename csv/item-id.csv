@@ -1,4 +1,4 @@
-﻿アイテムID,基礎リンク,画像,画像リンク,アイテム名,種別1,種別2,種別3
+﻿アイテムID,基礎リンク,画像,画像リンク,アイテム名,種別,レベル,アイテム
 101,../image/item-1/,gino-sho.png,../image/item-1/gino-sho.png,技能書（初等）,g,1,gb
 102,../image/item-1/,gino-chu.png,../image/item-1/gino-chu.png,技能書（中等）,g,2,gb
 103,../image/item-1/,gino-kou.png,../image/item-1/gino-kou.png,技能書（高等）,g,3,gb
@@ -48,5 +48,5 @@
 147,../image/item-1/,luna4.png,../image/item-1/luna4.png,ルナチャーム（R4）,c,4,lu
 148,../image/item-1/,stella3.png,../image/item-1/stella3.png,ステラチャーム（R3）,c,3,st
 149,../image/item-1/,stella4.png,../image/item-1/stella4.png,ステラチャーム（R4）,c,4,st
-150,../image/item-1/,kakera.png,../image/item-1/kakera.png,ユメノカケラ,y,4,yu
-151,../image/item-1/,hane.png,../image/item-1/hane.png,ユメノハネ,y,4,yu
+150,../image/item-1/,kakera.png,../image/item-1/kakera.png,ユメノカケラ,y,4,ka
+151,../image/item-1/,hane.png,../image/item-1/hane.png,ユメノハネ,y,4,ha

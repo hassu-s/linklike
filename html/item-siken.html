@@ -3,150 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV Data Display</title>
-    <link rel="stylesheet" href="../css/other.css">
-    <link rel="stylesheet" href="../css/all.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            padding-top: 60px; /* ナビゲーションバーの高さ分の余白を追加 */
-        }
-        .container {
-            width: 90%;
-        }
-        .box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            text-align: left;
-        }
-        .box img {
-            width: 20px;
-            height: 20px;
-            margin: 5px;
-        }
-        .box .text {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        .box .text span {
-            margin-right: 10px;
-        }
-        .box .text .dash {
-            margin-right: 10px;
-        }
-        .box .items {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: left;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        .navbar label {
-            color: white;
-            margin-left: 20px;
-        }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            z-index: 1001;
-            width: 300px;
-            height: 80%;
-            overflow-y: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            border-radius: 5px;
-        }
-        .popup::-webkit-scrollbar { 
-            display: none;
-        }
-        .popup.active {
-            display: block;
-        }
-        .popup-content {
-            padding: 20px;
-        }
-        .popup-buttons {
-            display: none;
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 30px;
-            background-color: white;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-            z-index: 1001;
-            padding: 0px;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            width: 300px;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-        }
-        .popup-buttons.active {
-            display: flex;
-            justify-content: center;
-        }
-        .popup-buttons button {
-            margin: 0 5px;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-        .overlay.active {
-            display: block;
-        }
-        .popup img {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-        }
-        .popup label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .alink1 {
-            font-size: 15px;
-        }
-        label {
-            background-color: #ffffff00;
-        }
-    </style>
+    <title>アイテムリスト</title>
+    <link rel="stylesheet" href="../css/siboru.css">
+    <script src="../javascript/IE.js"></script>
+    <script src="../javascript/rule.js"></script>
+    <script src="../javascript/launcher.js"></script>
+    <script src="../linklike/javascript/maintenance.js"></script>
 </head>
 <body>
     <div class="navbar">
-        <a class="alink1" href="#" id="filterLink">絞り込み</a>
-        <label><input type="checkbox" id="lowProbability" checked> 低確率アイテム表示</label>
+        <a class="alink1" href="#" id="filterLink"><img src="../image/button/home.png"></a>
+        <label id="la1"><input type="checkbox" id="lowProbability" checked> 低確率アイテム表示</label>
     </div>
     <div class="container" id="content"></div>
 
@@ -158,17 +25,20 @@
         <div class="popup-content">
             <div>
                 <h4>学期 絞り込み</h4>
-                <label><input type="checkbox" id="term103"> 103</label>
-                <label><input type="checkbox" id="term104"> 104</label>
+                <label><input type="checkbox" id="term103"> 103期</label>
+                <label><input type="checkbox" id="term104"> 104期</label>
             </div>
+            <hr>
             <div>
                 <h4>種別 絞り込み</h4>
                 <label><input type="checkbox" id="g"> <img src="sample.png" alt="g"> 技能書類</label>
             </div>
+            <hr>
             <div>
                 <h4>レベル 絞り込み</h4>
                 <label><input type="checkbox" id="1"> <img src="sample.png" alt="1"> R1</label>
             </div>
+            <hr>
             <div>
                 <h4>アイテム 絞り込み</h4>
                 <label><input type="checkbox" id="gb"> <img src="sample.png" alt="gb"> 技能書</label>
