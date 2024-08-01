@@ -227,9 +227,10 @@ button, a , div {
   outline: none; /* その他のブラウザ */
   }
 
-img {
+#img {
     width: 30px;
     margin-left: 15px;
+    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
 }
 
 #la1 {
@@ -316,3 +317,12 @@ a:focus {
         margin-top: -12px;
         text-align: center;
       }
+
+
+.nohr {
+    border: none;
+  }
+
+a {
+    font-size: 0px;
+}
