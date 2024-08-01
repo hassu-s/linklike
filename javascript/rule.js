@@ -40,7 +40,7 @@ window.onload = function() {
                 errorMessage.innerHTML = `
                     <p class="pr1">お使いの端末の高さでは、本サイトは正常に動作しません</p>
                     <p class="pr2">こちらのパスワード入力欄はデベロッパー専用です。<br>お使いの端末の高さをある程度高くしてください</p>
-                    <input id="input" type="password" id="password-input" placeholder="パスワードを入力"><br>
+                    <input class="input" type="password" id="password-input" placeholder="パスワードを入力"><br>
                     <button id="submit-button">送信</button>
                 `;
                 document.body.appendChild(errorMessage);
