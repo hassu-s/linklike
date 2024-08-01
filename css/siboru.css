@@ -129,9 +129,7 @@ body {
     align-items: center;
     margin-bottom: 10px;
 }
-.alink1 {
-    font-size: 15px;
-}
+
 label {
     background-color: #ffffff00;
 }
@@ -167,6 +165,7 @@ button {
     text-align: center;
     width: 150px;
     height: 50px;
+    text-decoration: none;
     }
 
   #button-content {
@@ -235,7 +234,7 @@ button, a , div {
 
 #la1 {
     position: relative;
-    top: -7px;
+    top: -6.2px;
 }
 
 .hr1 {
@@ -265,10 +264,20 @@ button, a , div {
 button:focus {
     outline: none;
     }
-
+  
 a:focus {
     outline: none;
     }
+  
+div:focus {
+    outline: none;
+    }
+
+    button, a , div {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari */
+        -webkit-focus-ring-color: rgba(0, 0, 0, 0); /* Chrome */
+        outline: none; /* その他のブラウザ */
+        }
 
 .btn-b::before, .btn-b::after {
     content: '';
@@ -304,6 +313,19 @@ a:focus {
         border-radius: 0px; /* 形が変わらないようにする */
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* フォーカス時のデザイン性を向上 */
       }
+      @keyframes gradient-animation {
+        0% {
+          border-image: linear-gradient(to right, #65defc, #938aff) 1;
+        }
+        50% {
+          border-image: linear-gradient(to right, #938aff, #65defc) 1;
+        }
+        100% {
+          border-image: linear-gradient(to right, #65defc, #938aff) 1;
+        }
+      }
+
+
       .pr1 {
         font-size: 17px;
         font-weight: 600;
@@ -325,4 +347,11 @@ a:focus {
 
 a {
     font-size: 0px;
+    text-decoration: none;
 }
+
+.alink1 {
+    font-size: 0px;
+    position: relative;
+    top: 3px;
+  }
