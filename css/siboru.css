@@ -84,7 +84,7 @@ body {
 .popup-content {
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 30px;
+    padding-bottom: 55px;
 }
 .popup-buttons {
     display: none;
@@ -250,14 +250,14 @@ button, a , div {
 
 .btn-a {
     width: 85px;
-    height: 30px;
+    height: 50px;
     padding: 0px 0px;
     font-size: 14px;
 }
 
 .btn-b {
     width: 85px;
-    height: 30px;
+    height: 50px;
     padding: 0px 0px;
     font-size: 14px;
     background: linear-gradient(to right, #ffffff, #efefef);
@@ -358,3 +358,44 @@ a {
     position: relative;
     top: 3px;
   }
+
+
+
+/* チェックボックスのスタイル */
+input[type="checkbox"] {
+  background: #9f9f9f;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 0px solid #ccc;
+  border-radius: 80px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+/* チェックボックスがチェックされたときのスタイル */
+input[type="checkbox"]:checked {
+  background: linear-gradient(to right, #65defc, #938aff);
+  border: 0px solid #9f9f9f;
+}
+
+/* チェックマークのスタイル */
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+
+.la0 {
+  position: relative;
+  top: 7px;
+}
