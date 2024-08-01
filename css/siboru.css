@@ -414,8 +414,3 @@ input[type="checkbox"]:checked::after {
   top:-9px;
 }
 
-.position {
-  position: fixed;
-  bottom: 80px;
-  right: 45px;
-}
