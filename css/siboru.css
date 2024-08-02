@@ -313,7 +313,7 @@ div:focus {
         border-image: linear-gradient(to right, #65defc, #938aff) 1; /* グラデーション */
         animation: gradient-animation 3s infinite; /* グラデーションがぐるぐる動く */
         border-radius: 0px; /* 形が変わらないようにする */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* フォーカス時のデザイン性を向上 */
+        box-shadow: 0px 0px 3px 0px rgba(100, 100, 100); /* フォーカス時のデザイン性を向上 */
       }
       @keyframes gradient-animation {
         0% {
