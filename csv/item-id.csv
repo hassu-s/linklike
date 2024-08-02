@@ -1,4 +1,5 @@
 ﻿アイテムID,基礎リンク,画像,画像リンク,アイテム名,種別,レベル,アイテム
+100,../image/item-1/,none.png,../image/item-1/none.png,アイテムなし,,,
 101,../image/item-1/,gino-sho.png,../image/item-1/gino-sho.png,技能書（初等）,g,1,gb
 102,../image/item-1/,gino-chu.png,../image/item-1/gino-chu.png,技能書（中等）,g,2,gb
 103,../image/item-1/,gino-kou.png,../image/item-1/gino-kou.png,技能書（高等）,g,3,gb
