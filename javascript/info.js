@@ -1,37 +1,80 @@
 document.addEventListener("DOMContentLoaded", function() {
     const infoButton = document.getElementById('info1');
     const popup = document.createElement('div');
-    popup.id = 'info-popup';
+    popup.classList.add('info-popup');
     popup.style.display = 'none';
-    popup.style.position = 'fixed';
-    popup.style.bottom = '50%';
-    popup.style.left = '50%';
-    popup.style.transform = 'translate(-50%, 50%)';
-    popup.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-    popup.style.padding = '20px';
-    popup.style.borderRadius = '10px';
-    popup.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)';
-    popup.style.zIndex = '1001';
-    popup.style.width = '300px';
-    popup.style.height = '200px';
-    popup.style.textAlign = 'center';
+
+    const overlay = document.createElement('div');
+    overlay.classList.add('overlay');
+    overlay.style.display = 'none';
 
     popup.innerHTML = `
         <p>お知らせの内容をここに記述します。</p>
         <button id="close-popup">閉じる</button>
     `;
 
+    document.body.append(overlay);
     document.body.append(popup);
 
     infoButton.addEventListener('click', function() {
         popup.style.display = 'block';
-        popup.style.animation = 'slideUp 0.2s forwards';
+        overlay.style.display = 'block';
+        popup.style.animation = 'expand 0.2s forwards';
     });
 
     document.getElementById('close-popup').addEventListener('click', function() {
-        popup.style.animation = 'slideDown 0.2s forwards';
+        popup.style.animation = 'shrink 0.2s forwards';
         setTimeout(() => {
             popup.style.display = 'none';
+            overlay.style.display = 'none';
         }, 200);
     });
+
+    overlay.addEventListener('click', function() {
+        popup.style.animation = 'shrink 0.2s forwards';
+        setTimeout(() => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 200);
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `
+        .info-popup {
+            position: fixed;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 90%;
+            height: 80%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            text-align: center;
+            transform-origin: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        @keyframes expand {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        @keyframes shrink {
+            from { transform: scale(1); }
+            to { transform: scale(0); }
+        }
+    `;
+    document.head.append(style);
 });
