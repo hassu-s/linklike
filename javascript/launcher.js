@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <br>
         <a class="alink" href="https://hassu-s.github.io/linklike/html/calendar.html"><button>リンクラカレンダー</button></a><hr class="nohr">
         <a class="alink" href="https://hassu-s.github.io/linklike/html/item.html"><button>アイテムリスト</button></a><hr class="nohr">
-        <a class="alink" href="#" id="info"><button>お知らせ</button></a><hr class="nohr">
+        <a class="alink" href="#" id="info1"><button>お知らせ</button></a><hr class="nohr">
     `;
     document.body.append(popupMenu);
 
