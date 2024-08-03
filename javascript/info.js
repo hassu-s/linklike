@@ -43,10 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const style = document.createElement('style');
     style.textContent = `
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
         iframe {
             width: 100%;
             height: 78%;
@@ -93,9 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
             margin: auto;
             left: 0;
             right: 0;
-            margin-top:100px;
-            height: 30px;
-            padding: 0;
+            height: 40px;
+            padding: 1px;
         }
     `;
     document.head.append(style);
