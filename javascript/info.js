@@ -9,8 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
     overlay.style.display = 'none';
 
     popup.innerHTML = `
-        <p>お知らせの内容をここに記述します。</p>
-        <button id="close-popup">閉じる</button>
+        <div class="header">
+                <h4 id="h4-2">お知らせ</h4s>
+        </div>
+            <iframe src="https://hassu-s.github.io/info/info/linklike"></iframe>
+        <button id="close-popup" class="btn-clo">閉じる</button>
     `;
 
     document.body.append(overlay);
@@ -40,6 +43,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const style = document.createElement('style');
     style.textContent = `
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        iframe {
+            width: 100%;
+            height: 78%;
+            border: none;
+        }
         .info-popup {
             position: fixed;
             margin: auto;
@@ -50,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
             width: 90%;
             height: 80%;
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 20px;
+            padding: 0px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1001;
@@ -74,6 +86,16 @@ document.addEventListener("DOMContentLoaded", function() {
         @keyframes shrink {
             from { transform: scale(1); }
             to { transform: scale(0); }
+        }
+        .btn-clo {
+            position: absolute;
+            bottom: 15px;
+            margin: auto;
+            left: 0;
+            right: 0;
+            margin-top:100px;
+            height: 30px;
+            padding: 0;
         }
     `;
     document.head.append(style);

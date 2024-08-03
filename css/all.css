@@ -7,6 +7,14 @@
     font-weight: 300;
     text-decoration: none;
     color: #4e4e4e;
+    /* For Webkit browsers (Chrome, Safari) */
+    -webkit-overflow-scrolling: touch;
+    overflow: -moz-scrollbars-none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
+
+  ::-webkit-scrollbar {
+    display: none; /* For Webkit browsers */
   }
 
   body {
@@ -188,3 +196,23 @@ span {
   background-color: #ffffff00;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #65defc, #938aff);
+  padding: 10px;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+#h4-2 {
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ffffff00;
+}
