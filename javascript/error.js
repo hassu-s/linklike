@@ -12,8 +12,8 @@ window.addEventListener('error', function(event) {
     }
 }, true);
 
-window.addEventListener('load', function() {
-    if (window.location.pathname === '/414.html') {
+window.addEventListener('error', function(event) {
+    if (event.error && event.error.message.includes('414')) {
         window.location.href = '/414.html';
     }
 });
