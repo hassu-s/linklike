@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function() {
     launcherMenu.innerHTML = `
         <div id="launcher-content">
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-                <a href="404.html" class="alink" id="back-button"><img src="https://hassu-s.github.io/linklike/image/button/mail.png" alt="戻る"></a>
+                <a href="https://hassu-s.github.io/linklike/html/contact" class="alink" id="back-button"><img src="https://hassu-s.github.io/linklike/image/button/mail.png" alt="戻る"></a>
             </div>
             <div class="vertical-line"><hr class="vertical-hr"></div>
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
     popupMenu.id = 'popup-menu';
     popupMenu.innerHTML = `
         <br>
-        <a class="alink" href="https://hassu-s.github.io/linklike/html/calendar.html"><button>リンクラカレンダー</button></a><hr class="nohr">
+        <a class="alink" href="https://hassu-s.github.io/linklike/html/contact.html"><button>リンクラカレンダー</button></a><hr class="nohr">
         <a class="alink" href="https://hassu-s.github.io/linklike/html/item.html"><button>アイテムリスト</button></a><hr class="nohr">
         <a class="alink" href="#" id="info1"><button>お知らせ</button></a><hr class="nohr">
     `;
