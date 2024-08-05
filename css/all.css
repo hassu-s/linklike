@@ -218,3 +218,9 @@ span {
   color: #fff;
   background-color: #ffffff00;
 }
+
+.btn {
+  left: 50%;
+  right: 50%;
+}
+
