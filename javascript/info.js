@@ -92,6 +92,13 @@ document.addEventListener("DOMContentLoaded", function() {
             height: 40px;
             padding: 1px;
         }
+
+        #h4-2 {
+        font-size: 20px;
+        text-align: center;
+        font-weight: 600;
+        color: #fff;
+        }
     `;
     document.head.append(style);
 });
