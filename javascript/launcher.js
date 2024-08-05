@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         #popup-menu {
             position: fixed;
             bottom: 65px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.90);
             padding: 10px;
             border-radius: 10px;
             display: none;
@@ -58,6 +58,16 @@ document.addEventListener("DOMContentLoaded", function() {
             display: block;
             width: 90%;
             margin: 5px auto;
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.05);
+            display: none;
+            z-index: 998;
         }
         @keyframes slideUp {
             from { transform: translateY(100%); }
@@ -88,10 +98,10 @@ document.addEventListener("DOMContentLoaded", function() {
             transform: translate(0px, -4.5px) rotate(45deg);
         }
         .vertical-hr {
-        border: none;
-        border-left: 2px solid #00000000; /* 縦線の太さと色 */
-        height: 0px; /* 縦線の高さ */
-        width: 0px; /* 幅を0に設定 */
+            border: none;
+            border-left: 2px solid #00000000; /* 縦線の太さと色 */
+            height: 0px; /* 縦線の高さ */
+            width: 0px; /* 幅を0に設定 */
         }
     `;
     document.head.append(style);
@@ -119,6 +129,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.body.append(launcherMenu);
 
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay';
+    document.body.append(overlay);
+
     const popupMenu = document.createElement('div');
     popupMenu.id = 'popup-menu';
     popupMenu.innerHTML = `
@@ -134,9 +148,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (popupMenu.style.display === 'none' || popupMenu.style.display === '') {
             popupMenu.style.display = 'block';
             popupMenu.style.animation = 'slideUp 0.2s forwards';
+            overlay.style.display = 'block';
             menuIcon.classList.add('open');
         } else {
             popupMenu.style.animation = 'slideDown 0.2s forwards';
+            overlay.style.display = 'none';
             menuIcon.classList.remove('open');
             setTimeout(() => {
                 popupMenu.style.display = 'none';
@@ -145,9 +161,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.addEventListener('click', function(event) {
-        const isClickInside = launcherMenu.contains(event.target) || popupMenu.contains(event.target);
+        const isClickInside = launcherMenu.contains(event.target) || popupMenu.contains(event.target) || document.querySelector('.info-popup').contains(event.target) || document.querySelector('.overlay').contains(event.target);
         if (!isClickInside && popupMenu.style.display === 'block') {
             popupMenu.style.animation = 'slideDown 0.2s forwards';
+            overlay.style.display = 'none';
             document.getElementById('menu-icon').classList.remove('open');
             setTimeout(() => {
                 popupMenu.style.display = 'none';

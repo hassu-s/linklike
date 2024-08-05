@@ -106,5 +106,14 @@ button {
     background-color: #f7f8f8;
     border-radius: 5px;
     padding-top: 2px;
-    padding-bottom: 21px;
+    padding-bottom: 0px;
+}
+
+#mabu {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
+.mabu {
+    width: 50px;
 }
