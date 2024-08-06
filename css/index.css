@@ -41,7 +41,7 @@ button {
     overflow: hidden;
     text-align: center;
     height: 40px;
-    width: 180px;
+    width: 200px;
 }
 
 #button-content {
@@ -86,15 +86,15 @@ button:active {
 
 #logo {
     position: fixed;
-    width: 160px;
-    bottom: 75px;
+    width: 250px;
+    bottom: 135px;
     background-color: rgb(255, 255, 255, 0.85);
     border-radius: 5px;
     padding: 10px;
 }
 .logbtn{
     position: fixed;
-    bottom: 25px;
+    bottom: 45px;
 }
 
 a {
