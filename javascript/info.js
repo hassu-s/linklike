@@ -94,11 +94,31 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         #h4-2 {
-        font-size: 20px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #65defc, #938aff);
+            padding: 10px;
+            color: white;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            height: 25px;
+            justify-content: center;
+            align-items: center;
+        }
+
+    #header {
         text-align: center;
         font-weight: 600;
         color: #fff;
-        }
+    }
     `;
     document.head.append(style);
 });
