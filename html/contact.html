@@ -38,20 +38,20 @@
             const browserField = document.getElementById('browser');
             const submitButton = document.querySelector('button[type="submit"]');
             const form = document.getElementById('my-form');
-
+    
             // Detect OS
             const os = (() => {
                 const userAgent = window.navigator.userAgent;
                 if (userAgent.indexOf('Windows NT') !== -1) return 'Windows';
                 if (userAgent.indexOf('Mac OS X') !== -1) return 'mac';
                 if (userAgent.indexOf('CrOS') !== -1) return 'ChromeOS';
-                if (userAgent.indexOf('Linux') !== -1) return 'Linux';
                 if (userAgent.indexOf('Android') !== -1) return 'Android';
                 if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
+                if (userAgent.indexOf('Linux') !== -1) return 'Linux';
                 return 'OtherOS';
             })();
             osField.value = os;
-
+    
             // Detect Browser with build number
             const browser = (() => {
                 const userAgent = window.navigator.userAgent;
@@ -59,7 +59,7 @@
                     const buildNumber = userAgent.match(/Edg\/(\d+)/);
                     return `Edge ${buildNumber ? buildNumber[1] : 'Unknown'}`;
                 }
-                if (userAgent.indexOf('Chrome') !== -1) {
+                if (userAgent.indexOf('Chrome') !== -1 && userAgent.indexOf('Edg') === -1) {
                     const buildNumber = userAgent.match(/Chrome\/(\d+)/);
                     return `Chrome ${buildNumber ? buildNumber[1] : 'Unknown'}`;
                 }
@@ -71,7 +71,10 @@
                     const buildNumber = userAgent.match(/(Opera|OPR)\/(\d+)/);
                     return `Opera ${buildNumber ? buildNumber[2] : 'Unknown'}`;
                 }
-                if (userAgent.indexOf('Trident') !== -1) return 'IE';
+                if (userAgent.indexOf('Trident') !== -1) {
+                    const buildNumber = userAgent.match(/rv:(\d+)/);
+                    return `IE ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
                 if (userAgent.indexOf('Safari') !== -1 && userAgent.indexOf('Chrome') === -1) {
                     const buildNumber = userAgent.match(/Version\/(\d+)/);
                     return `Safari ${buildNumber ? buildNumber[1] : 'Unknown'}`;
@@ -79,17 +82,26 @@
                 return 'Other Browser';
             })();
             browserField.value = browser;
-
+    
             // Make OS and Browser fields read-only
             osField.readOnly = true;
             browserField.readOnly = true;
-
+    
             // Validate form
             form.addEventListener('input', () => {
                 const isValid = form.checkValidity();
                 submitButton.disabled = !isValid;
             });
-
+    
+            // Pre-fill form fields from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.forEach((value, key) => {
+                const inputField = document.querySelector(`[name="${key}"]`);
+                if (inputField) {
+                    inputField.value = value;
+                }
+            });
+    
             // Redirect on submit after form submission
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
@@ -100,11 +112,12 @@
                     method: 'POST',
                     mode: 'no-cors'
                 }).then(() => {
-                    window.location.href = 'https://hassu-s.github.io/linklike/';
+                    window.location.href = 'https://hassu-s.github.io/linklike/html/contact';
                 });
             });
         });
     </script>
+    
 </head>
 <body>
     <form id="my-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9tUp_CTiKqADmkJCpB_3V72LhOk2uwBJVe3q5LZNVup0EcA/formResponse">
