@@ -90,7 +90,7 @@ button:active {
 }
 
 #logo {
-    position: fixed;
+    position: absolute;
     width: 250px;
     bottom: 135px;
     background-color: rgb(255, 255, 255, 0.85);
