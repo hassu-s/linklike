@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>不具合一覧</title>
+    <link rel="stylesheet" href="../css/all1.css">
+    <style>
+        body {
+            font-size: 0.7rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .hidden {
+            display: none;
+        }
+        #tableHeader th {
+            background-color: #3c3c3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h2>不具合一覧</h2>
+<label><input type="checkbox" id="showFixed"> 修正済みを表示</label>
+<table id="bugTable">
+    <thead>
+        <tr id="tableHeader">
+            <!-- ヘッダーはJSで動的に生成 -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- CSVデータはJSで動的に挿入 -->
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('bug.csv')
+            .then(response => response.text())
+            .then(csvText => {
+                const rows = csvText.split('\n').map(row => row.split(','));
+                const headers = rows[0];
+                const data = rows.slice(1);
+
+                // ヘッダーの生成
+                const tableHeader = document.getElementById('tableHeader');
+                headers.forEach((header, index) => {
+                    if (index !== 9) { // J列（識別ID）を除外
+                        const th = document.createElement('th');
+                        th.textContent = header;
+                        tableHeader.appendChild(th);
+                    }
+                });
+
+                // テーブルにデータを挿入
+                const tableBody = document.querySelector('#bugTable tbody');
+                function populateTable() {
+                    tableBody.innerHTML = ''; // 既存の行をクリア
+                    data.forEach(row => {
+                        const id = row[9].trim(); // J列（識別ID）
+                        if (id === "1" || (id === "0" && document.getElementById('showFixed').checked)) {
+                            const tr = document.createElement('tr');
+                            row.forEach((cell, index) => {
+                                if (index !== 9 && cell.trim() !== "") { // J列と空白セルを除外
+                                    const td = document.createElement('td');
+                                    td.textContent = cell;
+                                    tr.appendChild(td);
+                                }
+                            });
+                            tableBody.appendChild(tr);
+                        }
+                    });
+                }
+
+                // チェックボックスの状態に応じてテーブルを更新
+                document.getElementById('showFixed').addEventListener('change', populateTable);
+
+                // 初回のテーブル描画
+                populateTable();
+            });
+    });
+</script>
+
+</body>
+</html>
