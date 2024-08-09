@@ -24,5 +24,3 @@ https://hassu-s.github.io/linklike/
 
 ## ライセンス情報
 ©はっすーず
-
-<link href="../image/app/HASU.png" rel="shortcut icon" type="image/x-icon">
