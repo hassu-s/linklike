@@ -1,0 +1,13 @@
+{
+    "short_name": "はっすーずリンクラ攻略部",
+    "name": "はっすーずリンクラ攻略部",
+    "icons": [
+        {
+            "src": "/linklike/image/app/HASU.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/linklike",
+    "display": "standalone"
+}

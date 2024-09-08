@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>不具合一覧</title>
+    <link rel="stylesheet" href="../css/all1.css">
+    <link href="../image/app/HASU.png" rel="shortcut icon" type="image/x-icon">
+    <script src="../javascript/IE.js"></script>
+    <script src="../javascript/maintenance.js"></script>
+    <script src="../javascript/launcher.js"></script>
+    <script src="../javascript/info.js"></script>
+    <script src="../javascript/rule.js"></script>
+    <script src="../javascript/error.js"></script>
+
+    <style>
+        body {
+            font-size: 9px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .hidden {
+            display: none;
+        }
+        #tableHeader th {
+            background-color: #3c3c3c;
+            color: white;
+            font-weight: 900;
+        }
+    </style>
+    <!-- Googleサービスへ通知する内容はじめ -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K43XP4KG');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K43XP4KG"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7JH1PTJVC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-B7JH1PTJVC');
+    </script>
+    <!-- Googleサービスへ通知する内容おわり -->
+    <style>
+        .check {
+            position: absolute;
+            font-size: 13px;
+            padding-top: 3px;
+        }
+        .link {
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>不具合一覧</h1>
+<label><input type="checkbox" id="showFixed"><a class="check"> 修正済みを表示</a></label>
+<div><a class="link" class="link2" href="../developer/useragent.html">ユーザーエージェント情報</a></div>
+<div>※ユーザーエージェント情報は、お使いのブラウザから端末情報を検出する機能です。ごくまれにトラッキングブロックされているブラウザで閲覧すると、システムメインページ（404エラーページ）に強制リダイレクトされることがあります</div><br>
+<table id="bugTable">
+    <thead>
+        <tr id="tableHeader">
+            <!-- ヘッダーはJSで動的に生成 -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- CSVデータはJSで動的に挿入 -->
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('bug.csv')
+            .then(response => response.text())
+            .then(csvText => {
+                const rows = csvText.split('\n').map(row => row.split(','));
+                const headers = rows[0];
+                const data = rows.slice(1);
+
+                // ヘッダーの生成
+                const tableHeader = document.getElementById('tableHeader');
+                headers.forEach((header, index) => {
+                    if (index !== 9) { // J列（識別ID）を除外
+                        const th = document.createElement('th');
+                        th.textContent = header;
+                        tableHeader.appendChild(th);
+                    }
+                });
+
+                // テーブルにデータを挿入
+                const tableBody = document.querySelector('#bugTable tbody');
+                function populateTable() {
+                    tableBody.innerHTML = ''; // 既存の行をクリア
+                    data.forEach(row => {
+                        const id = row[9].trim(); // J列（識別ID）
+                        if (id === "1" || (id === "0" && document.getElementById('showFixed').checked)) {
+                            const tr = document.createElement('tr');
+                            row.forEach((cell, index) => {
+                                if (index !== 9 && cell.trim() !== "") { // J列と空白セルを除外
+                                    const td = document.createElement('td');
+                                    td.innerHTML = cell.replace(/\r\n/g, '<br>'); // 改行コードを<br>に変換
+                                    tr.appendChild(td);
+                                }
+                            });
+                            tableBody.appendChild(tr);
+                        }
+                    });
+                }
+
+                // チェックボックスの状態に応じてテーブルを更新
+                document.getElementById('showFixed').addEventListener('change', populateTable);
+
+                // 初回のテーブル描画
+                populateTable();
+            });
+    });
+</script>
+</body>
+</html>

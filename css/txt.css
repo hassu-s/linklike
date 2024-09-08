@@ -1,0 +1,24 @@
+.inh {
+    font-size: 14px;
+    color: #73a1ff;
+    font-weight: 600;
+}
+
+body {
+    margin: 10px;
+    font-size: 13px;
+}
+
+.hrh {
+    border: none;
+    border-top: 1px solid #73a1ff;
+    border-color: #73a1ff;
+    height: 0.1px;
+    background-color: #73a1ff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+li {
+    font-weight: 600;
+}

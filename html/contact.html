@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>お問い合わせ</title>
+    <link href="../css/all1.css" rel="stylesheet" type="text/css">
+    <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
+    <script src="../javascript/rule.js"></script>
+    <script src="../javascript/maintenance.js"></script>
+    <script src="../javascript/launcher.js"></script>
+    <script src="../javascript/info.js"></script>
+    <script src="../javascript/loading.js"></script>
+
+    <!-- Googleサービスへ通知する内容はじめ -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K43XP4KG');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K43XP4KG"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7JH1PTJVC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-B7JH1PTJVC');
+    </script>
+    <!-- Googleサービスへ通知する内容おわり -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const osField = document.getElementById('os');
+            const browserField = document.getElementById('browser');
+            const submitButton = document.querySelector('button[type="submit"]');
+            const form = document.getElementById('my-form');
+    
+            // Detect OS
+            const os = (() => {
+                const userAgent = window.navigator.userAgent;
+                if (userAgent.indexOf('Windows NT') !== -1) return 'Windows';
+                if (/iPad|iPhone|iPod/.test(userAgent)) return 'iOS';
+                if (userAgent.indexOf('Mac OS X') !== -1) return 'mac';
+                if (userAgent.indexOf('CrOS') !== -1) return 'ChromeOS';
+                if (userAgent.indexOf('Android') !== -1) return 'Android';
+                if (userAgent.indexOf('Linux') !== -1) return 'Linux';
+                return 'OtherOS';
+            })();
+            osField.value = os;
+    
+            // Detect Browser with build number
+            const browser = (() => {
+                const userAgent = window.navigator.userAgent;
+                if (userAgent.indexOf('OPR') !== -1) {
+                    const buildNumber = userAgent.match(/OPR\/(\d+)/);
+                    return `Opera ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('AVG') !== -1) {
+                    const buildNumber = userAgent.match(/AVG\/(\d+)/);
+                    return `AVG Secure Browser ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Whale') !== -1) {
+                    const buildNumber = userAgent.match(/Whale\/(\d+)/);
+                    return `NAVER Whale ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Sleipnir') !== -1) {
+                    const buildNumber = userAgent.match(/Sleipnir\/(\d+)/);
+                    return `Sleipnir ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Line') !== -1) {
+                    const buildNumber = userAgent.match(/Line\/(\d+)/);
+                    return `LINE ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('EdgA') !== -1) {
+                    const buildNumber = userAgent.match(/EdgA\/(\d+)/);
+                    return `Edge ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Edg') !== -1) {
+                    const buildNumber = userAgent.match(/Edg\/(\d+)/);
+                    return `Edge ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Chrome') !== -1 && userAgent.indexOf('Edg') === -1) {
+                    const buildNumber = userAgent.match(/Chrome\/(\d+)/);
+                    return `Chrome ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Firefox') !== -1) {
+                    const buildNumber = userAgent.match(/Firefox\/(\d+)/);
+                    return `Firefox ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Trident') !== -1) {
+                    const buildNumber = userAgent.match(/rv:(\d+)/);
+                    return `IE ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                if (userAgent.indexOf('Safari') !== -1 && userAgent.indexOf('Chrome') === -1) {
+                    const buildNumber = userAgent.match(/Version\/(\d+)/);
+                    return `Safari ${buildNumber ? buildNumber[1] : 'Unknown'}`;
+                }
+                return 'Other Browser';
+            })();
+            browserField.value = browser;
+    
+            // Make OS and Browser fields read-only
+            osField.readOnly = true;
+            browserField.readOnly = true;
+    
+            // Validate form
+            form.addEventListener('input', () => {
+                const isValid = form.checkValidity();
+                submitButton.disabled = !isValid;
+            });
+    
+            // Pre-fill form fields from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.forEach((value, key) => {
+                const inputField = document.querySelector(`[name="${key}"]`);
+                if (inputField) {
+                    inputField.value = value;
+                }
+            });
+    
+            // Redirect on submit after form submission
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const formData = new FormData(form);
+                const queryString = new URLSearchParams(formData).toString();
+                const actionUrl = form.action + '?' + queryString;
+                fetch(actionUrl, {
+                    method: 'POST',
+                    mode: 'no-cors'
+                }).then(() => {
+                    window.location.href = '../html/thanks';
+                });
+            });
+        });
+    </script>
+    <style>
+        #contactbody {
+            padding-top: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            margin: 0;
+        }
+        #form {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .input-form1 {
+            text-align: center;
+        }
+
+        .input-form2 {
+            text-align: center;
+            padding-top: 10px;
+        }
+
+        .check {
+            margin-bottom: -3.5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 7px;
+            margin-bottom: -2px;
+        }
+
+        /* フォームデザイン */
+        .input-text1 {
+            width: 100%;
+            height: 42px;
+            padding: 10px;
+        }
+
+        .input-text2 {
+            width: 100%;
+            height: 160px;
+            padding: 10px;
+            resize: none;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        .red {
+            font-weight: 600;
+            background-color: red;
+            color: #fff;
+            padding: 3px;
+            border-radius: 5px;
+            font-size: 10px;
+        }
+
+        .green {
+            font-weight: 600;
+            background-color: rgb(0, 150, 5);
+            color: #fff;
+            padding: 3px;
+            border-radius: 5px;
+            font-size: 10px;
+        }
+
+    </style>
+    <style>
+        .ai {
+            background: linear-gradient(to right, #65defc, #938aff);
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .hed {
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body id="contactbody">
+    <div class="ai">
+        <h1 class="hed">お問い合わせ</h1>
+    </div>
+    <div id="form">
+        <p>
+            このフォームははっすーずリンクラ攻略部に関するお問い合わせフォームです。<br>
+            法人用のフォームは<a class="link" href="/linklike/html/cc">こちら</a>のフォームをご利用ください。<br><br>
+            なお、こちらは「はっすーずリンクラ攻略部」に関するお問い合わせのみをお受けしておりますので、リンクラアプリや蓮ノ空に関するお問い合わせはお受けできませんので、ご注意ください。<br>
+            また、こちらのサイトに関するお問い合わせはリンクラ公式や運営元のお問い合わせフォームへ連絡しないよう、ご注意ください。<br><br>
+            <strong>注意事項</strong>
+            <ul>
+                <li>お問い合わせへの返信には、1週間程度お時間をいただく場合や、返信を控えさせていただく場合がございます。</li>
+                <li>画像を添付したり、長文でお問い合わせをする場合は<a class="link" href="mailto:hassus.linklikelovelive+user@gmail.com">メールお問い合わせ</a>をご利用ください。（指定されているメールはエイリアス設定があります。メールアドレスは変えないようにご注意ください）</li>
+                <li>本サイトに関することはリンクラ公式や運営元に問い合わせないよう、ご注意ください。また、リンクラアプリや蓮ノ空に関するお問い合わせはお受けできません。</li>
+                <li>日本語でのサポートを行っております。（ただし、リンクラグローバル版がリリースされた際は改定される予定です）</li>
+                <li>電話でのサポートは行っておりません。（このフォームとメールでのみお受けしております）</li>
+                <li>メールは「hassus.linklikelovelive@gmail.com」より返信を行います。Gmailからの受信を許可しておいてください。</li>
+                <li>docomoやSoftbankなどのキャリアメールをご利用されると、正常に送信/返信処理が行われないことがございますので、お手数ですがGmailやヤフーメール、Outlookをご利用ください。</li>
+                <li>不具合報告の際、詳細をご記入ください。また、フォームではOSやブラウザ情報を自動取得するシステムがありますが、より詳細をご記入いただけますと幸いです。また、メジャーではない環境や情報不十分である場合は対応ができないことがございますので、あらかじめご了承ください。</li>
+            </ul>
+        </p><hr>
+    <form id="my-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSc9tUp_CTiKqADmkJCpB_3V72LhOk2uwBJVe3q5LZNVup0EcA/formResponse">
+        <p class="input-form">
+            <label for="mail">メールアドレス <a class="red">必須</a></label><br>
+            <input type="email" name="entry.396201314" id="mail" class="input-text1" required>
+        </p>
+        <p class="input-form">
+            <label for="name">お名前 <a class="red">必須</a></label><br>
+            <input type="text" name="entry.1644149207" id="name" class="input-text1" required placeholder="ペンネームをおすすめします">
+        </p>
+        <p class="input-form">
+            <label for="os">OS種別 <a class="green">自動取得</a></label><br>
+            <input type="text" name="entry.634101136" id="os" class="input-text1" required>
+        </p>
+        <p class="input-form">
+            <label for="browser">ブラウザ種別 <a class="green">自動取得</a></label><br>
+            <input type="text" name="entry.506368461" id="browser" class="input-text1" required>
+        </p>
+        <p class="input-form">
+            <label for="list">お問い合わせ種別 <a class="red">必須</a></label><br>
+                <select class="input-text1" name="entry.903170547" required>
+                    <option value="ご意見・ご要望">ご意見・ご要望</option>
+                    <option value="不具合の報告">不具合の報告</option>
+                    <option value="誤りの報告">誤りの報告</option>
+                    <option value="開発参加申請">開発参加申請</option>
+                    <option value="その他">その他</option>
+                </select>
+        </p>
+        <p class="input-form">
+            <label for="text">お問い合わせ内容 <a class="red">必須</a></label><br>
+            <textarea class="input-text2" name="entry.1675059586" id="text" required maxlength="1000" placeholder="1000字以内でご記入ください。"></textarea>
+        </p>
+        <p class="input-form1">
+            <label><input type="checkbox" name="entry.365828283" class="check" value="プライバシーポリシーに同意" required /><span> <a class="link" href="/linklike/inhtml/privacy">プライバシーポリシー</a>に同意</span></label>
+        </p>
+        <p class="input-form2"><button type="submit" class="btn" disabled>送信</button></p>
+    </form>
+    </div>
+</body>
+</html>

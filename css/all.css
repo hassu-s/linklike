@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+*{
+    font-family: 'Noto Sans JP' , sans-serif;
+    background-color: #f7f8f8;
+    font-family: 'Noto Sans JP' , sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+    color: #4e4e4e;
+    /* For Webkit browsers (Chrome, Safari) */
+    -webkit-overflow-scrolling: touch;
+    overflow: -moz-scrollbars-none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  }
+
+  ::-webkit-scrollbar {
+    display: none; /* For Webkit browsers */
+  }
+
+  body {
+    background-color: #f7f8f8;
+    padding: 5px;
+    overflow-y: scroll;
+  }
+
+h1 {
+    font-size: 30px;
+    font-weight: 900;
+  }
+
+button {
+    background: linear-gradient(to right, #65defc, #938aff);
+    border: none;
+    border-radius: 5px; /* 角をもう少し角ばらせる */
+    box-shadow: 0px 0px 3px 0px rgba(100,100,100);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* マウスオーバー時の動きを滑らかにする */
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+  }
+
+  #button-content {
+    display: flex;
+    gap: 10px;
+    white-space: pre-wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff00;
+}
+  
+  button::before, button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid rgba(255, 255, 255, 0.2); /* 三角のサイズを大きくし、透明度を若干濃くする */
+    border-bottom: 30px solid transparent;
+  }
+  
+  button::before {
+    top: 0;
+    left: 0;
+  }
+  
+  button::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+  }
+  
+  button:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+  }
+
+button:focus {
+  outline: none;
+  }
+
+a:focus {
+  outline: none;
+  }
+
+div:focus {
+  outline: none;
+  }
+
+  /* ボタンやリンクの青いハイライトを消す */
+button, a , div {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari */
+  -webkit-focus-ring-color: rgba(0, 0, 0, 0); /* Chrome */
+  outline: none; /* その他のブラウザ */
+  }
+
+  
+  #bodybg {
+    background-color: #fff;
+  }
+
+  a {
+    font-size:160px;
+  }
+  .alink {
+    font-size: 0px;
+  }
+
+/* スマホ対応 */
+@media (max-width: 500px) {
+  h1 {
+    font-size: 23px;
+    text-align: center;
+  }
+}
+
+.pr1 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.pr2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  margin-top: -12px;
+}
+
+.nohr {
+  border: none;
+}
+
+
+input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 0px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s, border-radius 0.3s;
+  outline: none; /* デフォルトの選択ラインを表示させない */
+  box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+  width: 300px;
+  height: 30px;
+  background-color: #f7f8f8;
+}
+
+input:hover {
+  border-color: #555; /* マウスオーバーで線の色を濃くする */
+}
+
+input:focus {
+  border: 2px solid transparent; /* 角が出ないようにする */
+  border-image: linear-gradient(to right, #65defc, #938aff) 1; /* グラデーション */
+  animation: gradient-animation 3s infinite; /* グラデーションがぐるぐる動く */
+  border-radius: 0px; /* 形が変わらないようにする */
+  box-shadow: 0px 0px 3px 0px rgba(100, 100, 100); /* フォーカス時のデザイン性を向上 */
+}
+
+@keyframes gradient-animation {
+  0% {
+    border-image: linear-gradient(to right, #65defc, #938aff) 1;
+  }
+  50% {
+    border-image: linear-gradient(to right, #938aff, #65defc) 1;
+  }
+  100% {
+    border-image: linear-gradient(to right, #65defc, #938aff) 1;
+  }
+}
+
+div {
+  background-color: #ffffff00;
+}
+
+img {
+  background-color: #ffffff00;
+}
+
+P {
+  background-color: #ffffff00;
+}
+
+a {
+  background-color: #ffffff00;
+}
+span {
+  background-color: #ffffff00;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #65defc, #938aff);
+  padding: 10px;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+#h4-2 {
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  background-color: #ffffff00;
+}
+
+.btn {
+  left: 50%;
+  right: 50%;
+}
+

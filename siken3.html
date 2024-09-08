@@ -1,0 +1,57 @@
+<div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.0); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+    <style>
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+    <iframe srcdoc='
+        <!DOCTYPE html>
+        <html lang="ja">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="../linklike/javascript/rule.js"></script>
+
+            <link href="../linklike/css/all1.css" rel="stylesheet" type="text/css">
+            <link href="../linklike/css/message.css" rel="stylesheet" type="text/css">
+            <script src="../linklike/javascript/rule.js"></script>
+
+            <style>
+                #button-content {
+                    padding-top: 22px;
+                }
+            </style>
+
+        </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h4 id="header">エラー</h4s>
+                    </div>
+                    <div class="content">
+                        <div class="mbg">
+                        <h1>通信エラー</h1>
+                        <h4>お使いの端末のネットワークをご確認ください</h4>
+                        <p>端末が弱ネットワークか、オフラインの可能性があります。端末のネットワークをご確認ください。<br>
+                            ただし、インターネットに接続していてもローディングが60秒以上経過した場合はシステムが自動で更新を停止させます。<br>
+                            もし、ある程度の通信環境がある中で通信エラーが表示される場合はお問い合わせください。<br>
+                            （お問い合わせは、メールか、専用フォームからお問い合わせをお受けしております）
+                        </p>
+                        </div>
+                        <div id="button-content">
+                            <a href="/linklike/html/contact"><button>お問い合わせ</button></a>
+                            <a href="/linklike/html/contact"><button>お問い合わせ</button></a>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    document.getElementById("reload").addEventListener("click", function() {
+                        location.reload();
+                    });
+                </script>
+            </body>
+        </html>'>
+    </iframe>
+</div>

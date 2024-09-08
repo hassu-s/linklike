@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/all1.css" rel="stylesheet" type="text/css">
+
+    <style>
+        /* レスポンシブグリッドレイアウト */
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .video-item {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 0px 3px 0px rgba(100,100,100);
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 200px;
+        }
+
+        .no-results {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+
+        /* スクロール可能なポップアップ */
+        .popup1 {
+            position: absolute;
+
+
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            padding: 0px;
+            box-shadow: 0px 0px 3px 0px rgba(100,100,100);
+            overflow-y: auto;
+            max-height: 80%;
+            z-index: 1000;
+            border-radius: 5px;
+        }
+
+
+        button {
+            width: 120px;
+        }
+
+        /* オーバーレイ */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .member-filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        iframe {
+            border-radius: 5px;
+            box-shadow: 0px 0px 3px 0px rgba(100,100,100);
+
+        }
+
+        label {
+            font-size: 13px;
+        }
+
+        .container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            overflow: hidden;
+            width: 96%;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+            background-color: #ffffff00;
+        }
+
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #65defc, #938aff);
+            padding: 10px;
+            color: white;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            height: 25px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #header {
+            text-align: center;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .content {
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .mbg {
+            background-color: #f7f8f8;
+            border-radius: 5px;
+
+            padding-top: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 15px;
+        }
+
+        #button-content {
+            padding-top: 10px;
+        }
+
+        /* ポップアップの開閉アニメーション */
+        @keyframes popupOpen {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes popupClose {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        .open-animation {
+            animation: popupOpen 0.2s ease forwards;
+        }
+
+        .close-animation {
+            animation: popupClose 0.2s ease forwards;
+        }
+
+    </style>
+</head>
+<body>
+
+    <button id="openPopupBtn">絞り込み</button>
+    <button id="sortDateBtn">最新順</button> <!-- 日付順ボタン -->
+
+    <div id="popup" class="popup1 hidden">
+        <div class="header">
+            <h4 id="header">絞り込み</h4s>
+        </div>
+        <div class="filter-group">
+            <h4>配信種別絞り込み</h4>
+            <label><input type="checkbox" id="typeWithMeets" value="W"> With×MEETS</label>
+            <label><input type="checkbox" id="typeFesLive" value="F"> Fes×LIVE</label>
+        </div>
+        <div class="filter-group">
+            <h4>学期絞り込み</h4>
+            <label><input type="checkbox" id="term103" value="103"> 103期</label>
+            <label><input type="checkbox" id="term104" value="104"> 104期</label>
+        </div>
+        <div class="filter-group">
+            <h4>メンバー絞り込み</h4>
+            <div class="member-filters">
+                <label><input type="checkbox" id="memberKozue" value="kozue"> 梢</label>
+                <label><input type="checkbox" id="memberTuduri" value="tuduri"> 綴理</label>
+                <label><input type="checkbox" id="memberMegumi" value="megumi"> 慈</label>
+                <label><input type="checkbox" id="memberRurino" value="rurino"> 瑠璃乃</label>
+                <label><input type="checkbox" id="memberSayaka" value="sayaka"> さやか</label>
+                <label><input type="checkbox" id="memberKaho" value="kaho"> 花帆</label>
+                <label><input type="checkbox" id="memberHime" value="hime"> 姫芽</label>
+                <label><input type="checkbox" id="memberKosuzu" value="kosuzu"> 小鈴</label>
+                <label><input type="checkbox" id="memberGinko" value="ginko"> 吟子</label>
+            </div>
+        </div>
+        <button id="applyFiltersBtn">OK</button>
+        <button id="resetFiltersBtn">リセット</button>
+        <button id="closePopupBtn">キャンセル</button>
+    </div>
+
+    <div id="overlay" class="overlay hidden"></div>
+
+    <div id="videoContainer" class="video-container"></div>
+
+    <script>
+        let videoData = [];
+        const filters = {
+            type: [],
+            term: [],
+            members: []
+        };
+        let sortDescending = true; // 初期設定で最新順
+    
+        const videoContainer = document.getElementById("videoContainer");
+        const popup = document.getElementById("popup");
+        const overlay = document.getElementById("overlay");
+        const sortDateBtn = document.getElementById("sortDateBtn");
+    
+        document.getElementById("openPopupBtn").addEventListener("click", () => {
+            popup.classList.remove("hidden");
+            overlay.classList.remove("hidden");
+            popup.classList.add("open-animation"); // 開くアニメーションを追加
+        });
+    
+        document.getElementById("closePopupBtn").addEventListener("click", () => {
+            popup.classList.remove("open-animation"); // 閉じる前に開くアニメーションを削除
+            popup.classList.add("close-animation"); // 閉じるアニメーションを追加
+    
+            // アニメーションが終わったら非表示にする
+            popup.addEventListener('animationend', function handleCloseAnimation() {
+                if (popup.classList.contains("close-animation")) {
+                    popup.classList.add("hidden");
+                    overlay.classList.add("hidden");
+                    popup.classList.remove("close-animation"); // 閉じるアニメーションを削除
+                }
+                popup.removeEventListener('animationend', handleCloseAnimation);
+            });
+        });
+    
+        document.getElementById("resetFiltersBtn").addEventListener("click", () => {
+            document.querySelectorAll(".popup input[type='checkbox']").forEach(checkbox => checkbox.checked = false);
+        });
+    
+        document.getElementById("applyFiltersBtn").addEventListener("click", () => {
+            filters.type = [];
+            filters.term = [];
+            filters.members = [];
+            
+            // 配信種別絞り込み
+            if (document.getElementById("typeWithMeets").checked) filters.type.push("W");
+            if (document.getElementById("typeFesLive").checked) filters.type.push("F");
+            
+            // 学期絞り込み
+            if (document.getElementById("term103").checked) filters.term.push("103");
+            if (document.getElementById("term104").checked) filters.term.push("104");
+    
+            // メンバー絞り込み
+            if (document.getElementById("memberKozue").checked) filters.members.push("kozue");
+            if (document.getElementById("memberTuduri").checked) filters.members.push("tuduri");
+            if (document.getElementById("memberMegumi").checked) filters.members.push("megumi");
+            if (document.getElementById("memberRurino").checked) filters.members.push("rurino");
+            if (document.getElementById("memberSayaka").checked) filters.members.push("sayaka");
+            if (document.getElementById("memberKaho").checked) filters.members.push("kaho");
+            if (document.getElementById("memberHime").checked) filters.members.push("hime");
+            if (document.getElementById("memberKosuzu").checked) filters.members.push("kosuzu");
+            if (document.getElementById("memberGinko").checked) filters.members.push("ginko");
+    
+            popup.classList.remove("open-animation"); // 閉じる前に開くアニメーションを削除
+            popup.classList.add("close-animation"); // 閉じるアニメーションを追加
+    
+            // アニメーションが終わったら非表示にする
+            popup.addEventListener('animationend', function handleCloseAnimation() {
+                if (popup.classList.contains("close-animation")) {
+                    popup.classList.add("hidden");
+                    overlay.classList.add("hidden");
+                    popup.classList.remove("close-animation"); // 閉じるアニメーションを削除
+                    filterVideos(); // フィルタを適用
+                }
+                popup.removeEventListener('animationend', handleCloseAnimation);
+            });
+        });
+    
+        sortDateBtn.addEventListener("click", () => {
+            sortDescending = !sortDescending;
+            sortDateBtn.textContent = sortDescending ? "最新順" : "古い順";
+            renderVideos(videoData); // ソート順が変わるので再レンダリング
+        });
+    
+        function filterVideos() {
+            const filteredVideos = videoData.filter(video => {
+                const matchesType = filters.type.length === 0 || filters.type.includes(video.type);
+                const matchesTerm = filters.term.length === 0 || filters.term.includes(video.term);
+                const matchesMembers = filters.members.length === 0 || filters.members.every(member => video.members[member] === '+');
+                return matchesType && matchesTerm && matchesMembers;
+            });
+    
+            renderVideos(filteredVideos);
+        }
+    
+        function renderVideos(videos) {
+            // ソート：日付に基づく降順または昇順
+            videos.sort((a, b) => sortDescending ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
+    
+            videoContainer.innerHTML = ""; // コンテナをクリア
+            if (videos.length === 0) {
+                videoContainer.innerHTML = "<div class='no-results'>該当する動画がありません。</div>";
+            } else {
+                videos.forEach(video => {
+                    const videoItem = document.createElement("div");
+                    videoItem.classList.add("video-item");
+                    videoItem.innerHTML = `
+                        <iframe src="https://www.youtube.com/embed/${video.id}" frameborder="0" allowfullscreen></iframe>
+                        <p>${video.date}</p>
+                        <h4>${video.title}</h4>
+                    `;
+                    videoContainer.appendChild(videoItem);
+                });
+            }
+        }
+    
+        async function loadCSV() {
+            const response = await fetch('sic.csv');
+            const csvText = await response.text();
+            const rows = csvText.split('\n').map(row => row.split(','));
+    
+            videoData = rows.slice(1).filter(row => row[0] && row[4]) // タイトルと動画IDが空でない場合のみ取得
+                .map(row => ({
+                    title: row[0],
+                    date: row[1],
+                    term: row[2],
+                    type: row[3],
+                    id: row[4],
+                    members: {
+                        kozue: row[5],
+                        tuduri: row[6],
+                        megumi: row[7],
+                        rurino: row[8],
+                        sayaka: row[9],
+                        kaho: row[10],
+                        hime: row[11],
+                        kosuzu: row[12],
+                        ginko: row[13]
+                    }
+                }));
+    
+            renderVideos(videoData); // 初回にすべての動画を表示
+        }
+    
+        loadCSV();
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+* {
+    font-family: 'Noto Sans JP' , sans-serif;
+    font-weight: 300;
+}
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #65defc, #938aff);
+
+    font-family: 'Noto Sans JP' , sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+    color: #4e4e4e;
+    outline: none;
+
+    -webkit-tap-highlight-color: #ffffff00;
+    -webkit-focus-ring-color: #ffffff00;
+    outline: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+img {
+    width: 100%;
+    max-width: 450px;
+}
+
+button {
+    background: linear-gradient(to right, #65defc, #938aff);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+}
+
+#button-content {
+    display: flex;
+    gap: 10px;
+    white-space: pre-wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff00;
+    margin-top: -10px;
+}
+
+button::before, button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 30px solid transparent;
+}
+
+button::before {
+    top: 0;
+    left: 0;
+}
+
+button::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+button:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+}
+
+#logo {
+    position: absolute;
+    width: 250px;
+    bottom: 135px;
+    background-color: rgb(255, 255, 255, 0.85);
+    border-radius: 5px;
+    padding: 10px;
+}
+.logbtn{
+    position: fixed;
+    bottom: 45px;
+}
+
+a {
+    text-align: center;
+}
+
+#mabu {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+}
+
+.mabu {
+    width: 40px;
+    height: 40px;
+}
+
+#imgbu {
+    width: 30px;
+    margin-left: -14px;
+    margin-top: -5px;
+}

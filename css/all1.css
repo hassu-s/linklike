@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+* {
+    font-family: 'Noto Sans JP' , sans-serif;
+    font-weight: 300;
+    text-decoration: none;
+    color: #5f6b76;
+    outline: none;
+
+    -webkit-tap-highlight-color: #ffffff00;
+    -webkit-focus-ring-color: #ffffff00;
+    outline: none;
+    word-break: break-all;
+}
+
+body {
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 65px;
+    background-color: #f7f8f8;
+
+    -webkit-overflow-scrolling: touch;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+button {
+    background: linear-gradient(to right, #65defc, #938aff);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+}
+
+#button-content {
+    display: flex;
+    gap: 10px;
+    white-space: pre-wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff00;
+    margin-top: -10px;
+}
+
+button::before, button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 30px solid transparent;
+}
+
+button::before {
+    top: 0;
+    left: 0;
+}
+
+button::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+button:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+}
+
+button:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+}
+
+button:disabled {
+    background: linear-gradient(to right, #333333, #555555);
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+button:disabled:hover,
+button:disabled:active {
+    transform: none; /* ロック中のアニメーションを無効化 */
+}
+
+div {
+    background-color: #ffffff00;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #73a1ff;
+    border-color: #73a1ff;
+    height: 0.1px;
+    background-color: #73a1ff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* hタグ関連一括管理 */
+h1 {
+    font-weight: 900;
+}
+
+h2 {
+    font-weight: 800;
+}
+
+/* inputタグの指定 */
+/* 通常のinput、textarea、selectのスタイル */
+/* 通常のinputスタイル */
+input[type="email,text,tel,password"],
+textarea {
+    border: 1px solid #73a1ff;
+    border-radius: 5px;
+}
+
+/* ホバー時・選択時のスタイル */
+/* 通常のinputスタイル */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+textarea {
+    border: 1px solid #73a1ff;
+    border-radius: 5px;
+}
+
+/* ホバー時・選択時のスタイル */
+input[type="text"]:hover,
+input[type="text"]:focus,
+input[type="email"]:hover,
+input[type="email"]:focus,
+input[type="tel"]:hover,
+input[type="tel"]:focus,
+input[type="password"]:hover,
+input[type="password"]:focus,
+textarea:hover,
+textarea:focus {
+    background-color: rgba(115, 161, 255, 0.03);
+}
+
+/* ドロップダウンリストのスタイル */
+select {
+    border: 1px solid #73a1ff;
+    background-color: white;
+    border-radius: 5px;
+}
+select:hover,
+select:focus {
+    background-color: rgba(115, 161, 255, 0.03);
+}
+
+select option {
+    background-color: white;
+}
+
+select option:checked,
+select option:hover {
+    background-color: #73a1ff;
+    color: white;
+    border-radius: 5px;
+}
+
+/* チェックボタン */
+/* チェックボックスのスタイル */
+input[type="checkbox"] {
+    background: #9f9f9f;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 0px solid #ccc;
+    border-radius: 80px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+  
+/* チェックボックスがチェックされたときのスタイル */
+input[type="checkbox"]:checked {
+    background: linear-gradient(to right, #65defc, #938aff);
+    border: 0px solid #ffffff;
+}
+  
+/* チェックマークのスタイル */
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+input::placeholder {
+    color: #c8c8c8;
+}
+textarea::placeholder {
+    color: #c8c8c8;
+}
+  
+.link {
+    color: #73a1ff;
+    font-weight: 600;
+}

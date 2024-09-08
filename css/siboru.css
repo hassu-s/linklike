@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Sans JP' , sans-serif;
+    background-color: #f7f8f8;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px; /* ナビゲーションバーの高さ分の余白を追加 */
+}
+.container {
+    width: 100%;
+}
+.box {
+    border: 0px solid #cccccc00;
+    padding: 10px;
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+    border-radius: 5px;
+    text-align: left;
+}
+.box img {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+.box .text {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.box .text span {
+    margin-right: 10px;
+}
+.box .text .dash {
+    margin-right: 10px;
+}
+.box .items {
+    display: flex;
+    flex-wrap: wrap;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: left;
+    z-index: 1000;
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.5);
+}
+.navbar a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    margin-right: 10px;
+}
+.navbar label {
+    color: rgb(0, 0, 0);
+    margin-left: 20px;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    width: 300px;
+    height: 80%;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-radius: 5px;
+}
+.popup::-webkit-scrollbar { 
+    display: none;
+}
+.popup.active {
+    display: block;
+    border-radius: 5px;
+}
+.popup-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 55px;
+}
+.popup-buttons {
+    display: none;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    background-color: white;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    padding: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 300px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.popup-buttons.active {
+    display: flex;
+    justify-content: center;
+}
+.popup-buttons button {
+    margin: 0 5px;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}
+.overlay.active {
+    display: block;
+}
+.popup img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.popup label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    background-color: #ffffff00;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #65defc, #938aff);
+    padding: 10px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    font-family: 'Noto Sans JP' , sans-serif;
+    background: linear-gradient(to right, #65defc, #938aff);
+    border: none;
+    border-radius: 5px; /* 角をもう少し角ばらせる */
+    box-shadow: 0px 0px 3px 0px rgba(100,100,100);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* マウスオーバー時の動きを滑らかにする */
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    text-decoration: none;
+    }
+
+  #button-content {
+    display: flex;
+    gap: 10px;
+    white-space: pre-wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff00;
+    }
+  
+  button::before, button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid rgba(255, 255, 255, 0.2); /* 三角のサイズを大きくし、透明度を若干濃くする */
+    border-bottom: 30px solid transparent;
+  }
+  
+  button::before {
+    top: 0;
+    left: 0;
+  }
+  
+  button::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+  }
+  
+  button:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+  }
+
+button:focus {
+  outline: none;
+  }
+
+a:focus {
+  outline: none;
+  }
+
+div:focus {
+  outline: none;
+  }
+
+  /* ボタンやリンクの青いハイライトを消す */
+button, a , div {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari */
+  -webkit-focus-ring-color: rgba(0, 0, 0, 0); /* Chrome */
+  outline: none; /* その他のブラウザ */
+  }
+
+#img {
+    width: 30px;
+}
+
+#la1 {
+    position: relative;
+    top: -6.2px;
+    left: -10px;
+}
+
+.hr1 {
+    border: none;
+    border-top: 1px solid #73a1ff;
+    border-color: #73a1ff;
+    height: 0.1px;
+    background-color: #73a1ff;
+}
+
+.btn-a {
+    width: 85px;
+    height: 50px;
+    padding: 0px 0px;
+    font-size: 14px;
+}
+
+.btn-b {
+    width: 85px;
+    height: 50px;
+    padding: 0px 0px;
+    font-size: 14px;
+    background: linear-gradient(to right, #ffffff, #efefef);
+    color: #333;
+}
+
+button:focus {
+    outline: none;
+    }
+  
+a:focus {
+    outline: none;
+    }
+  
+div:focus {
+    outline: none;
+    }
+
+    button, a , div {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Safari */
+        -webkit-focus-ring-color: rgba(0, 0, 0, 0); /* Chrome */
+        outline: none; /* その他のブラウザ */
+        }
+
+.btn-b::before, .btn-b::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid rgba(199, 199, 199, 0.2); /* 三角のサイズを大きくし、透明度を若干濃くする */
+    border-bottom: 30px solid transparent;
+    }
+
+    .input {
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 0px;
+        font-size: 16px;
+        transition: border-color 0.3s, box-shadow 0.3s, border-radius 0.3s;
+        outline: none; /* デフォルトの選択ラインを表示させない */
+        box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+        width: 300px;
+        height: 30px;
+        background-color: #f7f8f8;
+        font-family: 'Noto Sans JP' , sans-serif;
+      }
+      
+      .input:hover {
+        border-color: #555; /* マウスオーバーで線の色を濃くする */
+      }
+      
+      .input:focus {
+        border: 2px solid transparent; /* 角が出ないようにする */
+        border-image: linear-gradient(to right, #65defc, #938aff) 1; /* グラデーション */
+        animation: gradient-animation 3s infinite; /* グラデーションがぐるぐる動く */
+        border-radius: 0px; /* 形が変わらないようにする */
+        box-shadow: 0px 0px 3px 0px rgba(100, 100, 100); /* フォーカス時のデザイン性を向上 */
+      }
+      @keyframes gradient-animation {
+        0% {
+          border-image: linear-gradient(to right, #65defc, #938aff) 1;
+        }
+        50% {
+          border-image: linear-gradient(to right, #938aff, #65defc) 1;
+        }
+        100% {
+          border-image: linear-gradient(to right, #65defc, #938aff) 1;
+        }
+      }
+
+
+      .pr1 {
+        font-size: 17px;
+        font-weight: 600;
+        color: #fff;
+      }
+      
+      .pr2 {
+        font-size: 13px;
+        font-weight: 500;
+        color: #fff;
+        margin-top: -12px;
+        text-align: center;
+      }
+
+
+.nohr {
+    border: none;
+  }
+
+a {
+    font-size: 0px;
+    text-decoration: none;
+}
+
+.alink1 {
+    font-size: 0px;
+    position: relative;
+    top: 3px;
+  }
+
+
+
+/* チェックボックスのスタイル */
+input[type="checkbox"] {
+  background: #9f9f9f;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 0px solid #ccc;
+  border-radius: 80px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+/* チェックボックスがチェックされたときのスタイル */
+input[type="checkbox"]:checked {
+  background: linear-gradient(to right, #65defc, #938aff);
+  border: 0px solid #9f9f9f;
+}
+
+/* チェックマークのスタイル */
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+
+.la0 {
+  position: relative;
+  top: 7px;
+}
+
+.button1 {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin-left: 15px;
+}
+
+.img {
+  width: 20px;
+  text-align: center;
+  position: relative;
+  right: 15px;
+  top:-9px;
+}
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../linklike/javascript/rule.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .circle-container {
+            position: relative;
+            width: 100px; /* 全体をさらに小さく */
+            height: 100px; /* 全体をさらに小さく */
+        }
+        .circle {
+            position: absolute;
+            width: 15px; /* 円をさらに小さく */
+            height: 15px; /* 円をさらに小さく */
+            background-color: white; /* 塗りを白に */
+            border: 2.2px solid #878787; /* 外線をグレーに */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fade 1.6s infinite;
+        }
+        .circle:nth-child(1) { animation-delay: 0s; }
+        .circle:nth-child(2) { animation-delay: 0.2s; }
+        .circle:nth-child(3) { animation-delay: 0.4s; }
+        .circle:nth-child(4) { animation-delay: 0.6s; }
+        .circle:nth-child(5) { animation-delay: 0.8s; }
+        .circle:nth-child(6) { animation-delay: 1s; }
+        .circle:nth-child(7) { animation-delay: 1.2s; }
+        .circle:nth-child(8) { animation-delay: 1.4s; }
+        .star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 23px;
+            height: 23px;
+            background: url('../linklike/image/button/star.webp') no-repeat center center;
+            background-size: contain;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes fade {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .loading-text {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 900;
+            margin-top: 20px;
+            font-size: 21px;
+            color: white; /* 文字色を白に設定 */
+            -webkit-text-stroke: #878787 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle-container">
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg) translate(40px) rotate(0deg);"></div>
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg) translate(40px) rotate(-45deg);"></div>
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translate(40px) rotate(-90deg);"></div>
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(135deg) translate(40px) rotate(-135deg);"></div>
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(180deg) translate(40px) rotate(-180deg);"></div>
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(225deg) translate(40px) rotate(-225deg);"></div>
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(270deg) translate(40px) rotate(-270deg);"></div>
+        <div class="circle" style="top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(315deg) translate(40px) rotate(-315deg);"></div>
+        <div class="star"></div>
+    </div>
+    <div class="loading-text">Now Loading…</div>
+</body>
+</html>
