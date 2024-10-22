@@ -117,7 +117,98 @@ const errorHTML = `
             <link href="/linklike/css/all1.css" rel="stylesheet" type="text/css">
             <link href="/linklike/css/message.css" rel="stylesheet" type="text/css">
             <script src="/linklike/javascript/rule.js"></script>
+            <style>
+              body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                margin: 0;
+                background-color: #f7f8f8;
+                flex-direction: column;
+                overflow: hidden;
+                text-align: center;
+            }
 
+            .container {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 5px;
+                overflow: hidden;
+                width: 96%;
+                max-width: 800px;
+                margin: 0 auto;
+                box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+                background-color: #ffffff00;
+            }
+
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: linear-gradient(to right, #65defc, #938aff);
+                padding: 10px;
+                color: white;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                height: 25px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #header {
+                text-align: center;
+                font-weight: 600;
+                color: #fff;
+            }
+
+            .content {
+                padding: 10px;
+                background-color: #fff;
+            }
+
+            .mbg {
+                background-color: #f7f8f8;
+                border-radius: 5px;
+
+                padding-top: 5px;
+                padding-left: 5px;
+                padding-right: 5px;
+                padding-bottom: 15px;
+            }
+
+            .pm {
+                font-size: 20px;
+                font-weight: 600;
+                color: rgb(197, 0, 0);
+                margin-bottom: -10px;
+            }
+
+            #mabu {
+                position: fixed;
+                bottom: 40px;
+                right: 40px;
+            }
+
+            .mabu {
+                width: 50px;
+            }
+
+            #imgbu {
+                width: 40px;
+                margin-left: -14px;
+                margin-top: -5px;
+            }
+
+            .icon {
+                width: 130px;
+                border-radius: 5px;
+                box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+            }
+            </style>
             <style>
                 #button-content {
                     padding-top: 22px;
