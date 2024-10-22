@@ -229,26 +229,28 @@ setTimeout(() => {
   }
 }, 60000); // 60秒後に通信エラー画面を表示する
 
-// ページ遷移時にローディング画面を表示（メールリンクを除外）
+// ページ遷移時にローディング画面を表示（メールリンクを除外、ポップアップが開いていない場合）
 window.addEventListener('beforeunload', (event) => {
   const activeElement = document.activeElement;
-  if (activeElement && activeElement.tagName === 'A' && activeElement.href.startsWith('mailto:')) {
-    // メールリンクの場合はロード画面を表示しない
+  if (isPopupOpen || (activeElement && activeElement.tagName === 'A' && activeElement.href.startsWith('mailto:'))) {
+    // ポップアップが開いているか、メールリンクの場合はロード画面を表示しない
     return;
   }
   showLoadingScreen();
 });
 
-// 戻るボタンを押したときの処理
+// 戻るボタンの動作にポップアップの状態を考慮
 window.addEventListener('popstate', () => {
-  // ページがキャッシュから読み込まれたかどうかを判定
+  if (isPopupOpen) {
+    // ポップアップが開いている場合はLoading画面を出さない
+    return;
+  }
   if (performance && performance.getEntriesByType('navigation')[0].type === 'back_forward') {
     hideLoadingScreen(); // キャッシュからの復帰ならLoading画面を非表示
   } else {
-    showLoadingScreen(); // ロードが発生する場合はLoading画面を表示
+    showLoadingScreen(); // 通常のロードが発生する場合はLoading画面を表示
   }
 });
-
 
 
 // オフライン状態を監視

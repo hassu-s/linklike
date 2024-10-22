@@ -1,3 +1,5 @@
+let isPopupOpen = false;
+
 document.addEventListener("DOMContentLoaded", function() {
     const infoButton = document.getElementById('info1');
     const popup = document.createElement('div');
@@ -10,26 +12,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
     popup.innerHTML = `
         <div class="header">
-                <h4 id="h4-2">お知らせ</h4s>
+            <h4 id="h4-2">お知らせ</h4>
         </div>
-            <iframe src="https://hassu-s.github.io/info/info/linklike"></iframe>
+        <iframe src="https://hassu-s.github.io/info/info/linklike"></iframe>
         <button id="close-popup" class="btn-clo">閉じる</button>
     `;
 
     document.body.append(overlay);
     document.body.append(popup);
 
+    // ポップアップを表示する
     infoButton.addEventListener('click', function() {
+        isPopupOpen = true; // ポップアップが開いているフラグを立てる
         popup.style.display = 'block';
         overlay.style.display = 'block';
         popup.style.animation = 'expand 0.2s forwards';
     });
 
+    // ポップアップを閉じる
     document.getElementById('close-popup').addEventListener('click', function() {
         popup.style.animation = 'shrink 0.2s forwards';
         setTimeout(() => {
             popup.style.display = 'none';
             overlay.style.display = 'none';
+            isPopupOpen = false; // フラグをリセット
         }, 200);
     });
 
@@ -38,9 +44,11 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             popup.style.display = 'none';
             overlay.style.display = 'none';
+            isPopupOpen = false; // フラグをリセット
         }, 200);
     });
 
+    // スタイルの追加
     const style = document.createElement('style');
     style.textContent = `
         iframe {
@@ -75,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 1009;
         }
+
         @keyframes expand {
             from { transform: scale(0); }
             to { transform: scale(1); }
@@ -83,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function() {
             from { transform: scale(1); }
             to { transform: scale(0); }
         }
+
         .btn-clo {
             position: absolute;
             bottom: 15px;
@@ -113,12 +123,6 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: center;
             align-items: center;
         }
-
-    #header {
-        text-align: center;
-        font-weight: 600;
-        color: #fff;
-    }
     `;
     document.head.append(style);
 });
