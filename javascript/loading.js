@@ -239,6 +239,17 @@ window.addEventListener('beforeunload', (event) => {
   showLoadingScreen();
 });
 
+// 戻るボタンを押したときの処理
+window.addEventListener('popstate', () => {
+  // ページがキャッシュから読み込まれたかどうかを判定
+  if (performance && performance.getEntriesByType('navigation')[0].type === 'back_forward') {
+    hideLoadingScreen(); // キャッシュからの復帰ならLoading画面を非表示
+  } else {
+    showLoadingScreen(); // ロードが発生する場合はLoading画面を表示
+  }
+});
+
+
 
 // オフライン状態を監視
 window.addEventListener('offline', () => {
