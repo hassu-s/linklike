@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fff;
+            background-color: #f7f8f8;
             padding: 10px;
             color: white;
             border-bottom-left-radius: 5px;
