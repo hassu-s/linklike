@@ -11,6 +11,8 @@
     <script src="../javascript/maintenance.js"></script>
     <script src="../javascript/launcher.js"></script>
     <script src="../javascript/info.js"></script>
+    <script src="../javascript/loading.js"></script>
+
     <!-- Googleサービスへ通知する内容はじめ -->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -318,8 +320,8 @@
             if (navigator.share) {
                 try {
                     await navigator.share({
-                        title: 'はっすーずリンクラ攻略部',
-                        text: 'はっすーずリンクラ攻略部でリンクラ/蓮ノ空情報を確認しよう！',
+                        title: '',
+                        text: '',
                         url: 'https://hassu-s.github.io/linklike/', // 共有するURL
                     });
                     console.log('共有しました');
