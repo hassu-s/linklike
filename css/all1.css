@@ -223,3 +223,28 @@ textarea::placeholder {
     color: #73a1ff;
     font-weight: 600;
 }
+.bodybg {
+    background: linear-gradient(to right, #65defc, #938aff);
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-width: 500px;
+    height: 50px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.bodytitle {
+    font-size: 20px;
+    font-weight: 900;
+    color: #f7f8f8;
+    text-align: center;
+}
