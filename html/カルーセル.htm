@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おしゃれなカルーセル</title>
+    <link href="../css/all1.css" rel="stylesheet" type="text/css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .carousel-container {
+            width: 80%;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .carousel-container:hover .prev,
+        .carousel-container:hover .next {
+            opacity: 1;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .prev {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            margin-left: 10px;
+        }
+        .next {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            margin-right: 10px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(to right, #65defc, #938aff);
+        }
+
+        .indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .indicators div {
+            width: 12px;
+            height: 12px;
+            background-color: #ddd;
+            margin: 0 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicators .active {
+            background-color: #333;
+        }
+
+        .carousel-container:hover .prev,
+        .carousel-container:hover .next {
+            pointer-events: auto;
+
+        }
+
+        .indicators {
+            position: absolute;
+            bottom: 15px; /* 画像の直下に配置 */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .imgbtna {
+            height: 13px;
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="carousel-container">
+    <div class="carousel">
+        <img src="../image/news/123.png" alt="Slide 1">
+        <img src="../image/news/234.png" alt="slide 2">
+        <img src="../image/news/123.png" alt="Slide 1 Clone"> <!-- 最後の画像の後にクローンを追加 -->
+    </div>
+    <div class="carousel-buttons">
+        <a class="prev"><img class="imgbtna" src="../image/button/back.png"></a>
+        <a class="next"><img class="imgbtna" src="../image/button/next.png"></a>
+    </div>
+    <div class="progress-bar" id="progress"></div>
+    <div class="indicators" id="indicatorContainer"></div>
+</div>
+
+<script>
+    const carousel = document.querySelector('.carousel');
+    const images = document.querySelectorAll('.carousel img');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const progressBar = document.getElementById('progress');
+    const indicatorContainer = document.getElementById('indicatorContainer');
+    let currentIndex = 0;
+    let slideInterval;
+    let progressInterval;
+
+    // インジケーターの自動生成
+    images.forEach((image, index) => {
+        if (index < images.length - 1) { // 最後のクローン画像を除外
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.dataset.index = index;
+            dot.addEventListener('click', (e) => {
+                currentIndex = parseInt(e.target.dataset.index);
+                updateCarousel();
+                clearInterval(slideInterval);
+                clearInterval(progressInterval);
+                slideInterval = setInterval(showNext, 5000);
+            });
+            indicatorContainer.appendChild(dot);
+        }
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carousel.style.transition = 'transform 0.5s ease-in-out';
+        carousel.style.transform = `translateX(${offset}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (currentIndex < images.length - 1) {
+            dots[currentIndex].classList.add('active');
+        } else {
+            dots[0].classList.add('active'); // クローン画像の時は最初のインジケータをアクティブに
+        }
+        resetProgressBar();
+    }
+
+    function showNext() {
+        currentIndex++;
+        if (currentIndex >= images.length) {
+            carousel.style.transition = 'none'; // 瞬時に最初の画像に切り替える
+            currentIndex = 0;
+            const offset = -currentIndex * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+            setTimeout(() => {
+                carousel.style.transition = 'transform 0.5s ease-in-out'; // 通常のスライドに戻す
+                currentIndex++;
+                updateCarousel();
+            }, 10);
+        } else {
+            updateCarousel();
+        }
+    }
+
+    function showPrev() {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = images.length - 2; // 最後のクローンの1つ前に移動
+            carousel.style.transition = 'none';
+            const offset = -currentIndex * 100;
+            carousel.style.transform = `translateX(${offset}%)`;
+            setTimeout(() => {
+                carousel.style.transition = 'transform 0.5s ease-in-out';
+                updateCarousel();
+            }, 10);
+        } else {
+            updateCarousel();
+        }
+    }
+
+    function resetProgressBar() {
+        progressBar.style.width = '0%';
+        progressBar.style.transition = 'none';
+        setTimeout(() => {
+            progressBar.style.transition = 'width 5s linear';
+            progressBar.style.width = '100%';
+        }, 10);
+    }
+
+    nextButton.addEventListener('click', () => {
+        showNext();
+        clearInterval(slideInterval);
+        clearInterval(progressInterval);
+        slideInterval = setInterval(showNext, 5000);
+    });
+
+    prevButton.addEventListener('click', () => {
+        showPrev();
+        clearInterval(slideInterval);
+        clearInterval(progressInterval);
+        slideInterval = setInterval(showNext, 5000);
+    });
+
+    // 自動スライド
+    slideInterval = setInterval(showNext, 5000);
+    progressInterval = setInterval(resetProgressBar, 5000);
+
+    // 初期状態の更新
+    updateCarousel();
+    resetProgressBar();
+</script>
+
+</body>
+</html>
