@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>共有画面のデモ</title>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>共有画面のデモ</h1>
+    <button id="shareBtn">共有する</button>
+
+    <script>
+        document.getElementById('shareBtn').addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'はっすーずリンクラ攻略部',
+                        text: 'はっすーずリンクラ攻略部でリンクラ/蓮ノ空情報を確認しよう！',
+                        url: 'https://hassu-s.github.io/linklike/', // 共有するURL
+                    });
+                    console.log('共有しました');
+                } catch (error) {
+                    console.error('共有に失敗しました:', error);
+                }
+            } else {
+                console.log('このブラウザは共有機能に対応していません。');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ホーム</title>
     <link href="../css/all1.css" rel="stylesheet" type="text/css">
+    <link href="../css/share.css" rel="stylesheet" type="text/css">
     <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
     <script src="../javascript/rule.js"></script>
     <script src="../javascript/maintenance.js"></script>
@@ -163,7 +164,9 @@
             border: none;
             left: 50%;
             transform: translateX(-50%);
+            margin-top: -30px;
         }
+
     </style>
 </head>
 <body>
@@ -194,6 +197,13 @@
         </p>
     </div>
 
+    <div class="linkbtn">
+        <p class="linkt">SHARE</p>
+        <div class="logobtn">
+            <div class="bglogo"><a href="https://twitter.com/intent/tweet?text=%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9/%E8%93%AE%E3%83%8E%E7%A9%BA%E6%83%85%E5%A0%B1%E3%81%AF%E3%81%93%E3%81%93%E3%81%8B%E3%82%89%EF%BC%81%E3%80%80%E3%81%AF%E3%81%A3%E3%81%99%E3%83%BC%E3%81%9A%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9%E6%94%BB%E7%95%A5%E9%83%A8%20%23%E3%81%AF%E3%81%99%E3%81%8F%E3%82%89%E3%81%B6%20https%3A%2F%2Fhassu-s.github.io%2Flinklike%2F"><img class="logox" src="../image/icon/xlogo.png" title="X"></a></div>
+            <div class="bglogo1"><a id="shareBtn"><img class="logox" src="../image/button/link.png" title="リンク"></a></div>
+        </div>
+    </div>
 </body>
     <script>
         const carousel = document.querySelector('.carousel');
@@ -302,5 +312,23 @@
         // 初期状態の更新
         updateCarousel();
         resetProgressBar();
+    </script>
+    <script>
+        document.getElementById('shareBtn').addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'はっすーずリンクラ攻略部',
+                        text: 'はっすーずリンクラ攻略部でリンクラ/蓮ノ空情報を確認しよう！',
+                        url: 'https://hassu-s.github.io/linklike/', // 共有するURL
+                    });
+                    console.log('共有しました');
+                } catch (error) {
+                    console.error('共有に失敗しました:', error);
+                }
+            } else {
+                console.log('このブラウザは共有機能に対応していません。');
+            }
+        });
     </script>
 </html>

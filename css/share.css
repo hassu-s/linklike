@@ -1,0 +1,94 @@
+.linkbtn {
+    background-color: #ffffff;
+    height: 190px;
+    margin-bottom: -65px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+
+}
+.linkt {
+    font-size: 23px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.logobtn {
+    display: flex;
+    margin-top: -20px;
+    justify-content: center;
+}
+
+.bglogo {
+    background-color: black;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+
+}
+.bglogo1 {
+    background-color: #73a1ff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
+
+}
+
+.bglogo:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+}
+.bglogo1:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+}
+
+.bglogo:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+}
+.bglogo1:active {
+    transform: scale(0.9);
+    transition: transform 0.1s ease-in-out;
+}
+
+.bglogo::before {
+    top: 0;
+    left: 0;
+}
+.bglogo1::before {
+    top: 0;
+    left: 0;
+}
+
+.bglogo::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+.bglogo1::after {
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+
+
+.logox {
+    width: 20px;
+    display: flex;
+}
