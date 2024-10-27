@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
             background-color: #65defc;
             border: none;
             border-radius: 5px;
-            color: #fff;
             cursor: pointer;
         }
 

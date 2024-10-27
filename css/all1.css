@@ -50,6 +50,7 @@ button {
     height: 50px;
 }
 
+
 #button-content {
     display: flex;
     gap: 10px;
@@ -100,6 +101,21 @@ button:disabled:hover,
 button:disabled:active {
     transform: none; /* ロック中のアニメーションを無効化 */
 }
+
+.btn-clo {
+    color: #333333;
+    background: linear-gradient(to right, #fefefe, #eaeaea);
+}
+
+.btn-clo::before, .btn-clo::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 30px solid rgba(202, 202, 202, 0.2);
+    border-bottom: 30px solid transparent;
+}
+
 
 div {
     background-color: #ffffff00;

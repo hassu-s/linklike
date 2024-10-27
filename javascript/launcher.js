@@ -55,11 +55,12 @@ document.addEventListener("DOMContentLoaded", function() {
             right: 0;
             overflow-y: scroll;
         }
-        #popup-menu button {
+        #popup-menu .btna {
             display: block;
             width: 90%;
             margin: 5px auto;
         }
+
         #overlay {
             position: fixed;
             top: 0;
@@ -104,8 +105,24 @@ document.addEventListener("DOMContentLoaded", function() {
             height: 0px; /* 縦線の高さ */
             width: 0px; /* 幅を0に設定 */
         }
-        .labr {
-            height: 62px;
+        .btnl {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+        .btnmini {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .minib {
+            width: 50px;
+
+        }
+        #btnf {
+            display: flex;
+            width: 90%;
+            justify-content: space-between;
+            align-items: center;
         }
     `;
     document.head.append(style);
@@ -113,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
     launcherMenu.innerHTML = `
         <div id="launcher-content">
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-                <a href="/linklike/html/contact" class="alink" id="back-button"><img src="https://hassu-s.github.io/linklike/image/button/mail.png" alt="戻る"></a>
+                <a href="/linklike/html/contact" class="alink" id="back-button"><img src="https://hassu-s.github.io/linklike/image/button/mail.png" alt="お問い合わせ"></a>
             </div>
             <div class="vertical-line"><hr class="vertical-hr"></div>
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
@@ -141,9 +158,18 @@ document.addEventListener("DOMContentLoaded", function() {
     popupMenu.id = 'popup-menu';
     popupMenu.innerHTML = `
         
-        <div class="labr"><a href="https://hassu-s.github.io/linklike/html/contact.html"><button>リンクラカレンダー</button></a></div>
-        <div class="labr"><a href="https://hassu-s.github.io/linklike/html/item.html"><button>アイテムリスト</button></a><br></div>
-        <div class="labr"><a href="#" id="info1"><button>お知らせ</button></a><br></div>
+        <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/contact.html"><button class="btna">リンクラカレンダー</button></a></div>
+        <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/item.html"><button class="btna">アイテムリスト</button></a></div>
+        <div class="btnl"><a href="#" id="info1"><button class="btna">お知らせ</button></a></div>
+
+        <div class="btnmini">
+            <div id="btnf">
+            <button class="minib">A</button>
+            <button class="minib">B</button>
+            <button class="minib">C</button>
+            <button class="minib">D</button>
+            </div>
+        <div>
     `;
     document.body.append(popupMenu);
 
