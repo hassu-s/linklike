@@ -2,7 +2,7 @@
 const style = document.createElement("style");
 style.textContent = `
     .touch-effect-jsa {
-        position: fixed;
+        position: absolute;
         pointer-events: none;
         border: 1.5px solid rgba(255, 255, 255, 0.7);
         border-radius: 50%;
@@ -10,11 +10,11 @@ style.textContent = `
         animation: fade-out-jsa 0.8s forwards;
         width: 16px;
         height: 16px;
-        z-index: 9999; /* 最上面に表示 */
+        z-index: 10000; /* 最上面に表示 */
     }
 
     .triangle-jsa {
-        position: fixed;
+        position: absolute;
         pointer-events: none;
         width: 0;
         height: 0;
@@ -23,7 +23,7 @@ style.textContent = `
         border-bottom: 12px solid;
         opacity: 0.7;
         animation: triangle-animation-jsa 1.2s forwards;
-        z-index: 9999; /* 最上面に表示 */
+        z-index: 10000; /* 最上面に表示 */
     }
 
     @keyframes fade-out-jsa {
@@ -55,8 +55,8 @@ let activeTouches = new Set();
 function createTouchEffect(x, y) {
     const effect = document.createElement("div");
     effect.className = "touch-effect-jsa";
-    effect.style.left = `${x - 8}px`;
-    effect.style.top = `${y - 8}px`;
+    effect.style.left = `${x}px`;
+    effect.style.top = `${y}px`;
     document.body.appendChild(effect);
     setTimeout(() => effect.remove(), 800);
 }
@@ -96,9 +96,9 @@ function handleTouch(x, y) {
 
     const offsetX = window.scrollX || 0;
     const offsetY = window.scrollY || 0;
-    createTouchEffect(x - offsetX, y - offsetY);
+    createTouchEffect(x + offsetX, y + offsetY);
     for (let i = 0; i < 5 + Math.floor(Math.random() * 4); i++) {
-        createTriangle(x - offsetX, y - offsetY);
+        createTriangle(x + offsetX, y + offsetY);
     }
 
     setTimeout(() => cooldown = false, 100);
@@ -107,8 +107,8 @@ function handleTouch(x, y) {
 document.addEventListener("mousedown", (event) => {
     if (activeTouches.size > 0) return;
 
-    const x = event.clientX;
-    const y = event.clientY;
+    const x = event.clientX + window.scrollX;
+    const y = event.clientY + window.scrollY;
 
     handleTouch(x, y);
     
@@ -120,7 +120,7 @@ document.addEventListener("mousedown", (event) => {
 document.addEventListener("mousemove", (event) => {
     if (event.buttons === 1) {
         isSliding = true;
-        createTouchEffect(event.clientX, event.clientY);
+        createTouchEffect(event.clientX + window.scrollX, event.clientY + window.scrollY);
         endLongPressEffect();
 
         clearTimeout(slideTimeout);
@@ -139,8 +139,8 @@ document.addEventListener("touchstart", (event) => {
     if (activeTouches.size >= 1) return;
     
     const touch = event.touches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
+    const x = touch.clientX + window.scrollX;
+    const y = touch.clientY + window.scrollY;
     
     activeTouches.add(touch.identifier);
     handleTouch(x, y);
@@ -156,7 +156,7 @@ document.addEventListener("touchmove", (event) => {
 
     isSliding = true;
     endLongPressEffect();
-    createTouchEffect(touch.clientX, touch.clientY);
+    createTouchEffect(touch.clientX + window.scrollX, touch.clientY + window.scrollY);
 
     clearTimeout(slideTimeout);
     slideTimeout = setTimeout(() => {
