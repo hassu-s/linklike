@@ -1,44 +1,35 @@
-// Shadow DOMを使用したエフェクトの作成
-
-// Shadow root containerを追加
-const shadowHost = document.createElement("div");
-shadowHost.id = "touch-effect-shadow-host";
-document.body.appendChild(shadowHost);
-
-// Shadow rootとCSSスタイルの追加
-const shadowRoot = shadowHost.attachShadow({ mode: "open" });
+// CSSスタイルの追加
 const style = document.createElement("style");
 style.textContent = `
-    .te-touch-effect, .te-triangle {
+    .touch-effect-jsa {
         position: absolute;
         pointer-events: none;
-    }
-
-    .te-touch-effect {
         border: 1.5px solid rgba(255, 255, 255, 0.7);
         border-radius: 50%;
         box-shadow: 0 0 4px rgba(218, 165, 32, 0.5), 0 0 6px rgba(218, 165, 32, 0.3) inset;
-        animation: te-fade-out 0.8s forwards;
+        animation: fade-out-jsa 0.8s forwards;
         width: 16px;
         height: 16px;
     }
 
-    .te-triangle {
+    .triangle-jsa {
+        position: absolute;
+        pointer-events: none;
         width: 0;
         height: 0;
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-bottom: 12px solid;
         opacity: 0.7;
-        animation: te-triangle-animation 1.2s forwards;
+        animation: triangle-animation-jsa 1.2s forwards;
     }
 
-    @keyframes te-fade-out {
+    @keyframes fade-out-jsa {
         0% { transform: scale(1); opacity: 1; }
         100% { transform: scale(1.3); opacity: 0; }
     }
 
-    @keyframes te-triangle-animation {
+    @keyframes triangle-animation-jsa {
         0% {
             transform: translate(0, 0) rotate(0deg) scale(1);
             opacity: 0.7;
@@ -49,9 +40,9 @@ style.textContent = `
         }
     }
 `;
-shadowRoot.appendChild(style);
+document.head.appendChild(style);
 
-// エフェクト作成関数
+// タッチエフェクトの処理
 let isLongPress = false;
 let holdTimeout;
 let slideTimeout;
@@ -61,16 +52,16 @@ let activeTouches = new Set();
 
 function createTouchEffect(x, y) {
     const effect = document.createElement("div");
-    effect.className = "te-touch-effect";
+    effect.className = "touch-effect-jsa";
     effect.style.left = `${x - 8}px`;
     effect.style.top = `${y - 8}px`;
-    shadowRoot.appendChild(effect);
+    document.body.appendChild(effect);
     setTimeout(() => effect.remove(), 800);
 }
 
 function createTriangle(x, y, isLongPress = false) {
     const triangle = document.createElement("div");
-    triangle.className = "te-triangle";
+    triangle.className = "triangle-jsa";
     const colors = ["rgba(255, 182, 193, 0.5)", "rgba(135, 206, 250, 0.5)", "rgba(144, 238, 144, 0.5)", "rgba(255, 218, 185, 0.5)", "rgba(221, 160, 221, 0.5)"];
     triangle.style.borderBottomColor = colors[Math.floor(Math.random() * colors.length)];
 
@@ -81,7 +72,7 @@ function createTriangle(x, y, isLongPress = false) {
     triangle.style.left = `${x}px`;
     triangle.style.top = `${y}px`;
 
-    shadowRoot.appendChild(triangle);
+    document.body.appendChild(triangle);
     setTimeout(() => triangle.remove(), 1200);
 }
 
