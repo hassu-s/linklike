@@ -2,7 +2,7 @@
 const style = document.createElement("style");
 style.textContent = `
     .touch-effect-jsa {
-        position: absolute;
+        position: fixed;
         pointer-events: none;
         border: 1.5px solid rgba(255, 255, 255, 0.7);
         border-radius: 50%;
@@ -10,10 +10,11 @@ style.textContent = `
         animation: fade-out-jsa 0.8s forwards;
         width: 16px;
         height: 16px;
+        z-index: 9999; /* 最上面に表示 */
     }
 
     .triangle-jsa {
-        position: absolute;
+        position: fixed;
         pointer-events: none;
         width: 0;
         height: 0;
@@ -22,6 +23,7 @@ style.textContent = `
         border-bottom: 12px solid;
         opacity: 0.7;
         animation: triangle-animation-jsa 1.2s forwards;
+        z-index: 9999; /* 最上面に表示 */
     }
 
     @keyframes fade-out-jsa {
@@ -92,9 +94,11 @@ function handleTouch(x, y) {
     if (cooldown) return;
     cooldown = true;
 
-    createTouchEffect(x, y);
+    const offsetX = window.scrollX || 0;
+    const offsetY = window.scrollY || 0;
+    createTouchEffect(x - offsetX, y - offsetY);
     for (let i = 0; i < 5 + Math.floor(Math.random() * 4); i++) {
-        createTriangle(x, y);
+        createTriangle(x - offsetX, y - offsetY);
     }
 
     setTimeout(() => cooldown = false, 100);
