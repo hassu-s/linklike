@@ -2,7 +2,7 @@
 const style = document.createElement("style");
 style.textContent = `
     .touch-effect-jsa {
-        position: fixed;
+        position: absolute;
         pointer-events: none;
         border: 1.5px solid rgba(255, 255, 255, 0.7);
         border-radius: 50%;
@@ -14,7 +14,7 @@ style.textContent = `
     }
 
     .triangle-jsa {
-        position: fixed;
+        position: absolute;
         pointer-events: none;
         width: 0;
         height: 0;
@@ -94,13 +94,9 @@ function handleTouch(x, y) {
     if (cooldown) return;
     cooldown = true;
 
-    // ビューポート基準の位置にエフェクトを作成
-    const viewportX = x - window.scrollX;
-    const viewportY = y - window.scrollY;
-    
-    createTouchEffect(viewportX, viewportY);
+    createTouchEffect(x, y);
     for (let i = 0; i < 5 + Math.floor(Math.random() * 4); i++) {
-        createTriangle(viewportX, viewportY);
+        createTriangle(x, y);
     }
 
     setTimeout(() => cooldown = false, 100);
@@ -109,8 +105,8 @@ function handleTouch(x, y) {
 document.addEventListener("mousedown", (event) => {
     if (activeTouches.size > 0) return;
 
-    const x = event.clientX;
-    const y = event.clientY;
+    const x = event.pageX;
+    const y = event.pageY;
 
     handleTouch(x, y);
     
@@ -122,7 +118,7 @@ document.addEventListener("mousedown", (event) => {
 document.addEventListener("mousemove", (event) => {
     if (event.buttons === 1) {
         isSliding = true;
-        createTouchEffect(event.clientX, event.clientY);
+        createTouchEffect(event.pageX, event.pageY);
         endLongPressEffect();
 
         clearTimeout(slideTimeout);
@@ -141,8 +137,8 @@ document.addEventListener("touchstart", (event) => {
     if (activeTouches.size >= 1) return;
     
     const touch = event.touches[0];
-    const x = touch.clientX;
-    const y = touch.clientY;
+    const x = touch.pageX;
+    const y = touch.pageY;
     
     activeTouches.add(touch.identifier);
     handleTouch(x, y);
@@ -158,7 +154,7 @@ document.addEventListener("touchmove", (event) => {
 
     isSliding = true;
     endLongPressEffect();
-    createTouchEffect(touch.clientX, touch.clientY);
+    createTouchEffect(touch.pageX, touch.pageY);
 
     clearTimeout(slideTimeout);
     slideTimeout = setTimeout(() => {
