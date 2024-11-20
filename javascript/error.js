@@ -5,24 +5,14 @@ window.addEventListener('error', function(event) {
 }, true);
 
 document.addEventListener('DOMContentLoaded', function () {
-    const restrictedExtensions = ['.js', '.css', '.txt', '.csv'];
+    // 必須の<meta>タグを定義
+    const requiredMetaName = 'access-allowed'; // 必須のmetaタグの名前
+    const requiredMeta = document.querySelector(`meta[name="${requiredMetaName}"]`);
 
-    document.querySelectorAll('script, link, img').forEach((element) => {
-        let resource = '';
-
-        // 各タグから対象の URL を取得
-        if (element.tagName === 'SCRIPT') {
-            resource = element.src;
-        } else if (element.tagName === 'LINK') {
-            resource = element.href;
-        } else if (element.tagName === 'IMG') {
-            resource = element.src;
-        }
-
-        // URLが指定された拡張子に該当する場合
-        if (resource && restrictedExtensions.some(ext => resource.endsWith(ext))) {
-            console.warn(`Blocked access to: ${resource}`);
-            window.location.href = '/403.html';
-        }
-    });
+    // <meta>タグが存在しない場合は403ページにリダイレクト
+    if (!requiredMeta) {
+        console.warn('Required <meta> tag is missing. Redirecting to /403.html');
+        window.location.href = '/403.html';
+    }
 });
+
