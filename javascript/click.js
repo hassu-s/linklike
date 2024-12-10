@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
     customMenu.innerHTML = `
         <ul>
             <li id="refreshPage"><img src="../image/app/HASU.png">ページを更新</li>
-            <li><img src="../image/app/HASU.png"><a href="URL">リンクテキスト</a></li>
-            <li><img src="../image/app/HASU.png">メニュー項目2</li>
-            <li><img src="../image/app/HASU.png">メニュー項目3</li>
+            <li><img src="./image/app/HASU.png"><a href="URL">リンクテキスト</a></li>
+            <li><img src="./image/app/HASU.png">メニュー項目2</li>
+            <li><img src="./image/app/HASU.png">メニュー項目3</li>
         </ul>
     `;
 
@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
     style.innerHTML = `
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+        * {
+            outline: none;
+
+        }
         .body-rcl {
             font-family: 'Noto Sans JP' , sans-serif;
         }
