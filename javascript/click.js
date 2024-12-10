@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             background-color: #2c3e50;
             border: 1px solid #34495e;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
+            z-index: 50000;
             border-radius: 8px;
             overflow: hidden;
         }
@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             list-style: none;
             margin: 0;
             padding: 0;
+            margin-left: 50px;
         }
 
         .menu-rcl li {
