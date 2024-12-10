@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
             position: absolute;
             background-color: #2c3e50;
             border: 1px solid #34495e;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
             color: #ecf0f1;
         }
     `;
-    
+
     document.head.appendChild(style);
     document.body.classList.add('body-rcl');
     document.body.appendChild(customMenu);
@@ -70,20 +70,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function showCustomMenu(x, y) {
-        // 画面端に来た際にサイズは変えず、位置を調整
+        // 一時的に表示してサイズを計算
+        customMenu.style.display = 'block';
         const menuWidth = customMenu.offsetWidth;
         const menuHeight = customMenu.offsetHeight;
 
+        // 横方向の位置調整
         if (x + menuWidth > window.innerWidth) {
-            x = window.innerWidth - menuWidth;
+            x = x - menuWidth; // 左側に表示
+            if (x < 0) x = 0; // 左端より外に出ないように
         }
+
+        // 縦方向の位置調整
         if (y + menuHeight > window.innerHeight) {
-            y = window.innerHeight - menuHeight;
+            y = y - menuHeight; // 上側に表示
+            if (y < 0) y = 0; // 上端より外に出ないように
         }
 
         customMenu.style.left = `${x}px`;
         customMenu.style.top = `${y}px`;
-        customMenu.style.display = 'block';
     }
 
     function hideCustomMenu() {
