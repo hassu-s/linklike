@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <li>メニュー項目1</li>
             <li>メニュー項目2</li>
             <li>メニュー項目3</li>
+            <li><a href="#" id="info1">あいうえお</a></li>
         </ul>
     `;
 

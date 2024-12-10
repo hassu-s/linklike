@@ -24,7 +24,7 @@ const loadingHTML = `
                     align-items: center;
                     height: 100vh;
                     margin: 0;
-                    background-color: transparent; /* Ensure iframe background is transparent */
+                    background-color: transparent;
                 }
                 .circle-container {
                     position: relative;
@@ -92,122 +92,151 @@ const loadingHTML = `
         </html>'>
     </iframe>
 </div>
-
 `;
 
 // 通信エラー画面のHTML
 const errorHTML = `
-<div id="error-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 10000;">
+<div id="error-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; z-index: 9999;">
     <style>
-        .error-popup {
-            background: white;
+        #error-popup {
+            position: relative;
             width: 90%;
             max-width: 400px;
-            padding: 20px;
+            background: white;
+            border-radius: 8px;
             text-align: center;
-            border-radius: 10px;
-            animation: fadeInScale 0.3s ease-out;
+            animation: popup-show 0.3s ease-out;
+            box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
         }
-        .error-popup h1 {
-            margin: 0 0 10px;
-            font-size: 24px;
-            color: red;
+        @keyframes popup-show {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
-        .error-popup p {
-            font-size: 16px;
-            margin: 10px 0;
+        @keyframes popup-hide {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.5); opacity: 0; }
         }
-        .error-popup button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
+        #error-popup.hide {
+            animation: popup-hide 0.3s ease-in;
+        }
+        .error-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #65defc, #938aff);
+            padding: 10px;
             color: white;
-            background: red;
-            border: none;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            height: 25px;
+            justify-content: center;
+            align-items: center;
+        }
+        .conall {
+            padding: 10px;
+            background-color: #fff;
+        }
+        .infocon {
+            background-color: #f7f8f8;
             border-radius: 5px;
-            cursor: pointer;
+
+            padding-top: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-bottom: 15px;
         }
-        @keyframes fadeInScale {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        @keyframes fadeOutScale {
-            from {
-                transform: scale(1);
-                opacity: 1;
-            }
-            to {
-                transform: scale(0.5);
-                opacity: 0;
-            }
+        #button-content-1 {
+            padding-bottom: 10px;
+
         }
     </style>
-    <div class="error-popup">
-        <h1>通信エラー</h1>
-        <p>ネットワークをご確認ください</p>
-        <button onclick="hideErrorScreen()">閉じる</button>
+    <div id="error-popup">
+        <div class="error-title">通信エラー</div>
+        <div class="conall">
+            <div class="infocon">
+                <h1>通信エラー</h1>
+                <div class="error-message">ネットワークが接続されていません。接続を確認してください。</div>
+
+            </div>
+        </div>
+        <div id="button-content-1">
+            <button id="error-close-button" class="error-button">閉じる</button>
+
+        </div>
     </div>
 </div>
 `;
 
 // ローディング画面を表示する関数
 function showLoadingScreen() {
-  if (!document.getElementById('loading-screen')) {
-    document.body.insertAdjacentHTML('beforeend', loadingHTML);
-  }
+    if (!document.getElementById('loading-screen')) {
+        document.body.insertAdjacentHTML('beforeend', loadingHTML);
+    }
 }
 
 // ローディング画面を非表示にする関数
 function hideLoadingScreen() {
-  const loadingScreen = document.getElementById('loading-screen');
-  if (loadingScreen) {
-    loadingScreen.remove();
-  }
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.remove();
+    }
 }
 
 // 通信エラー画面を表示する関数
 function showErrorScreen() {
-  if (!document.getElementById('error-screen')) {
-    document.body.insertAdjacentHTML('beforeend', errorHTML);
-  }
+    if (!document.getElementById('error-screen')) {
+        document.body.insertAdjacentHTML('beforeend', errorHTML);
+        document.getElementById('error-close-button').addEventListener('click', () => {
+            hideErrorScreen();
+        });
+    }
 }
 
 // 通信エラー画面を非表示にする関数
 function hideErrorScreen() {
-  const errorScreen = document.getElementById('error-screen');
-  if (errorScreen) {
-    errorScreen.querySelector('.error-popup').style.animation = 'fadeOutScale 0.3s ease-in';
-    setTimeout(() => errorScreen.remove(), 300);
-  }
+    const errorPopup = document.getElementById('error-popup');
+    if (errorPopup) {
+        errorPopup.classList.add('hide');
+        setTimeout(() => {
+            const errorScreen = document.getElementById('error-screen');
+            if (errorScreen) {
+                errorScreen.remove();
+            }
+        }, 300);
+    }
+}
+
+// 通信エラー発生時の強制停止とCookieデータの優先表示
+function handleConnectionError() {
+    window.stop();
+    showErrorScreen();
 }
 
 // オフライン状態をチェックする関数
 function checkOfflineStatus() {
-  if (!navigator.onLine) {
-    hideLoadingScreen();
-    showErrorScreen();
-  }
+    if (!navigator.onLine) {
+        hideLoadingScreen();
+        handleConnectionError();
+    }
 }
 
-// インターネット回復時にエラー画面を閉じる
-window.addEventListener('online', hideErrorScreen);
-
 // ページの読み込み時にローディング画面を表示
-window.addEventListener('DOMContentLoaded', showLoadingScreen);
+window.addEventListener('DOMContentLoaded', () => {
+    showLoadingScreen();
+});
 
 // ページの読み込みが完了したらローディング画面を非表示にする
-window.addEventListener('load', hideLoadingScreen);
+window.addEventListener('load', () => {
+    hideLoadingScreen();
+});
 
 // 60秒以上ローディング画面が表示されている場合は通信エラー画面を表示
 setTimeout(() => {
-  if (document.getElementById('loading-screen')) {
-    hideLoadingScreen();
-    showErrorScreen();
-  }
+    if (document.getElementById('loading-screen')) {
+        hideLoadingScreen();
+        handleConnectionError();
+    }
 }, 60000);
+
+// オフライン状態を監視
+window.addEventListener('offline', checkOfflineStatus);
