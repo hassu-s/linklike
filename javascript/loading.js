@@ -101,6 +101,8 @@ const errorHTML = `
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
         * {
             font-family: 'Noto Sans JP' , sans-serif;
+            text-decoration: none;
+
         }
         h1 {
             font-weight: 900;
