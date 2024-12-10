@@ -98,6 +98,14 @@ const loadingHTML = `
 const errorHTML = `
 <div id="error-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; z-index: 9999;">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        * {
+            font-family: 'Noto Sans JP' , sans-serif;
+        }
+        h1 {
+            font-weight: 900;
+            font-size: 32px;
+        }
         #error-popup {
             position: relative;
             width: 90%;
@@ -123,7 +131,7 @@ const errorHTML = `
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to right, #65defc, #938aff);
+            background: linear-gradient(to right, #ff3f3f, #ff005d);
             padding: 10px;
             color: white;
             border-top-left-radius: 5px;
@@ -149,13 +157,24 @@ const errorHTML = `
             padding-bottom: 10px;
 
         }
+        .popupdata1 {
+            font-family: 'Noto Sans JP' , sans-serif;
+            font-size: 16px;
+        }
+        .error-button {
+            background: linear-gradient(to right, #ff3f3f, #ff005d);
+        }
     </style>
     <div id="error-popup">
         <div class="error-title">通信エラー</div>
         <div class="conall">
             <div class="infocon">
                 <h1>通信エラー</h1>
-                <div class="error-message">ネットワークが接続されていません。接続を確認してください。</div>
+                <div class="error-message"><p class="popupdata1">
+                ネットワークが接続されていません。<br>接続を確認してください。<br>
+                また、本サイトでは60秒以上ロードすると自動で通信エラーとなることがあります。<br>
+                もしネットワークに接続しているのに、通信エラーが発生する場合はお問い合わせをお願いします。</p>
+                </div>
 
             </div>
         </div>
