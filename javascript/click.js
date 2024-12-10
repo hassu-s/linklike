@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     customMenu.className = 'menu-rcl';
     customMenu.innerHTML = `
         <ul>
-            <li id="refreshPage"><img src="../image/app/HASU.png">ページを更新</li>
-            <li><img src="./image/app/HASU.png"><a href="URL">リンクテキスト</a></li>
-            <li><img src="./image/app/HASU.png">メニュー項目2</li>
-            <li><img src="./image/app/HASU.png">メニュー項目3</li>
+            <li id="refreshPage"><img id="imgcl" src="../image/app/HASU.png">ページを更新</li>
+            <li><img id="imgcl" src="./image/app/HASU.png"><a id="linkcl" href="URL">リンクテキスト</a></li>
+            <li><img id="imgcl" src="./image/app/HASU.png">メニュー項目2</li>
+            <li><img id="imgcl" src="./image/app/HASU.png">メニュー項目3</li>
         </ul>
     `;
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .body-rcl {
             font-family: 'Noto Sans JP' , sans-serif;
         }
-        li img {
+        #imgcl {
             width: 20px;
             height: 20px;
             margin-right: 10px;
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             color: #ecf0f1;
             transition: background-color 0.3s, color 0.3s;
         }
-        .menu-rcl a {
+        #linkcl {
             color: #ecf0f1;
             transition: background-color 0.3s, color 0.3s;
         }
