@@ -117,12 +117,12 @@ const errorHTML = `
             box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
         }
         @keyframes popup-show {
-            0% { transform: scale(0.5); opacity: 0; }
+            0% { transform: scale(0); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
         @keyframes popup-hide {
             0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(0); opacity: 0; }
         }
         #error-popup.hide {
             animation: popup-hide 0.3s ease-in;
@@ -164,9 +164,15 @@ const errorHTML = `
         .error-button {
             background: linear-gradient(to right, #ff3f3f, #ff005d);
         }
+        #err-h4 {
+            font-size: 20px;
+            text-align: center;
+            font-weight: 600;
+            color: #fff;
+        }
     </style>
     <div id="error-popup">
-        <div class="error-title">通信エラー</div>
+        <div class="error-title"><h4 id="err-h4">通信エラー</h4></div>
         <div class="conall">
             <div class="infocon">
                 <h1>通信エラー</h1>
