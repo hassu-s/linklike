@@ -5,11 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     customMenu.className = 'menu-rcl';
     customMenu.innerHTML = `
         <ul>
-            <li id="refreshPage">ページを更新</li>
-            <li>メニュー項目1</li>
-            <li>メニュー項目2</li>
-            <li>メニュー項目3</li>
-            <li><a href="#" id="info1">あいうえお</a></li>
+            <li id="refreshPage"><img src="../image/app/HASU.png">ページを更新</li>
+            <li><img src="../image/app/HASU.png"><a href="URL">リンクテキスト</a></li>
+            <li><img src="../image/app/HASU.png">メニュー項目2</li>
+            <li><img src="../image/app/HASU.png">メニュー項目3</li>
         </ul>
     `;
 
@@ -17,10 +16,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const style = document.createElement('style');
     style.type = 'text/css';
     style.innerHTML = `
-        .body-rcl {
-            font-family: Arial, sans-serif;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
+        .body-rcl {
+            font-family: 'Noto Sans JP' , sans-serif;
+        }
+        li img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            margin-bottom: -4px;
+        }
         .menu-rcl {
             display: none;
             position: absolute;
@@ -28,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             border: 1px solid #34495e;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 50000;
-            border-radius: 8px;
+            border-radius: 5px;
             overflow: hidden;
         }
 
@@ -36,12 +42,15 @@ document.addEventListener('DOMContentLoaded', function () {
             list-style: none;
             margin: 0;
             padding: 0;
-            margin-left: 50px;
         }
 
         .menu-rcl li {
-            padding: 12px 24px;
+            padding: 10px 18px;
             cursor: pointer;
+            color: #ecf0f1;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .menu-rcl a {
             color: #ecf0f1;
             transition: background-color 0.3s, color 0.3s;
         }
