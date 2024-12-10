@@ -103,43 +103,45 @@ function handleTouch(x, y) {
 }
 
 document.addEventListener("mousedown", (event) => {
-    if (activeTouches.size > 0) return;
+    if (event.button !== 0 || activeTouches.size > 0) return; // 左クリック以外は無視
 
     const x = event.pageX;
     const y = event.pageY;
 
     handleTouch(x, y);
-    
+
     holdTimeout = setTimeout(() => {
         if (!isSliding) startLongPressEffect(x, y);
     }, 500);
 });
 
 document.addEventListener("mousemove", (event) => {
-    if (event.buttons === 1) {
-        isSliding = true;
-        createTouchEffect(event.pageX, event.pageY);
-        endLongPressEffect();
+    if (!(event.buttons & 1)) return; // 左クリックが押されている場合のみ処理
 
-        clearTimeout(slideTimeout);
-        slideTimeout = setTimeout(() => {
-            isSliding = false;
-        }, 150);
-    }
+    isSliding = true;
+    createTouchEffect(event.pageX, event.pageY);
+    endLongPressEffect();
+
+    clearTimeout(slideTimeout);
+    slideTimeout = setTimeout(() => {
+        isSliding = false;
+    }, 150);
 });
 
-document.addEventListener("mouseup", () => {
+document.addEventListener("mouseup", (event) => {
+    if (event.button !== 0) return; // 左クリック以外は無視
+
     endLongPressEffect();
     isSliding = false;
 });
 
 document.addEventListener("touchstart", (event) => {
     if (activeTouches.size >= 1) return;
-    
+
     const touch = event.touches[0];
     const x = touch.pageX;
     const y = touch.pageY;
-    
+
     activeTouches.add(touch.identifier);
     handleTouch(x, y);
 
