@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         * {
             outline: none;
+            text-decoration: none;
+
 
         }
         .body-rcl {
