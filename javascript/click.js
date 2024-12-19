@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     customMenu.className = 'menu-rcl';
     customMenu.innerHTML = `
         <ul>
-            <li id="refreshPage"><img id="imgcl" src="/linklike/image/app/HASU.png">ページを更新</li>
-            <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/">ログイン画面</a></li>
-            <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/html/contact">お問い合わせ</a></li>
-            <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/404">カレンダー</a></li>
+            <li id="refreshPage"><img id="imgcl" src="/linklike/image/button/update.png">ページを更新</li>
+            <li><img id="imgcl" src="/linklike/image/button/titles.png"><a id="linkcl" href="/linklike/">ログイン画面</a></li>
+            <li><img id="imgcl" src="/linklike/image/button/contact.png"><a id="linkcl" href="/linklike/html/contact">お問い合わせ</a></li>
+            <li><img id="imgcl" src="/linklike/image/button/calendar.png"><a id="linkcl" href="/linklike/404">カレンダー</a></li>
             <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/404">アーカイブ</a></li>
 
         </ul>
