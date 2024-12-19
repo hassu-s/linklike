@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
         <ul>
             <li id="refreshPage"><img id="imgcl" src="/linklike/image/app/HASU.png">ページを更新</li>
             <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/">ログイン画面</a></li>
-            <li><img id="imgcl" src="/linklike/image/app/HASU.png">メニュー項目2</li>
-            <li><img id="imgcl" src="/linklike/image/app/HASU.png">メニュー項目3</li>
+            <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/html/contact">お問い合わせ</a></li>
+            <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/404">カレンダー</a></li>
+            <li><img id="imgcl" src="/linklike/image/app/HASU.png"><a id="linkcl" href="/linklike/404">アーカイブ</a></li>
+
         </ul>
     `;
 
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         .menu-rcl li {
-            padding: 10px 18px;
+            padding: 8px 16px;
             cursor: pointer;
             color: #ecf0f1;
             transition: background-color 0.3s, color 0.3s;
