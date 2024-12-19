@@ -12,15 +12,13 @@
     <script src="../linklike/javascript/IE.js"></script>
     <script src="../linklike/javascript/rule.js"></script>
     <script src="../linklike/javascript/maintenance.js"></script>
-    <script src="../linklike/javascript/info.js"></script>
+    <script src="/javascript/info.js"></script>
     <script src="../linklike/javascript/loading.js"></script>
     <script src="../linklike/javascript/click.js"></script>
 
     <script defer src="https://www.pushcode.jp/dist/js/pushcode.js"></script>
 
-
-
-    <link href="../linklike/css/index.css" rel="stylesheet" type="text/css">
+    <link href="/css/index.css" rel="stylesheet" type="text/css">
     <link href="../linklike/favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
     <script>
     window.PushCodeInit = function() {
@@ -71,11 +69,19 @@
             z-index: 1001;
         }
         .copyright {
-            font-size: 6px;
+            font-size: 8px;
             font-weight: 900;
             color: #878787;
             position: absolute;
             bottom: 7px;
+            left: 5px;
+        }
+        .version {
+            background-color: #ffffff00;
+            font-weight: 900;
+            font-size: 8px;
+            position: fixed;
+            top: 15px;
             left: 5px;
         }
     </style>
@@ -86,7 +92,9 @@
     <a class="logbtn" href="../linklike/html/home"><button class="login">LOGIN</button></a>
     <div id="mabu"><a href="#" id="info1"><button class="mabu"><img id="imgbu" src="../linklike/image/button/news.png"></button></a></div>
     <div class="copyright">
-        © はっすーず　©びじゅママ/@biju_mama<br>
+        © はっすーず　©びじゅママ/@biju_mama
+    </div>
+    <div class="version">
         Ver:0.0.0 & Beta
     </div>
 </body>
