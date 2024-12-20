@@ -4,9 +4,7 @@ document.addEventListener('contextmenu', function(e) {
 });
 
 // 文字選択を禁止
-document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-});
+document.body.style.userSelect = 'none';
 
 // サイトの拡大を禁止
 document.addEventListener('wheel', function(e) {
