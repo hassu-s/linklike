@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             height: 20px;
             margin-right: 10px;
             margin-bottom: -4px;
+            margin-left: -3px;
         }
         .menu-rcl {
             display: none;
