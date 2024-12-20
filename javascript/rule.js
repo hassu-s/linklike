@@ -1,17 +1,33 @@
-// 右クリックを禁止
+// 文字選択禁止
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+}, false);
+
+// 右クリック禁止
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
-});
+}, false);
 
-// 文字選択を禁止
-document.body.style.userSelect = 'none';
+// 画像選択禁止
+document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName.toLowerCase() === 'img') {
+        e.preventDefault();
+    }
+}, false);
 
-// サイトの拡大を禁止
+// 拡大禁止 (マウスホイール、ピンチ操作)
 document.addEventListener('wheel', function(e) {
     if (e.ctrlKey) {
         e.preventDefault();
     }
 }, { passive: false });
+
+document.addEventListener('touchmove', function(e) {
+    if (e.scale !== 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
 
 
 
