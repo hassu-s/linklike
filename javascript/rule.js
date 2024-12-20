@@ -15,6 +15,13 @@ document.addEventListener('dragstart', function(e) {
     }
 }, false);
 
+// タッチイベントでの選択禁止
+document.addEventListener('touchstart', function(e) {
+    if (e.target.tagName.toLowerCase() === 'img' || e.target.tagName.toLowerCase() === 'p') {
+        e.preventDefault();
+    }
+}, false);
+
 // 拡大禁止 (マウスホイール、ピンチ操作)
 document.addEventListener('wheel', function(e) {
     if (e.ctrlKey) {
@@ -27,6 +34,7 @@ document.addEventListener('touchmove', function(e) {
         e.preventDefault();
     }
 }, { passive: false });
+
 
 
 
