@@ -8,24 +8,14 @@ document.addEventListener('selectstart', function(e) {
     e.preventDefault();
 });
 
-// 画像のドラッグを禁止
-document.addEventListener('dragstart', function(e) {
-    e.preventDefault();
-});
-
-// 長押しメニューの表示を禁止（タッチデバイス向け）
-document.addEventListener('touchstart', function(e) {
-    if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
-        e.preventDefault();
-    }
-}, { passive: false });
-
 // サイトの拡大を禁止
 document.addEventListener('wheel', function(e) {
     if (e.ctrlKey) {
         e.preventDefault();
     }
 }, { passive: false });
+
+
 
 // リンクの判定
 document.addEventListener("DOMContentLoaded", function() {
