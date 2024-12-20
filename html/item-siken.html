@@ -2,58 +2,209 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>実装準備中</title>
-    <link href="../css/all1.css" rel="stylesheet" type="text/css">
-    <link href="../css/message.css" rel="stylesheet" type="text/css">
-    <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
-    <script src="../javascript/maintenance.js"></script>
-    <script src="../javascript/IE.js"></script>
-    <script src="../javascript/rule.js"></script>
-    <!-- Googleサービスへ通知する内容はじめ -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-K43XP4KG');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K43XP4KG"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7JH1PTJVC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-B7JH1PTJVC');
-    </script>
-    <!-- Googleサービスへ通知する内容おわり -->
+    <title>アイテム表示</title>
     <style>
-        #button-content {
-            padding-top: 22px;
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+            max-height: 80%;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        .item {
+            margin: 10px;
+            text-align: center;
+        }
+
+        .item img {
+            width: 100px;
+            height: 100px;
         }
     </style>
 </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <h4 id="header">お知らせ</h4s>
-            </div>
-            <div class="content">
-                <div class="mbg">
-                <h1>実装準備中</h1>
-                <h4>お探しのページは開発中です</h4>
-                <p>申し訳ございません。お探しのページは実装に向け開発を行っております。<br>リリース情報は下記のボタンからご確認いただくか、ニュースをご確認ください。</p>
-                </div>
-                <div id="button-content">
-                    <a href="/linklike/html/home"><button>ホームへ戻る</button></a>
-                    <a href="/linklike/developer/release-schedule.html"><button>開発情報</button></a>
-                </div>
-            </div>
+<body>
+    <button id="filteritem">フィルターを開く</button>
+    <div id="filterPopup" class="popup">
+        <div class="popup-content">
+            <h2>フィルター設定</h2>
+            <form id="filterForm">
+                <h3>学期</h3>
+                <input type="checkbox" name="period" value="103"> 103期<br>
+                <input type="checkbox" name="period" value="104"> 104期<br>
+                <h3>シーズン</h3>
+                <input type="checkbox" name="season" value="SPRING"> SPRING<br>
+                <input type="checkbox" name="season" value="SUMMER"> SUMMER<br>
+                <input type="checkbox" name="season" value="AUTUMN"> AUTUMN<br>
+                <input type="checkbox" name="season" value="WINTER"> WINTER<br>
+                <h3>アイテムの種別</h3>
+                <h4>ソート</h4>
+                <input type="checkbox" name="sort" value="g"> g<br>
+                <input type="checkbox" name="sort" value="p"> p<br>
+                <input type="checkbox" name="sort" value="c"> c<br>
+                <input type="checkbox" name="sort" value="y"> y<br>
+                <h4>レベル</h4>
+                <input type="checkbox" name="level" value="1"> 1<br>
+                <input type="checkbox" name="level" value="2"> 2<br>
+                <input type="checkbox" name="level" value="3"> 3<br>
+                <input type="checkbox" name="level" value="4"> 4<br>
+                <h4>タイプ</h4>
+                <input type="checkbox" name="type" value="gb"> gb<br>
+                <input type="checkbox" name="type" value="ga"> ga<br>
+                <input type="checkbox" name="type" value="ca"> ca<br>
+                <input type="checkbox" name="type" value="em"> em<br>
+                <input type="checkbox" name="type" value="di"> di<br>
+                <input type="checkbox" name="type" value="pe"> pe<br>
+                <input type="checkbox" name="type" value="ru"> ru<br>
+                <input type="checkbox" name="type" value="sa"> sa<br>
+                <input type="checkbox" name="type" value="to"> to<br>
+                <input type="checkbox" name="type" value="tu"> tu<br>
+                <input type="checkbox" name="type" value="am"> am<br>
+                <input type="checkbox" name="type" value="so"> so<br>
+                <input type="checkbox" name="type" value="lu"> lu<br>
+                <input type="checkbox" name="type" value="st"> st<br>
+                <input type="checkbox" name="type" value="ka"> ka<br>
+                <input type="checkbox" name="type" value="ha"> ha<br>
+                <h4>低確率出現物非表示</h4>
+                <input type="checkbox" name="lowProbability" value="lowProbability"> 非表示<br>
+                <button type="button" id="filterCancel">閉じる</button>
+                <button type="button" id="filterReset">リセット</button>
+                <button type="button" id="filterApply">OK</button>
+            </form>
         </div>
-    </body>
+    </div>
+    <div id="itemContainer"></div>
+    <script>
+        let allItems = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 初期にすべてのアイテムを表示
+    fetch('https://script.google.com/macros/s/AKfycbyjRlrMtAYKR7CQpBMR7_QBwKIivtr0Zyn3xmXaoEnwt-HnsTq_kP5KIjLxwRBuHQrR/exec')
+        .then(response => response.json())
+        .then(data => {
+            allItems = data;
+            fetch('https://script.google.com/macros/s/AKfycbz2FUSqN4E0q8zQjes4uQl7uPfNhv3mxrH0Rw4_Fzib380MzsXH2PA3QWgl1TX3u8YG/exec')
+                .then(response => response.json())
+                .then(imageData => {
+                    mergeDataAndDisplay(allItems, imageData);
+                });
+        });
+
+    document.getElementById('filteritem').addEventListener('click', function() {
+        document.getElementById('filterPopup').style.display = 'flex';
+    });
+
+    document.getElementById('filterCancel').addEventListener('click', function() {
+        document.getElementById('filterPopup').style.display = 'none';
+    });
+
+    document.getElementById('filterReset').addEventListener('click', function() {
+        document.getElementById('filterForm').reset();
+        displayAllItems();
+    });
+
+    document.getElementById('filterApply').addEventListener('click', function() {
+        applyFilters();
+        document.getElementById('filterPopup').style.display = 'none';
+    });
+});
+
+function mergeDataAndDisplay(data, imageData) {
+    const mergedItems = data.map(item => {
+        const imageItem = imageData.find(img => img.itemid === item.book || img.itemid === item.piece || img.itemid === item.charm);
+        return {
+            ...item,
+            itemlink: imageItem ? imageItem.itemlink : '',
+            itemname: imageItem ? imageItem.itemname : ''
+        };
+    });
+    displayAllItems(mergedItems);
+}
+
+function applyFilters() {
+    const filters = Array.from(document.getElementById('filterForm').elements)
+        .filter(el => el.checked)
+        .reduce((acc, el) => {
+            if (!acc[el.name]) acc[el.name] = [];
+            acc[el.name].push(el.value);
+            return acc;
+        }, {});
+
+    const filteredItems = Array.from(document.querySelectorAll('.item')).filter(item => {
+        return Object.keys(filters).every(filterKey => {
+            if (filterKey === 'lowProbability') {
+                const lowProbKeys = ['u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9'];
+                return !lowProbKeys.some(key => item.dataset[key] && item.dataset[key] !== '-' && filters[filterKey].includes('lowProbability'));
+            }
+            return filters[filterKey].length === 0 || filters[filterKey].includes(item.dataset[filterKey]);
+        });
+    });
+
+    document.getElementById('itemContainer').innerHTML = '';
+    filteredItems.forEach(item => {
+        document.getElementById('itemContainer').appendChild(item);
+    });
+}
+
+function displayAllItems(items = allItems) {
+    const itemContainer = document.getElementById('itemContainer');
+    itemContainer.innerHTML = '';
+    items.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('item');
+        itemElement.dataset.period = item.period;
+        itemElement.dataset.season = item.season;
+        itemElement.dataset.sort = item.sort;
+        itemElement.dataset.level = item.level;
+        itemElement.dataset.type = item.type;
+        const lowProbKeys = ['u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9'];
+        lowProbKeys.forEach(key => {
+            itemElement.dataset[key] = item[key];
+        });
+        itemElement.innerHTML = `
+            <img src="${item.itemlink}" alt="${item.itemname}">
+            <p>${item.itemname}</p>
+            <p>学期: ${item.period}</p>
+            <p>シーズン: ${item.season}</p>
+            <p>エリア: ${item.area}</p>
+            <p>ステージ: ${item.stage}</p>
+        `;
+        lowProbKeys.forEach(key => {
+            if (item[key] && item[key] !== '-') {
+                itemElement.innerHTML += `<img src="${getImageLink(item[key])}" alt="u${item[key]}">`;
+            }
+        });
+        itemContainer.appendChild(itemElement);
+    });
+}
+
+function getImageLink(itemId) {
+    // itemId に基づいて画像リンクを生成する関数
+    return `https://example.com/images/${itemId}.png`; // 例: 画像リンクの生成
+}
+
+    </script>
+</body>
 </html>

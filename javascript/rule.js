@@ -44,4 +44,3 @@ document.addEventListener("DOMContentLoaded", function() {
         window.history.replaceState(null, null, lowerCaseUrl);
     }
 });
-
