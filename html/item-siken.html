@@ -43,168 +43,110 @@
             width: 100px;
             height: 100px;
         }
+
+        .filter-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .filter-container input[type="checkbox"] {
+            margin-left: 10px;
+        }
+
+        label {
+            cursor: pointer;
+        }
+        .itemdata {
+            background-color: #fff;
+            width: 100%;
+            height: auto;
+            box-shadow: 0 0 1px 1px #969696;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .dataimg {
+            display: flex;
+            gap: 5px;
+        }
+        .dataimg img {
+            width: 22px;
+        }
     </style>
 </head>
 <body>
-    <button id="filteritem">フィルターを開く</button>
+    <div class="filter-container">
+        <button id="filteritem">フィルターを開く</button>
+        <label>
+            <input type="checkbox" id="lowProbability" checked> 低確率出現物非表示
+        </label>
+    </div>
     <div id="filterPopup" class="popup">
         <div class="popup-content">
             <h2>フィルター設定</h2>
             <form id="filterForm">
                 <h3>学期</h3>
-                <input type="checkbox" name="period" value="103"> 103期<br>
-                <input type="checkbox" name="period" value="104"> 104期<br>
+                <label><input type="checkbox" name="period" value="103"> 103期</label><br>
+                <label><input type="checkbox" name="period" value="104"> 104期</label><br>
                 <h3>シーズン</h3>
-                <input type="checkbox" name="season" value="SPRING"> SPRING<br>
-                <input type="checkbox" name="season" value="SUMMER"> SUMMER<br>
-                <input type="checkbox" name="season" value="AUTUMN"> AUTUMN<br>
-                <input type="checkbox" name="season" value="WINTER"> WINTER<br>
+                <label><input type="checkbox" name="season" value="SPRING"> SPRING</label><br>
+                <label><input type="checkbox" name="season" value="SUMMER"> SUMMER</label><br>
+                <label><input type="checkbox" name="season" value="AUTUMN"> AUTUMN</label><br>
+                <label><input type="checkbox" name="season" value="WINTER"> WINTER</label><br>
                 <h3>アイテムの種別</h3>
                 <h4>ソート</h4>
-                <input type="checkbox" name="sort" value="g"> g<br>
-                <input type="checkbox" name="sort" value="p"> p<br>
-                <input type="checkbox" name="sort" value="c"> c<br>
-                <input type="checkbox" name="sort" value="y"> y<br>
+                <label><input type="checkbox" name="sort" value="g"> g</label><br>
+                <label><input type="checkbox" name="sort" value="p"> p</label><br>
+                <label><input type="checkbox" name="sort" value="c"> c</label><br>
+                <label><input type="checkbox" name="sort" value="y"> y</label><br>
                 <h4>レベル</h4>
-                <input type="checkbox" name="level" value="1"> 1<br>
-                <input type="checkbox" name="level" value="2"> 2<br>
-                <input type="checkbox" name="level" value="3"> 3<br>
-                <input type="checkbox" name="level" value="4"> 4<br>
+                <label><input type="checkbox" name="level" value="1"> 1</label><br>
+                <label><input type="checkbox" name="level" value="2"> 2</label><br>
+                <label><input type="checkbox" name="level" value="3"> 3</label><br>
+                <label><input type="checkbox" name="level" value="4"> 4</label><br>
                 <h4>タイプ</h4>
-                <input type="checkbox" name="type" value="gb"> gb<br>
-                <input type="checkbox" name="type" value="ga"> ga<br>
-                <input type="checkbox" name="type" value="ca"> ca<br>
-                <input type="checkbox" name="type" value="em"> em<br>
-                <input type="checkbox" name="type" value="di"> di<br>
-                <input type="checkbox" name="type" value="pe"> pe<br>
-                <input type="checkbox" name="type" value="ru"> ru<br>
-                <input type="checkbox" name="type" value="sa"> sa<br>
-                <input type="checkbox" name="type" value="to"> to<br>
-                <input type="checkbox" name="type" value="tu"> tu<br>
-                <input type="checkbox" name="type" value="am"> am<br>
-                <input type="checkbox" name="type" value="so"> so<br>
-                <input type="checkbox" name="type" value="lu"> lu<br>
-                <input type="checkbox" name="type" value="st"> st<br>
-                <input type="checkbox" name="type" value="ka"> ka<br>
-                <input type="checkbox" name="type" value="ha"> ha<br>
-                <h4>低確率出現物非表示</h4>
-                <input type="checkbox" name="lowProbability" value="lowProbability"> 非表示<br>
+                <label><input type="checkbox" name="type" value="gb"> gb</label><br>
+                <label><input type="checkbox" name="type" value="ga"> ga</label><br>
+                <label><input type="checkbox" name="type" value="ca"> ca</label><br>
+                <label><input type="checkbox" name="type" value="em"> em</label><br>
+                <label><input type="checkbox" name="type" value="di"> di</label><br>
+                <label><input type="checkbox" name="type" value="pe"> pe</label><br>
+                <label><input type="checkbox" name="type" value="ru"> ru</label><br>
+                <label><input type="checkbox" name="type" value="sa"> sa</label><br>
+                <label><input type="checkbox" name="type" value="to"> to</label><br>
+                <label><input type="checkbox" name="type" value="tu"> tu</label><br>
+                <label><input type="checkbox" name="type" value="am"> am</label><br>
+                <label><input type="checkbox" name="type" value="so"> so</label><br>
+                <label><input type="checkbox" name="type" value="lu"> lu</label><br>
+                <label><input type="checkbox" name="type" value="st"> st</label><br>
+                <label><input type="checkbox" name="type" value="ka"> ka</label><br>
+                <label><input type="checkbox" name="type" value="ha"> ha</label><br>
                 <button type="button" id="filterCancel">閉じる</button>
                 <button type="button" id="filterReset">リセット</button>
                 <button type="button" id="filterApply">OK</button>
             </form>
         </div>
     </div>
-    <div id="itemContainer"></div>
-    <script>
-        let allItems = [];
+    <div id="itemContainer">
+        <div class="itemdata">
+            <p><span>{json2-period}</span>　<span>{json2-season}</span>　<span>{json2-area}</span> - <span>{json2-level}</span></p>
+            <div class="dataimg">
+                <img src="{json2-book}" alt="{json1-itemname}">
+                <img src="{json2-piece}" alt="{json1-itemname}">
+                <img src="{json2-charm}" alt="{json1-itemname}">
+                <img src="{json2-u1}" alt="{json1-itemname}">
+                <img src="{json2-u2}" alt="{json1-itemname}">
+                <img src="{json2-u3}" alt="{json1-itemname}">
+                <img src="{json2-u4}" alt="{json1-itemname}">
+                <img src="{json2-u5}" alt="{json1-itemname}">
+                <img src="{json2-u6}" alt="{json1-itemname}">
+                <img src="{json2-u7}" alt="{json1-itemname}">
+                <img src="{json2-u8}" alt="{json1-itemname}">
+                <img src="{json2-u9}" alt="{json1-itemname}">
+            </div>
+        </div>
+    </div>
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 初期にすべてのアイテムを表示
-    fetch('https://script.google.com/macros/s/AKfycbyjRlrMtAYKR7CQpBMR7_QBwKIivtr0Zyn3xmXaoEnwt-HnsTq_kP5KIjLxwRBuHQrR/exec')
-        .then(response => response.json())
-        .then(data => {
-            allItems = data;
-            fetch('https://script.google.com/macros/s/AKfycbz2FUSqN4E0q8zQjes4uQl7uPfNhv3mxrH0Rw4_Fzib380MzsXH2PA3QWgl1TX3u8YG/exec')
-                .then(response => response.json())
-                .then(imageData => {
-                    mergeDataAndDisplay(allItems, imageData);
-                });
-        });
-
-    document.getElementById('filteritem').addEventListener('click', function() {
-        document.getElementById('filterPopup').style.display = 'flex';
-    });
-
-    document.getElementById('filterCancel').addEventListener('click', function() {
-        document.getElementById('filterPopup').style.display = 'none';
-    });
-
-    document.getElementById('filterReset').addEventListener('click', function() {
-        document.getElementById('filterForm').reset();
-        displayAllItems();
-    });
-
-    document.getElementById('filterApply').addEventListener('click', function() {
-        applyFilters();
-        document.getElementById('filterPopup').style.display = 'none';
-    });
-});
-
-function mergeDataAndDisplay(data, imageData) {
-    const mergedItems = data.map(item => {
-        const imageItem = imageData.find(img => img.itemid === item.book || img.itemid === item.piece || img.itemid === item.charm);
-        return {
-            ...item,
-            itemlink: imageItem ? imageItem.itemlink : '',
-            itemname: imageItem ? imageItem.itemname : ''
-        };
-    });
-    displayAllItems(mergedItems);
-}
-
-function applyFilters() {
-    const filters = Array.from(document.getElementById('filterForm').elements)
-        .filter(el => el.checked)
-        .reduce((acc, el) => {
-            if (!acc[el.name]) acc[el.name] = [];
-            acc[el.name].push(el.value);
-            return acc;
-        }, {});
-
-    const filteredItems = Array.from(document.querySelectorAll('.item')).filter(item => {
-        return Object.keys(filters).every(filterKey => {
-            if (filterKey === 'lowProbability') {
-                const lowProbKeys = ['u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9'];
-                return !lowProbKeys.some(key => item.dataset[key] && item.dataset[key] !== '-' && filters[filterKey].includes('lowProbability'));
-            }
-            return filters[filterKey].length === 0 || filters[filterKey].includes(item.dataset[filterKey]);
-        });
-    });
-
-    document.getElementById('itemContainer').innerHTML = '';
-    filteredItems.forEach(item => {
-        document.getElementById('itemContainer').appendChild(item);
-    });
-}
-
-function displayAllItems(items = allItems) {
-    const itemContainer = document.getElementById('itemContainer');
-    itemContainer.innerHTML = '';
-    items.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('item');
-        itemElement.dataset.period = item.period;
-        itemElement.dataset.season = item.season;
-        itemElement.dataset.sort = item.sort;
-        itemElement.dataset.level = item.level;
-        itemElement.dataset.type = item.type;
-        const lowProbKeys = ['u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9'];
-        lowProbKeys.forEach(key => {
-            itemElement.dataset[key] = item[key];
-        });
-        itemElement.innerHTML = `
-            <img src="${item.itemlink}" alt="${item.itemname}">
-            <p>${item.itemname}</p>
-            <p>学期: ${item.period}</p>
-            <p>シーズン: ${item.season}</p>
-            <p>エリア: ${item.area}</p>
-            <p>ステージ: ${item.stage}</p>
-        `;
-        lowProbKeys.forEach(key => {
-            if (item[key] && item[key] !== '-') {
-                itemElement.innerHTML += `<img src="${getImageLink(item[key])}" alt="u${item[key]}">`;
-            }
-        });
-        itemContainer.appendChild(itemElement);
-    });
-}
-
-function getImageLink(itemId) {
-    // itemId に基づいて画像リンクを生成する関数
-    return `https://example.com/images/${itemId}.png`; // 例: 画像リンクの生成
-}
-
-    </script>
 </body>
 </html>

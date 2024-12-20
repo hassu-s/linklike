@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Dynamic JSON Data</title>
+
+    <link rel="stylesheet" href="../css/all1.css">
+    <style>
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .content {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 1px 1px #ccc;
+            background-color: #fff;
+        }
+        .image-container img {
+            max-width: 25px;
+            margin: 3px;
+        }
+        .low-prob-item {
+            display: none;
+        }
+        /* ポップアップスタイル */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .popup.show {
+            display: flex;
+        }
+        .popup-content {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transform: scale(0);
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+            height: 80%;
+            width: 80%;
+            min-width: 300px;
+        }
+        .popup.show .popup-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .popup-content.hide {
+            transform: scale(0);
+            opacity: 0;
+        }
+        .popup-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .popup-buttons button {
+            width: 85px;
+            padding: 0;
+            height: 40px;
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+        .fil {
+            overflow-y: scroll;
+            position: absolute;
+            top: 45px;
+            bottom: 60px;
+            padding-left: 10px;
+            padding-right: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #65defc, #938aff);
+            padding: 10px;
+            color: white;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            height: 25px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #header {
+            text-align: center;
+            font-weight: 600;
+            color: #fff;
+        }
+        .ppup {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="filter-button">絞り込み</button>
+    <div id="content-area"></div>
+
+    <!-- ポップアップ要素 -->
+    <div class="popup" id="itemfilter">
+        <div class="popup-content hide">
+            <div class="header">
+                <h4 id="header">サイトエラー</h4>
+            </div>
+            <div id="filters">
+                <div class="fil">
+                <div>
+                    <h3>学期絞り込み</h3>
+                    <label><input type="checkbox" name="period" value="103"> 103</label>
+                    <label><input type="checkbox" name="period" value="104"> 104</label>
+                </div>
+                <div>
+                    <h3>季節絞り込み</h3>
+                    <label><input type="checkbox" name="season" value="SPRING"> SPRING</label>
+                    <label><input type="checkbox" name="season" value="SUMMER"> SUMMER</label>
+                    <label><input type="checkbox" name="season" value="AUTUMN"> AUTUMN</label>
+                    <label><input type="checkbox" name="season" value="WINTER"> WINTER</label>
+                </div>
+                <div>
+                    <h3>アイテム種別絞り込み</h3>
+                    <label><input type="checkbox" name="sort" value="g"> g</label>
+                    <label><input type="checkbox" name="sort" value="p"> p</label>
+                    <label><input type="checkbox" name="sort" value="c"> c</label>
+                    <label><input type="checkbox" name="sort" value="y"> y</label>
+                </div>
+                <div>
+                    <h3>R絞り込み</h3>
+                    <label><input type="checkbox" name="level" value="1"> 1</label>
+                    <label><input type="checkbox" name="level" value="2"> 2</label>
+                    <label><input type="checkbox" name="level" value="3"> 3</label>
+                    <label><input type="checkbox" name="level" value="4"> 4</label>
+                </div>
+                <div>
+                    <h3>アイテム詳細絞り込み</h3>
+                    <label><input type="checkbox" name="type" value="gb"> gb</label>
+                    <label><input type="checkbox" name="type" value="ga"> ga</label>
+                    <!-- 他のチェックボックスを追加 -->
+                </div>
+                <div>
+                    <h3>低確率排出アイテムの除外</h3>
+                    <label><input type="checkbox" id="exclude-low-prob"> 除外</label>
+                </div>
+            </div>
+            </div>
+            <div class="ppup">
+                <div class="popup-buttons">
+                    <button id="cancel-button">キャンセル</button>
+                    <button id="reset-button">リセット</button>
+                    <button id="ok-button">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const JSON1_URL = 'https://script.google.com/macros/s/AKfycbyjRlrMtAYKR7CQpBMR7_QBwKIivtr0Zyn3xmXaoEnwt-HnsTq_kP5KIjLxwRBuHQrR/exec';
+        const JSON2_URL = 'https://script.google.com/macros/s/AKfycbz2FUSqN4E0q8zQjes4uQl7uPfNhv3mxrH0Rw4_Fzib380MzsXH2PA3QWgl1TX3u8YG/exec';
+    
+        const contentArea = document.getElementById('content-area');
+        const filterButton = document.getElementById('filter-button');
+        const popup = document.getElementById('itemfilter');
+        const cancelButton = document.getElementById('cancel-button');
+        const resetButton = document.getElementById('reset-button');
+        const okButton = document.getElementById('ok-button');
+        const excludeLowProbCheckbox = document.getElementById('exclude-low-prob');
+    
+        let jsonData1 = [];
+        let jsonData2 = [];
+    
+        function renderContent() {
+            contentArea.innerHTML = '';  // Clear previous content
+    
+            jsonData1.forEach(item => {
+                const hasLowProbItems = ['u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9'].some(key => item[key] !== '-');
+    
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('content');
+    
+                const title = document.createElement('h2');
+                title.textContent = `${item.period} ${item.season} ${item.area} - ${item.stage}`;
+                contentDiv.appendChild(title);
+    
+                const imageContainer = document.createElement('div');
+                imageContainer.classList.add('image-container');
+    
+                const keys = ['book', 'piece', 'charm'];
+                if (!excludeLowProbCheckbox.checked) {
+                    keys.push('u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9');
+                }
+    
+                let shouldDisplayContent = false;
+    
+                keys.forEach(key => {
+                    if (item[key] !== '-') {
+                        const imageData = jsonData2.find(el => el.itemid === item[key]);
+                        if (imageData) {
+                            const img = document.createElement('img');
+                            img.src = imageData.itemlink;
+                            img.title = imageData.itemname;
+                            imageContainer.appendChild(img);
+                            shouldDisplayContent = true;
+                        }
+                    }
+                });
+    
+                if (shouldDisplayContent) {
+                    contentDiv.appendChild(imageContainer);
+                    contentArea.appendChild(contentDiv);
+                }
+            });
+        }
+    
+        function applyFilters() {
+            const periodFilters = Array.from(document.querySelectorAll('input[name="period"]:checked')).map(cb => cb.value);
+            const seasonFilters = Array.from(document.querySelectorAll('input[name="season"]:checked')).map(cb => cb.value);
+            const sortFilters = Array.from(document.querySelectorAll('input[name="sort"]:checked')).map(cb => cb.value);
+            const levelFilters = Array.from(document.querySelectorAll('input[name="level"]:checked')).map(cb => cb.value);
+            const typeFilters = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+    
+            contentArea.innerHTML = '';  // Clear previous content
+    
+            let hasContent = false;
+    
+            jsonData1.forEach(item => {
+                const matchesPeriod = periodFilters.length === 0 || periodFilters.includes(String(item.period));
+                const matchesSeason = seasonFilters.length === 0 || seasonFilters.includes(item.season);
+                const hasLowProbItems = ['u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9'].some(key => item[key] !== '-');
+    
+                const keys = ['book', 'piece', 'charm'];
+                if (!excludeLowProbCheckbox.checked) {
+                    keys.push('u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9');
+                }
+    
+                let matchesItem = false;
+    
+                keys.forEach(key => {
+                    if (item[key] !== '-') {
+                        const imageData = jsonData2.find(el => el.itemid === item[key]);
+                        if (imageData) {
+                            const matchesSort = sortFilters.length === 0 || sortFilters.includes(imageData.sort);
+                            const matchesLevel = levelFilters.length === 0 || levelFilters.includes(String(imageData.level));
+                            const matchesType = typeFilters.length === 0 || typeFilters.includes(imageData.type);
+    
+                            if (matchesSort && matchesLevel && matchesType) {
+                                matchesItem = true;
+                            }
+                        }
+                    }
+                });
+    
+                if (matchesPeriod && matchesSeason && matchesItem) {
+                    hasContent = true;
+    
+                    const contentDiv = document.createElement('div');
+                    contentDiv.classList.add('content');
+    
+                    const title = document.createElement('h2');
+                    title.textContent = `${item.period} ${item.season} ${item.area} - ${item.stage}`;
+                    contentDiv.appendChild(title);
+    
+                    const imageContainer = document.createElement('div');
+                    imageContainer.classList.add('image-container');
+    
+                    keys.forEach(key => {
+                        if (item[key] !== '-') {
+                            const imageData = jsonData2.find(el => el.itemid === item[key]);
+                            if (imageData) {
+                                const img = document.createElement('img');
+                                img.src = imageData.itemlink;
+                                img.title = imageData.itemname;
+                                imageContainer.appendChild(img);
+                            }
+                        }
+                    });
+    
+                    contentDiv.appendChild(imageContainer);
+                    contentArea.appendChild(contentDiv);
+                }
+            });
+    
+            if (!hasContent) {
+                contentArea.innerHTML = '<p>Error</p>';
+            }
+        }
+    
+        // 初回データ取得とレンダリング
+        fetch(JSON1_URL)
+            .then(response => response.json())
+            .then(json1 => {
+                jsonData1 = json1;
+                return fetch(JSON2_URL);
+            })
+            .then(response => response.json())
+            .then(json2 => {
+                jsonData2 = json2;
+                renderContent();
+            })
+            .catch(error => console.error('Error fetching JSON data:', error));
+    
+        // 絞り込みボタンのクリックでポップアップ表示
+        filterButton.addEventListener('click', () => {
+            popup.classList.add('show');
+            setTimeout(() => {
+                popup.querySelector('.popup-content').classList.remove('hide');
+            }, 0);
+        });
+    
+        // キャンセルボタンのクリックでポップアップ非表示
+        cancelButton.addEventListener('click', () => {
+            popup.querySelector('.popup-content').classList.add('hide');
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 200);
+        });
+    
+        // リセットボタンのクリックでチェックボックスをクリア
+        resetButton.addEventListener('click', () => {
+            document.querySelectorAll('#filters input[type="checkbox"]').forEach(cb => {
+                cb.checked = false;
+            });
+            excludeLowProbCheckbox.checked = false; // 低確率排出アイテムの除外をリセット
+        });
+    
+        // OKボタンのクリックでフィルターを適用
+        okButton.addEventListener('click', () => {
+            popup.querySelector('.popup-content').classList.add('hide');
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 200);
+            applyFilters();
+        });
+    </script>
+</body>
+</html>
