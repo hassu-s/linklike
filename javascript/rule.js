@@ -1,43 +1,31 @@
-// 文字選択禁止
-document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-}, false);
-
-// 右クリック禁止
+// 右クリックを禁止
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
-}, false);
+});
 
-// 画像選択禁止
+// 文字選択を禁止
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+});
+
+// 画像のドラッグを禁止
 document.addEventListener('dragstart', function(e) {
-    if (e.target.tagName.toLowerCase() === 'img') {
-        e.preventDefault();
-    }
-}, false);
+    e.preventDefault();
+});
 
-// タッチイベントでの選択禁止
+// 長押しメニューの表示を禁止（タッチデバイス向け）
 document.addEventListener('touchstart', function(e) {
-    if (e.target.tagName.toLowerCase() === 'img' || e.target.tagName.toLowerCase() === 'p') {
+    if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
         e.preventDefault();
     }
-}, false);
+}, { passive: false });
 
-// 拡大禁止 (マウスホイール、ピンチ操作)
+// サイトの拡大を禁止
 document.addEventListener('wheel', function(e) {
     if (e.ctrlKey) {
         e.preventDefault();
     }
 }, { passive: false });
-
-document.addEventListener('touchmove', function(e) {
-    if (e.scale !== 1) {
-        e.preventDefault();
-    }
-}, { passive: false });
-
-
-
-
 
 // リンクの判定
 document.addEventListener("DOMContentLoaded", function() {
@@ -66,4 +54,3 @@ document.addEventListener("DOMContentLoaded", function() {
         window.history.replaceState(null, null, lowerCaseUrl);
     }
 });
-
