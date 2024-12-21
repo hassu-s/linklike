@@ -2,15 +2,19 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>アイテムリスト</title>
-    <link rel="stylesheet" href="../css/siboru.css">
+
     <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
-    <script src="../javascript/IE.js"></script>
     <script src="../javascript/rule.js"></script>
+    <script src="../javascript/maintenance.js"></script>
     <script src="../javascript/launcher.js"></script>
     <script src="../javascript/info.js"></script>
-    <script src="../linklike/javascript/maintenance.js"></script>
+    <script src="../javascript/loading.js"></script>
+    <script src="../javascript/effect.js"></script>
+    <script src="../javascript/click.js"></script>
+
     <!-- Googleサービスへ通知する内容はじめ -->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -33,234 +37,327 @@
         gtag('config', 'G-B7JH1PTJVC');
     </script>
     <!-- Googleサービスへ通知する内容おわり -->
+
+    <link rel="stylesheet" href="../css/all1.css">
+    <link rel="stylesheet" href="../css/filter-pop.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .filterbtntop {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+
+        #ai {
+            background: linear-gradient(to right, #65defc, #938aff);
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+        }
+        #ai button {
+            width: 50px;
+            padding: 0;
+            box-shadow: none;
+            background: none;
+            border: 1px solid #fff;
+        }
+        #hed {
+            font-size: 20px;
+            color: #fff;
+            margin-left: 10px;
+        }
+        #ai img {
+            width: 40px;
+            margin: 0;
+            margin-top: 7px;
+        }
+        h3 {
+            text-align: left;
+            font-weight: 700;
+        }
+        .err {
+            font-weight: 700;
+            color: #b30000;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+            border-radius: 5px;
+            padding: 25px;
+        }
+    </style>
+
 </head>
 <body>
-    <div class="navbar">
-        <a class="alink1" href="#" id="filterLink"><button class="button1"><img id="img" class="img" src="../image/button/filterdata.png"></button></a>
-        <label id="la1"><input type="checkbox" id="lowProbability" class="la0" checked> 低確率アイテム表示</label>
+    <div id="ai">
+        <h1 id="hed">アイテムフィルタ</h1>
+        <button id="filter-button" class="filterbtntop"><img src="../image/button/filterdata.png" alt=""></button>
     </div>
-    <div class="container" id="content"></div>
+    <div id="content-area"></div>
 
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <div class="header">
-            <h4 id="h4-2">絞り込み</h4s>
-        </div>
-        <div class="popup-content">
-            <div>
-                <h4>学期 絞り込み</h4>
-                <label><input type="checkbox" id="term103"> 103期</label>
-                <label><input type="checkbox" id="term104"> 104期</label>
+    <!-- ポップアップ要素 -->
+    <div class="popup" id="itemfilter">
+        <div class="popup-content hide">
+            <div class="header">
+                <h4 id="header">フィルタ</h4>
             </div>
-            <hr class="hr1">
-            <div>
-                <h4>種別 絞り込み</h4>
-                    <label><input type="checkbox" id="g"> <img src="../image/item-1/gino-kou.png" alt="g"> 技能書類</label>
-                    <label><input type="checkbox" id="p"> <img src="../image/item-1/garnet4.png" alt="p"> ピース類</label>
-                    <label><input type="checkbox" id="c"> <img src="../image/item-1/sol4.png" alt="c"> チャーム類</label>
-                    <label><input type="checkbox" id="y"> <img src="../image/item-1/kakera.png" alt="y"> ユメシリーズ</label>
+            <div id="filters">
+                <div class="fil">
+                <div>
+                    <h3>学期絞り込み</h3>
+                    <label><input type="checkbox" name="period" value="103"> 103期</label>
+                    <label><input type="checkbox" name="period" value="104"> 104期</label>
+                </div>
+                <div>
+                    <h3>シーズン絞り込み</h3>
+                    <label><input type="checkbox" name="season" value="SPRING"> SPRING</label>
+                    <label><input type="checkbox" name="season" value="SUMMER"> SUMMER</label>
+                    <label><input type="checkbox" name="season" value="AUTUMN"> AUTUMN</label>
+                    <label><input type="checkbox" name="season" value="WINTER"> WINTER</label>
+                </div>
+                <div>
+                    <h3>アイテム種別絞り込み</h3>
+                    <label><input type="checkbox" name="sort" value="g"> <img src="../image/item-1/gino-kou.png"> 技能書類</label>
+                    <label><input type="checkbox" name="sort" value="p"> <img src="../image/item-1/garnet4.png"> ピース類</label>
+                    <label><input type="checkbox" name="sort" value="c"> <img src="../image/item-1/sol4.png"> チャーム類</label>
+                    <label><input type="checkbox" name="sort" value="y"> <img src="../image/item-1/kakera.png"> ユメシリーズ</label>
+                </div>
+                <div>
+                    <h3>アイテムランク絞り込み</h3>
+                    <label><input type="checkbox" name="level" value="1"> <img src="../image/item-1/carnelian1.png"> R1</label>
+                    <label><input type="checkbox" name="level" value="2"> <img src="../image/item-1/carnelian2.png"> R2</label>
+                    <label><input type="checkbox" name="level" value="3"> <img src="../image/item-1/carnelian3.png"> R3</label>
+                    <label><input type="checkbox" name="level" value="4"> <img src="../image/item-1/carnelian4.png"> R4/ユメシリーズ</label>
+                </div>
+                <div>
+                    <h3>アイテム詳細絞り込み</h3>
+                    <label><input type="checkbox" name="type" value="gb"> <img src="../image/item-1/gino-kou.png"> 技能書</label>
+                    <label><input type="checkbox" name="type" value="ga"> <img src="../image/item-1/garnet4.png"> ガーネットピース</label>
+                    <label><input type="checkbox" name="type" value="ca"> <img src="../image/item-1/carnelian4.png"> カーネリアンピース</label>
+                    <label><input type="checkbox" name="type" value="em"> <img src="../image/item-1/emerald4.png"> エメラルドピース</label>
+                    <label><input type="checkbox" name="type" value="di"> <img src="../image/item-1/diamond4.png"> ダイヤピース</label>
+                    <label><input type="checkbox" name="type" value="pe"> <img src="../image/item-1/peridot4.png"> ペリドットピース</label>
+                    <label><input type="checkbox" name="type" value="ru"> <img src="../image/item-1/ruby4.png"> ルビーピース</label>
+                    <label><input type="checkbox" name="type" value="sa"> <img src="../image/item-1/sapphire4.png"> サファイアピース</label>
+                    <label><input type="checkbox" name="type" value="to"> <img src="../image/item-1/topaz4.png"> トパーズピース</label>
+                    <label><input type="checkbox" name="type" value="tu"> <img src="../image/item-1/turquoise4.png"> ターコイズピース</label>
+                    <label><input type="checkbox" name="type" value="am"> <img src="../image/item-1/amethyst4.png"> アメジストピース</label>
+                    <label><input type="checkbox" name="type" value="so"> <img src="../image/item-1/sol4.png"> ソルチャーム</label>
+                    <label><input type="checkbox" name="type" value="lu"> <img src="../image/item-1/luna4.png"> ルナチャーム</label>
+                    <label><input type="checkbox" name="type" value="st"> <img src="../image/item-1/stella4.png"> ステラチャーム</label>
+                    <label><input type="checkbox" name="type" value="ka"> <img src="../image/item-1/kakera.png"> ユメノカケラ</label>
+                    <label><input type="checkbox" name="type" value="ha"> <img src="../image/item-1/hane.png"> ユメノハネ</label>
+                </div>
+                <div>
+                    <h3>低確率排出アイテムの除外</h3>
+                    <label><input type="checkbox" id="exclude-low-prob"> 除外</label>
+                </div>
             </div>
-            <hr class="hr1">
-            <div>
-                <h4>レベル 絞り込み</h4>
-                    <label><input type="checkbox" id="1"> <img src="../image/item-1/carnelian1.png" alt="1"> R1</label>
-                    <label><input type="checkbox" id="2"> <img src="../image/item-1/carnelian2.png" alt="2"> R2</label>
-                    <label><input type="checkbox" id="3"> <img src="../image/item-1/carnelian3.png" alt="3"> R3</label>
-                    <label><input type="checkbox" id="4"> <img src="../image/item-1/carnelian4.png" alt="4"> R4/ユメシリーズ</label>
             </div>
-            <hr class="hr1">
-            <div>
-                <h4>アイテム 絞り込み</h4>
-                    <label><input type="checkbox" id="gb"> <img src="../image/item-1/gino-kou.png" alt="gb"> 技能書</label>
-                    <label><input type="checkbox" id="ga"> <img src="../image/item-1/garnet4.png" alt="ga"> ガーネットピース</label>
-                    <label><input type="checkbox" id="ca"> <img src="../image/item-1/carnelian4.png" alt="ca"> カーネリアンピース</label>
-                    <label><input type="checkbox" id="em"> <img src="../image/item-1/emerald4.png" alt="em"> エメラルドピース</label>
-                    <label><input type="checkbox" id="di"> <img src="../image/item-1/diamond4.png" alt="di"> ダイヤピース</label>
-                    <label><input type="checkbox" id="pe"> <img src="../image/item-1/peridot4.png" alt="pe"> ペリドットピース</label>
-                    <label><input type="checkbox" id="ru"> <img src="../image/item-1/ruby4.png" alt="ru"> ルビーピース</label>
-                    <label><input type="checkbox" id="sa"> <img src="../image/item-1/sapphire4.png" alt="sa"> サファイアピース</label>
-                    <label><input type="checkbox" id="to"> <img src="../image/item-1/topaz4.png" alt="to"> トパーズピース</label>
-                    <label><input type="checkbox" id="tu"> <img src="../image/item-1/turquoise4.png" alt="tu"> ターコイズピース</label>
-                    <label><input type="checkbox" id="am"> <img src="../image/item-1/amethyst4.png" alt="am"> アメジストピース</label>
-                    <label><input type="checkbox" id="so"> <img src="../image/item-1/sol4.png" alt="so"> ソルチャーム</label>
-                    <label><input type="checkbox" id="lu"> <img src="../image/item-1/luna4.png" alt="lu"> ルナチャーム</label>
-                    <label><input type="checkbox" id="st"> <img src="../image/item-1/stella4.png" alt="st"> ステラチャーム</label>
-                    <label><input type="checkbox" id="ka"> <img src="../image/item-1/kakera.png" alt="ka"> ユメノカケラ</label>
-                    <label><input type="checkbox" id="ha"> <img src="../image/item-1/hane.png" alt="ha"> ユメノハネ</label>
+            <div class="ppup">
+                <div class="popup-buttons">
+                    <button id="cancel-button">キャンセル</button>
+                    <button id="reset-button">リセット</button>
+                    <button id="ok-button">OK</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="popup-buttons" id="popup-buttons">
-        <button class="btn-b" id="resetButton">リセット</button>
-        <button class="btn-b" id="cancelButton">キャンセル</button>
-        <button class="btn-a" id="applyButton">OK</button>
-    </div>
-
     <script>
-        let initialCheckboxStates = {};
-
-        async function fetchCSV(url) {
-            const response = await fetch(url);
-            const text = await response.text();
-            return text.split('\n').slice(1).map(row => row.split(',')); // Skip the first row
-        }
-
-        function createBox(content, items) {
-            const box = document.createElement('div');
-            box.className = 'box';
-
-            const text = document.createElement('div');
-            text.className = 'text';
-            const [a, b, c, d] = content.split(' ');
-            text.innerHTML = `<div><span>${a}期</span><span>${b}</span><span class="dash"></span><span>${c} - ${d}</span></div>`;
-            box.appendChild(text);
-
-            const itemsDiv = document.createElement('div');
-            itemsDiv.className = 'items';
-            items.forEach(item => {
-                const img = document.createElement('img');
-                img.src = item.imageUrl;
-                img.alt = item.tooltip;
-                img.title = item.tooltip;
-                img.dataset.type = item.type;
-                img.dataset.level = item.level;
-                img.dataset.id = item.id;
-                itemsDiv.appendChild(img);
-            });
-            box.appendChild(itemsDiv);
-
-            return box;
-        }
-
-        async function displayData() {
-            const itemData = await fetchCSV('../csv/item.csv');
-            const itemIdData = await fetchCSV('../csv/item-id.csv');
-            const contentDiv = document.getElementById('content');
-
-            itemData.forEach(itemRow => {
-                const textContent = itemRow.slice(0, 4).join(' ');
-                const codes = itemRow.slice(4, 16).filter(cell => cell !== '-');
-                if (codes.length > 0) {
-                    const items = codes.map(code => {
-                        const itemIdRow = itemIdData.find(row => row[0] === code);
-                        return itemIdRow ? { 
-                            imageUrl: itemIdRow[3], 
-                            tooltip: itemIdRow[4],
-                            type: itemIdRow[5],
-                            level: itemIdRow[6],
-                            id: itemIdRow[7]
-                        } : null;
-                    }).filter(item => item !== null);
-                    const box = createBox(textContent, items);
-                    contentDiv.appendChild(box);
-                }
-            });
-        }
-
-        document.getElementById('filterLink').addEventListener('click', () => {
-            // 現在のチェックボックスの状態を保存
-            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
-                initialCheckboxStates[checkbox.id] = checkbox.checked;
-            });
-
-            document.getElementById('overlay').classList.add('active');
-            document.getElementById('popup').classList.add('active');
-            document.getElementById('popup-buttons').classList.add('active');
-        });
-
-        document.getElementById('resetButton').addEventListener('click', () => {
-            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = false;
-            });
-        });
-
-        document.getElementById('cancelButton').addEventListener('click', () => {
-            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = initialCheckboxStates[checkbox.id] || false;
-            });
-
-            document.getElementById('overlay').classList.remove('active');
-            document.getElementById('popup').classList.remove('active');
-            document.getElementById('popup-buttons').classList.remove('active');
-        });
-
-        document.getElementById('applyButton').addEventListener('click', () => {
-            const filters = {
-                term: [],
-                type: [],
-                level: [],
-                id: []
-            };
-
-            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
-                if (checkbox.checked) {
-                    const id = checkbox.id;
-                    if (['term103', 'term104'].includes(id)) {
-                        filters.term.push(id.replace('term', ''));
-                    } else if (['g', 'gb', 'gy', 'gr', 'gc', 'y'].includes(id)) {
-                        filters.type.push(id);
-                    } else if (['1', '2', '3', '4'].includes(id)) {
-                        filters.level.push(id);
-                    } else {
-                        filters.id.push(id);
+        document.addEventListener("DOMContentLoaded", function() {
+            const filterButton = document.getElementById('filter-button');
+            const popup = document.getElementById('itemfilter');
+            const popupContent = document.querySelector('.popup-content');
+            const cancelButton = document.getElementById('cancel-button');
+            const resetButton = document.getElementById('reset-button');
+            const okButton = document.getElementById('ok-button');
+            const excludeLowProbCheckbox = document.getElementById('exclude-low-prob');
+            const contentArea = document.getElementById('content-area');
+    
+            let jsonData1 = [];
+            let jsonData2 = [];
+            const JSON1_URL = 'https://script.google.com/macros/s/AKfycbyjRlrMtAYKR7CQpBMR7_QBwKIivtr0Zyn3xmXaoEnwt-HnsTq_kP5KIjLxwRBuHQrR/exec';
+            const JSON2_URL = 'https://script.google.com/macros/s/AKfycbz2FUSqN4E0q8zQjes4uQl7uPfNhv3mxrH0Rw4_Fzib380MzsXH2PA3QWgl1TX3u8YG/exec';
+    
+            // State to store initial checkbox states
+            let initialCheckboxStates = {};
+    
+            function saveInitialCheckboxStates() {
+                const checkboxes = document.querySelectorAll('#filters input[type="checkbox"]');
+                checkboxes.forEach(cb => {
+                    initialCheckboxStates[cb.name + '_' + cb.value] = cb.checked;
+                });
+            }
+    
+            function restoreInitialCheckboxStates() {
+                const checkboxes = document.querySelectorAll('#filters input[type="checkbox"]');
+                checkboxes.forEach(cb => {
+                    cb.checked = initialCheckboxStates[cb.name + '_' + cb.value] || false;
+                });
+            }
+    
+            function renderContent() {
+                contentArea.innerHTML = '';  // Clear previous content
+    
+                jsonData1.forEach(item => {
+                    const contentDiv = document.createElement('div');
+                    contentDiv.classList.add('content');
+    
+                    const title = document.createElement('h2');
+                    title.textContent = `${item.period} ${item.season} ${item.area} - ${item.stage}`;
+                    contentDiv.appendChild(title);
+    
+                    const imageContainer = document.createElement('div');
+                    imageContainer.classList.add('image-container');
+    
+                    const keys = ['book', 'piece', 'charm'];
+                    if (!excludeLowProbCheckbox.checked) {
+                        keys.push('u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9');
                     }
-                }
-            });
-
-            document.getElementById('overlay').classList.remove('active');
-            document.getElementById('popup').classList.remove('active');
-            document.getElementById('popup-buttons').classList.remove('active');
-
-            // Apply filters
-            const boxes = document.querySelectorAll('.box');
-            boxes.forEach(box => {
-                const items = box.querySelectorAll('img');
-                let showBox = false;
-                items.forEach(item => {
-                    const type = item.dataset.type;
-                    const level = item.dataset.level;
-                    const id = item.dataset.id;
-                    const term = box.querySelector('.text span').textContent.replace('期', '');
-                    if (
-                        (filters.term.length === 0 || filters.term.includes(term)) &&
-                        (filters.type.length === 0 || filters.type.includes(type)) &&
-                        (filters.level.length === 0 || filters.level.includes(level)) &&
-                        (filters.id.length === 0 || filters.id.includes(id))
-                    ) {
-                        showBox = true;
+    
+                    keys.forEach(key => {
+                        if (item[key] !== '-') {
+                            const imageData = jsonData2.find(el => el.itemid === item[key]);
+                            if (imageData) {
+                                const img = document.createElement('img');
+                                img.src = imageData.itemlink;
+                                img.title = imageData.itemname;
+                                imageContainer.appendChild(img);
+                            }
+                        }
+                    });
+    
+                    contentDiv.appendChild(imageContainer);
+                    contentArea.appendChild(contentDiv);
+                });
+            }
+    
+            function applyFilters() {
+                const periodFilters = Array.from(document.querySelectorAll('input[name="period"]:checked')).map(cb => cb.value);
+                const seasonFilters = Array.from(document.querySelectorAll('input[name="season"]:checked')).map(cb => cb.value);
+                const sortFilters = Array.from(document.querySelectorAll('input[name="sort"]:checked')).map(cb => cb.value);
+                const levelFilters = Array.from(document.querySelectorAll('input[name="level"]:checked')).map(cb => cb.value);
+                const typeFilters = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+    
+                contentArea.innerHTML = '';  // Clear previous content
+    
+                let hasContent = false;
+    
+                jsonData1.forEach(item => {
+                    const matchesPeriod = periodFilters.length === 0 || periodFilters.includes(String(item.period));
+                    const matchesSeason = seasonFilters.length === 0 || seasonFilters.includes(item.season);
+    
+                    const keys = ['book', 'piece', 'charm'];
+                    if (!excludeLowProbCheckbox.checked) {
+                        keys.push('u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9');
+                    }
+    
+                    let matchesItem = false;
+    
+                    keys.forEach(key => {
+                        if (item[key] !== '-') {
+                            const imageData = jsonData2.find(el => el.itemid === item[key]);
+                            if (imageData) {
+                                const matchesSort = sortFilters.length === 0 || sortFilters.includes(imageData.sort);
+                                const matchesLevel = levelFilters.length === 0 || levelFilters.includes(String(imageData.level));
+                                const matchesType = typeFilters.length === 0 || typeFilters.includes(imageData.type);
+    
+                                if (matchesSort && matchesLevel && matchesType) {
+                                    matchesItem = true;
+                                }
+                            }
+                        }
+                    });
+    
+                    if (matchesPeriod && matchesSeason && matchesItem) {
+                        hasContent = true;
+    
+                        const contentDiv = document.createElement('div');
+                        contentDiv.classList.add('content');
+    
+                        const title = document.createElement('h2');
+                        title.textContent = `${item.period} ${item.season} ${item.area} - ${item.stage}`;
+                        contentDiv.appendChild(title);
+    
+                        const imageContainer = document.createElement('div');
+                        imageContainer.classList.add('image-container');
+    
+                        keys.forEach(key => {
+                            if (item[key] !== '-') {
+                                const imageData = jsonData2.find(el => el.itemid === item[key]);
+                                if (imageData) {
+                                    const img = document.createElement('img');
+                                    img.src = imageData.itemlink;
+                                    img.title = imageData.itemname;
+                                    imageContainer.appendChild(img);
+                                }
+                            }
+                        });
+    
+                        contentDiv.appendChild(imageContainer);
+                        contentArea.appendChild(contentDiv);
                     }
                 });
-                box.style.display = showBox ? 'flex' : 'none';
-                box.style.flexDirection = showBox ? 'column' : '';
+    
+                if (!hasContent) {
+                    contentArea.innerHTML = '<p class="err">絞り込みの結果、該当する楽曲は発見できませんでした。</p>';
+                }
+            }
+    
+            // 初回データ取得とレンダリング
+            fetch(JSON1_URL)
+                .then(response => response.json())
+                .then(json1 => {
+                    jsonData1 = json1;
+                    return fetch(JSON2_URL);
+                })
+                .then(response => response.json())
+                .then(json2 => {
+                    jsonData2 = json2;
+                    renderContent();
+                })
+                .catch(error => console.error('Error fetching JSON data:', error));
+    
+            // ポップアップを表示する
+            filterButton.addEventListener('click', function() {
+                popup.classList.add('show');
+                popupContent.style.animation = 'expand 0.2s forwards';
+                saveInitialCheckboxStates(); // Save initial states
             });
-        });
-
-        document.getElementById('lowProbability').addEventListener('change', (event) => {
-            const showLowProbability = event.target.checked;
-            const boxes = document.querySelectorAll('.box');
-            boxes.forEach(box => {
-                const items = box.querySelectorAll('img');
-                items.forEach((item, index) => {
-                    if (index >= 3 && !showLowProbability) {
-                        item.style.display = 'none';
-                    } else {
-                        item.style.display = 'block';
-                    }
+    
+            // ポップアップを閉じる
+            cancelButton.addEventListener('click', function() {
+                popupContent.style.animation = 'shrink 0.2s forwards';
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    restoreInitialCheckboxStates(); // Restore initial states
+                }, 200);
+            });
+    
+            resetButton.addEventListener('click', function() {
+                document.querySelectorAll('#filters input[type="checkbox"]').forEach(cb => {
+                    cb.checked = false;
                 });
+                excludeLowProbCheckbox.checked = false; // 低確率排出アイテムの除外をリセット
+            });
+    
+            okButton.addEventListener('click', function() {
+                popupContent.style.animation = 'shrink 0.2s forwards';
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    applyFilters();
+                }, 200);
             });
         });
-
-        document.getElementById('overlay').addEventListener('click', () => {
-            document.querySelectorAll('.popup input[type="checkbox"]').forEach(checkbox => {
-                checkbox.checked = initialCheckboxStates[checkbox.id] || false;
-            });
-
-            document.getElementById('overlay').classList.remove('active');
-            document.getElementById('popup').classList.remove('active');
-            document.getElementById('popup-buttons').classList.remove('active');
-        });
-
-        displayData();
     </script>
+    
+    
 </body>
 </html>
