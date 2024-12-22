@@ -124,6 +124,17 @@ document.addEventListener("DOMContentLoaded", function() {
             justify-content: space-between;
             align-items: center;
         }
+        #lani {
+            width: 30px;
+            height: 30px;
+            display: flex;
+        }
+        #lans {
+            position: relative;
+            top: -26px;
+            color: #fff;
+        }
+        
     `;
     document.head.append(style);
 
@@ -164,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/contact.html"><button class="btna">リンクラカレンダー</button></a></div>
         <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/item.html"><button class="btna">アイテムリスト</button></a></div>
-        <div class="btnl"><a href="#" id="info1"><button class="btna"><img src="/linklike/image/button/news.png">お知らせ</button></a></div>
+        <div class="btnl"><a href="#" id="info1"><button class="btna"><img id="lani" src="/linklike/image/button/news.png"><span id="lans">お知らせ<span></button></a></div>
 
         <div class="btnmini">
             <div id="btnf">
