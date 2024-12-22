@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>お問い合わせ</title>
+    <link href="../css/all1.css" rel="stylesheet" type="text/css">
+    <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
+    <script src="../javascript/rule.js"></script>
+    <script src="../javascript/maintenance.js"></script>
+    <script src="../javascript/launcher.js"></script>
+    <script src="../javascript/info.js"></script>
+    <script src="../javascript/loading.js"></script>
+    <script src="../javascript/effect.js"></script>
+    <script src="../javascript/click.js"></script>
+
+    <!-- Googleサービスへ通知する内容はじめ -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K43XP4KG');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K43XP4KG"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7JH1PTJVC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-B7JH1PTJVC');
+    </script>
+    <!-- Googleサービスへ通知する内容おわり -->
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+        body {
+            margin-top: 80px;
+        }
+        .ai {
+            background: linear-gradient(to right, #65defc, #938aff);
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+            z-index: 1101;
+        }
+        .hed {
+            font-size: 20px;
+            color: #fff;
+        }
+        .list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        #member {
+            height: 200px;
+            width: 200px;
+            margin: 10px;
+            border: 2px solid #545454;
+            border-radius: 5px;
+            background-color: #545454;
+        }
+
+        #member1 {
+            height: 200px;
+            width: 200px;
+            border-top-left-radius: 100px;
+        }
+
+        #member img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: 1000;
+        }
+        .name {
+            justify-content: baseline;
+            font-family: "Staatliches", serif;
+            font-weight: 400;
+            font-style: normal;
+            color: #000000;
+            margin-top: -75px;
+            margin-left: 10px;
+            font-size: 30px;
+            position: relative;
+        }
+        .info {
+            writing-mode: vertical-rl;
+            font-weight: 900;
+            margin-top: -235px;
+            margin-left: 170px;
+            background-color: #000000;
+            display: flex;
+            position: relative;
+            color: #ffffff;
+            padding: 10px 2px 10px 2px;
+            border-top-right-radius: 5px;
+        }
+
+        /* メンバーごとのカラー配置 */
+        .list div {
+            background-color: #ffffff;
+            transition: background-color 0.2s;
+        }
+        .kaho:hover {
+            background-color: #f8b500;
+            transition: background-color 0.2s;
+        }
+        .sayaka:hover {
+            background-color: #5383c3;
+            transition: background-color 0.2s;
+        }
+        .kozue:hover {
+            background-color: #68be8d;
+            transition: background-color 0.2s;
+        }
+        .tsuzuri:hover {
+            background-color: #ba2636;
+            transition: background-color 0.2s;
+        }
+        .rurino:hover {
+            background-color: #e7609e;
+            transition: background-color 0.2s;
+        }
+        .megumi:hover {
+            background-color: #c8c2c6;
+            transition: background-color 0.2s;
+        }
+        .ginko:hover {
+            background-color: #a2d7dd;
+            transition: background-color 0.2s;
+        }
+        .kosuzu:hover {
+            background-color: #fad764;
+            transition: background-color 0.2s;
+        }
+        .hime:hover {
+            background-color: #9d8de2;
+            transition: background-color 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <div class="ai">
+        <h1 class="hed">メンバー一覧</h1>
+    </div>
+    <div class="list">
+        <div id="member">
+            <div id="member1" class="kaho">
+                <img src="/image/member/kaho.png" alt="日野下花帆" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/01/')">
+                <p class="name">KAHO<br>HINOSHITA</p>
+                <p class="info">103期生｜スリブ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="sayaka">
+                <img src="/image/member/sayaka.png" alt="村野さやか" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/02/')">
+                <p class="name">SAYAKA<br>MURANO</p>
+                <p class="info">103期生｜ドルケ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="kozue">
+                <img src="/image/member/kozue.png" alt="乙宗梢" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/03/')">
+                <p class="name">KOZUE<br>OTOMUNE</p>
+                <p class="info">102期生｜スリブ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="tsuzuri">
+                <img src="/image/member/tsuzuri.png" alt="夕霧綴理" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/04/')">
+                <p class="name">TSUZURI<br>YUGIRI</p>
+                <p class="info">102期生｜ドルケ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="rurino">
+                <img src="/image/member/rurino.png" alt="大沢瑠璃乃" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/05/')">
+                <p class="name">RURINO<br>OSAWA</p>
+                <p class="info">103期生｜みらぱ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="megumi">
+                <img src="/image/member/megumi.png" alt="藤島慈" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/06/')">
+                <p class="name">MEGUMI<br>FUJISHIMA</p>
+                <p class="info">102期生｜みらぱ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="ginko">
+                <img src="/image/member/ginko.png" alt="百生吟子"onclick="window.open('https://lovelive-anime.jp/hasunosora/member/07/')">
+                <p class="name">GINKO<br>MOMOSE</p>
+                <p class="info">104期生｜スリブ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="kosuzu">
+                <img src="/image/member/kosuzu.png" alt="徒町小鈴" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/08/')">
+                <p class="name">KOSUZU<br>KACHIMACHI</p>
+                <p class="info">104期生｜ドルケ</p>
+            </div>
+        </div>
+        <div id="member">
+            <div id="member1" class="hime">
+                <img src="/image/member/hime.png" alt="安養寺姫芽" onclick="window.open('https://lovelive-anime.jp/hasunosora/member/09/')">
+                <p class="name">HIME<br>ANYOJI</p>
+                <p class="info">104期生｜みらぱ</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
