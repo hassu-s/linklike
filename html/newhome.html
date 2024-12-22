@@ -51,8 +51,7 @@
             margin-top: 320px;
         }
         .migi {
-            height: 100%;
-            overflow-x: scroll;
+            height: auto;
             width: 65%;
             padding: 10px;
         }
@@ -76,23 +75,16 @@
             padding: 10px;
             border-radius: 5px;
         }
-        @media screen and (max-width: 600px) {
-            .migi {
-                width: 100%;
-            }
-            .hida {
-                display: none;
-            }
-            
+        .btnindex img {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2px;
         }
-        h2 {
-            font-weight: 700;
-            margin: 0;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            padding: 0;
-        }
-        h3 {
+        
+        .migi h3 {
             background: linear-gradient(to right, #65defc, #938aff);
             font-weight: 700;
             color: #fff;
@@ -100,6 +92,35 @@
             box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
             border-radius: 5px;
         }
+        .hida h3 {
+            font-weight: 700;
+            font-size: 22px;
+        }
+        @media screen and (max-width: 600px) {
+            .all {
+                display: block;
+            }
+            .migi {
+                box-sizing: border-box;
+                width: 100%;
+            }
+            .hida {
+                box-sizing: border-box;
+                width: 100%;
+                background-color: #ffffff00;
+                box-shadow: none;
+            }
+            .hida h3 {
+                background: linear-gradient(to right, #65defc, #938aff);
+                font-weight: 700;
+                color: #fff;
+                padding: 15px;
+                box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+                border-radius: 5px;
+            }
+            
+        }
+
         .inhtml {
             display: flex;
             width: 100%;
@@ -118,6 +139,7 @@
             margin: 0;
             box-sizing: border-box;
         }
+
      </style>
 </head>
 <body>
@@ -129,17 +151,52 @@
             <h3>お知らせ</h3>
             <iframe class="inhtml" src="https://hassu-s.github.io/info/info/linklike"></iframe>
 
+            <h3>サイトマップ</h3>
         </div>
         <div class="hida">
+            <h3>リンク一覧</h3>
             <div class="btnindex">
-                <h2>リンク一覧</h2>
-                <a href="#">aiuro</a>
-                <a href="#">aiuro</a>
-
+                <a href="https://lovelive-anime.jp/hasunosora">蓮ノ空公式サイト</a>
+                <a href="https://x.com/hasunosora_SIC"><img src="../image/icon/xlogo.png" alt="">　蓮ノ空公式X（旧Twitter）</a>
+                <a href="https://www.youtube.com/@lovelive_hasu">蓮ノ空公式YouTube</a>
                 <br>
-                <h2>共有</h2>
             </div>
+            <h3>共有</h3>
+            <div class="linkbtn">
+                <div class="bglogo"><a href="https://twitter.com/intent/tweet?text=%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9/%E8%93%AE%E3%83%8E%E7%A9%BA%E6%83%85%E5%A0%B1%E3%81%AF%E3%81%93%E3%81%93%E3%81%8B%E3%82%89%EF%BC%81%E3%80%80%E3%81%AF%E3%81%A3%E3%81%99%E3%83%BC%E3%81%9A%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9%E6%94%BB%E7%95%A5%E9%83%A8%20%23%E3%81%AF%E3%81%99%E3%81%8F%E3%82%89%E3%81%B6%20https%3A%2F%2Fhassu-s.github.io%2Flinklike%2F"><img class="logox" src="../image/icon/xlogo.png" title="X"></a></div>
+                <div class="bglogo1"><a id="shareBtn"><img class="logox" src="../image/button/link.png" title="リンク"></a></div>
+            </div><br>
+
+            <h3>お問い合わせ</h3>
+            <div class="btnindex">
+                <a href="../html/contact.html">一般問い合わせ</a>
+                <a href="mailto:hassus.linklikelovelive@gmail.com"><img src="../image/button/contact.png" alt="">　メール問い合わせ</a>
+                <a href="https://x.com/biju_mama"><img src="../image/icon/xlogo.png" alt="">　開発者X（旧Twitter）</a>
+                <br>
+            </div>
+            <h3>その他</h3>
+                <a href="../inhtml/terms.html">利用規約</a><br>
+                <a href="../inhtml/privacy.html">プライバシーポリシー</a><br>
+                <a href="../inhtml/license.html">ライセンス</a><br><br>
         </div>
     </div>
+    <script>
+        document.getElementById('shareBtn').addEventListener('click', async () => {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: '',
+                        text: '',
+                        url: 'https://hassu-s.github.io/linklike/', // 共有するURL
+                    });
+                    console.log('共有しました');
+                } catch (error) {
+                    console.error('共有に失敗しました:', error);
+                }
+            } else {
+                console.log('このブラウザは共有機能に対応していません。');
+            }
+        });
+    </script>
 </body>
 </html>

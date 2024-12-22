@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ホーム</title>
-
-
     <link href="../css/all1.css" rel="stylesheet" type="text/css">
     <link href="../css/share.css" rel="stylesheet" type="text/css">
     <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
@@ -40,286 +38,148 @@
         gtag('config', 'G-B7JH1PTJVC');
     </script>
     <!-- Googleサービスへ通知する内容おわり -->
-    <style>
-        .carousel-container {
+     <style>
+        .a1 {
             width: 100%;
-            max-width: 500px;
-            overflow: hidden;
-            border-radius: 5px;
-            box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .carousel-container:hover .prev,
-        .carousel-container:hover .next {
-            opacity: 1;
-        }
-
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel img {
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        .carousel-buttons {
+            height: 320px;
             position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .prev {
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s;
-            opacity: 0;
-            pointer-events: none;
-            margin-left: 10px;
-            box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
-
-        }
-        .next {
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s;
-            opacity: 0;
-            pointer-events: none;
-            margin-right: 10px;
-            box-shadow: 0px 0px 3px 0px rgba(100, 100, 100);
-
-        }
-
-        .prev:hover, .next:hover {
-            background-color: rgba(255, 255, 255, 1);
-        }
-
-        .progress-bar {
-            position: absolute;
-            bottom: 0;
             left: 0;
-            height: 5px;
-            background: linear-gradient(to right, #65defc, #938aff);
         }
-
-        .indicators {
+        .all {
+            width: 100%;
+            display: flex;
+            margin-top: 320px;
+        }
+        .migi {
+            height: auto;
+            width: 65%;
+            padding: 10px;
+        }
+        .hida {
+            width: 35%;
+            overflow-x: hidden;
+            background-color: rgb(255, 255, 255);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+        }
+        .btnindex {
+            width: 100%;
+        }
+        .btnindex a {
+            display: flex;
+            background-color: #73a1ff;
+            color: #fff;
+            margin: 10px 5px 5px 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .btnindex img {
+            width: 20px;
+            height: 20px;
             display: flex;
             justify-content: center;
-            margin-top: 10px;
+            align-items: center;
+            margin-top: 2px;
+        }
+        
+        .migi h3 {
+            background: linear-gradient(to right, #65defc, #938aff);
+            font-weight: 700;
+            color: #fff;
+            padding: 15px;
+            box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+            border-radius: 5px;
+        }
+        .hida h3 {
+            font-weight: 700;
+            font-size: 22px;
+        }
+        @media screen and (max-width: 600px) {
+            .all {
+                display: block;
+            }
+            .migi {
+                box-sizing: border-box;
+                width: 100%;
+            }
+            .hida {
+                box-sizing: border-box;
+                width: 100%;
+                background-color: #ffffff00;
+                box-shadow: none;
+            }
+            .hida h3 {
+                background: linear-gradient(to right, #65defc, #938aff);
+                font-weight: 700;
+                color: #fff;
+                padding: 15px;
+                box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+                border-radius: 5px;
+            }
+            
         }
 
-        .indicators div {
-            width: 12px;
-            height: 12px;
-            background-color: #ddd;
-            margin: 0 5px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .indicators .active {
-            background-color: #333;
-        }
-
-        .carousel-container:hover .prev,
-        .carousel-container:hover .next {
-            pointer-events: auto;
-
-        }
-
-        .indicators {
-            position: absolute;
-            bottom: 15px; /* 画像の直下に配置 */
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .imgbtna {
-            height: 13px;
-            width: auto;
-        }
         .inhtml {
             display: flex;
-            position: relative;
             width: 100%;
-            max-width: 500px;
             height: 500px;
             border: none;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: -30px;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .inhtml1 {
+            display: flex;
+            width: 100%;
+            height: 330px;
+            border: none;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
 
-    </style>
+     </style>
 </head>
 <body>
-    <div class="carousel-container">
-        <div class="carousel">
-            <img src="../image/news/123.png" alt="Slide 1">
-            <img src="../image/news/234.png" alt="slide 2">
-            <img src="../image/news/123.png" alt="Slide 1 Clone"> <!-- 最後の画像の後にクローンを追加 -->
-        </div>
-        <div class="carousel-buttons">
-            <a class="prev"><img class="imgbtna" src="../image/button/back.png"></a>
-            <a class="next"><img class="imgbtna" src="../image/button/next.png"></a>
-        </div>
-        <div class="progress-bar" id="progress"></div>
-        <div class="indicators" id="indicatorContainer"></div>
+    <div class="a1">
+        <iframe class="inhtml1" src="../inhtml/topslide.html" frameborder="0"></iframe>
     </div>
+    <div class="all">
+        <div class="migi">
+            <h3>お知らせ</h3>
+            <iframe class="inhtml" src="https://hassu-s.github.io/info/info/linklike"></iframe>
 
-    <div class="bodybg">
-        <p class="bodytitle">
-            お知らせ
-        </p>
-    </div><br>
-    <iframe class="inhtml" src="https://hassu-s.github.io/info/info/linklike"></iframe>
-    
-    <div class="bodybg">
-        <p class="bodytitle">
-            リンクデータ
-        </p>
-    </div>
+            <h3>サイトマップ</h3>
+        </div>
+        <div class="hida">
+            <h3>リンク一覧</h3>
+            <div class="btnindex">
+                <a href="https://lovelive-anime.jp/hasunosora">蓮ノ空公式サイト</a>
+                <a href="https://x.com/hasunosora_SIC"><img src="../image/icon/xlogo.png" alt="">　蓮ノ空公式X（旧Twitter）</a>
+                <a href="https://www.youtube.com/@lovelive_hasu">蓮ノ空公式YouTube</a>
+                <br>
+            </div>
+            <h3>共有</h3>
+            <div class="linkbtn">
+                <div class="bglogo"><a href="https://twitter.com/intent/tweet?text=%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9/%E8%93%AE%E3%83%8E%E7%A9%BA%E6%83%85%E5%A0%B1%E3%81%AF%E3%81%93%E3%81%93%E3%81%8B%E3%82%89%EF%BC%81%E3%80%80%E3%81%AF%E3%81%A3%E3%81%99%E3%83%BC%E3%81%9A%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9%E6%94%BB%E7%95%A5%E9%83%A8%20%23%E3%81%AF%E3%81%99%E3%81%8F%E3%82%89%E3%81%B6%20https%3A%2F%2Fhassu-s.github.io%2Flinklike%2F"><img class="logox" src="../image/icon/xlogo.png" title="X"></a></div>
+                <div class="bglogo1"><a id="shareBtn"><img class="logox" src="../image/button/link.png" title="リンク"></a></div>
+            </div><br>
 
-    <div class="linkbtn">
-        <p class="linkt">SHARE</p>
-        <div class="logobtn">
-            <div class="bglogo"><a href="https://twitter.com/intent/tweet?text=%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9/%E8%93%AE%E3%83%8E%E7%A9%BA%E6%83%85%E5%A0%B1%E3%81%AF%E3%81%93%E3%81%93%E3%81%8B%E3%82%89%EF%BC%81%E3%80%80%E3%81%AF%E3%81%A3%E3%81%99%E3%83%BC%E3%81%9A%E3%83%AA%E3%83%B3%E3%82%AF%E3%83%A9%E6%94%BB%E7%95%A5%E9%83%A8%20%23%E3%81%AF%E3%81%99%E3%81%8F%E3%82%89%E3%81%B6%20https%3A%2F%2Fhassu-s.github.io%2Flinklike%2F"><img class="logox" src="../image/icon/xlogo.png" title="X"></a></div>
-            <div class="bglogo1"><a id="shareBtn"><img class="logox" src="../image/button/link.png" title="リンク"></a></div>
+            <h3>お問い合わせ</h3>
+            <div class="btnindex">
+                <a href="../html/contact.html">一般問い合わせ</a>
+                <a href="mailto:hassus.linklikelovelive@gmail.com"><img src="../image/button/contact.png" alt="">　メール問い合わせ</a>
+                <a href="https://x.com/biju_mama"><img src="../image/icon/xlogo.png" alt="">　開発者X（旧Twitter）</a>
+                <br>
+            </div>
+            <h3>その他</h3>
+                <a href="../inhtml/terms.html">利用規約</a><br>
+                <a href="../inhtml/privacy.html">プライバシーポリシー</a><br>
+                <a href="../inhtml/license.html">ライセンス</a><br><br>
         </div>
     </div>
-</body>
-    <script>
-        const carousel = document.querySelector('.carousel');
-        const images = document.querySelectorAll('.carousel img');
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
-        const progressBar = document.getElementById('progress');
-        const indicatorContainer = document.getElementById('indicatorContainer');
-        let currentIndex = 0;
-        let slideInterval;
-        let progressInterval;
-
-        // インジケーターの自動生成
-        images.forEach((image, index) => {
-            if (index < images.length - 1) { // 最後のクローン画像を除外
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (index === 0) dot.classList.add('active');
-                dot.dataset.index = index;
-                dot.addEventListener('click', (e) => {
-                    currentIndex = parseInt(e.target.dataset.index);
-                    updateCarousel();
-                    clearInterval(slideInterval);
-                    clearInterval(progressInterval);
-                    slideInterval = setInterval(showNext, 5000);
-                });
-                indicatorContainer.appendChild(dot);
-            }
-        });
-
-        const dots = document.querySelectorAll('.dot');
-
-        function updateCarousel() {
-            const offset = -currentIndex * 100;
-            carousel.style.transition = 'transform 0.5s ease-in-out';
-            carousel.style.transform = `translateX(${offset}%)`;
-            dots.forEach(dot => dot.classList.remove('active'));
-            if (currentIndex < images.length - 1) {
-                dots[currentIndex].classList.add('active');
-            } else {
-                dots[0].classList.add('active'); // クローン画像の時は最初のインジケータをアクティブに
-            }
-            resetProgressBar();
-        }
-
-        function showNext() {
-            currentIndex++;
-            if (currentIndex >= images.length) {
-                carousel.style.transition = 'none'; // 瞬時に最初の画像に切り替える
-                currentIndex = 0;
-                const offset = -currentIndex * 100;
-                carousel.style.transform = `translateX(${offset}%)`;
-                setTimeout(() => {
-                    carousel.style.transition = 'transform 0.5s ease-in-out'; // 通常のスライドに戻す
-                    currentIndex++;
-                    updateCarousel();
-                }, 10);
-            } else {
-                updateCarousel();
-            }
-        }
-
-        function showPrev() {
-            currentIndex--;
-            if (currentIndex < 0) {
-                currentIndex = images.length - 2; // 最後のクローンの1つ前に移動
-                carousel.style.transition = 'none';
-                const offset = -currentIndex * 100;
-                carousel.style.transform = `translateX(${offset}%)`;
-                setTimeout(() => {
-                    carousel.style.transition = 'transform 0.5s ease-in-out';
-                    updateCarousel();
-                }, 10);
-            } else {
-                updateCarousel();
-            }
-        }
-
-        function resetProgressBar() {
-            progressBar.style.width = '0%';
-            progressBar.style.transition = 'none';
-            setTimeout(() => {
-                progressBar.style.transition = 'width 5s linear';
-                progressBar.style.width = '100%';
-            }, 10);
-        }
-
-        nextButton.addEventListener('click', () => {
-            showNext();
-            clearInterval(slideInterval);
-            clearInterval(progressInterval);
-            slideInterval = setInterval(showNext, 5000);
-        });
-
-        prevButton.addEventListener('click', () => {
-            showPrev();
-            clearInterval(slideInterval);
-            clearInterval(progressInterval);
-            slideInterval = setInterval(showNext, 5000);
-        });
-
-        // 自動スライド
-        slideInterval = setInterval(showNext, 5000);
-        progressInterval = setInterval(resetProgressBar, 5000);
-
-        // 初期状態の更新
-        updateCarousel();
-        resetProgressBar();
-    </script>
     <script>
         document.getElementById('shareBtn').addEventListener('click', async () => {
             if (navigator.share) {
@@ -338,4 +198,5 @@
             }
         });
     </script>
+</body>
 </html>
