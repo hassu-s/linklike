@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><img id="imgcl" src="/linklike/image/button/contact.png"><a id="linkcl" href="/linklike/html/contact">お問い合わせ</a></li>
             <li><img id="imgcl" src="/linklike/image/button/calendar.png"><a id="linkcl" href="/linklike/404">カレンダー</a></li>
             <li><img id="imgcl" src="/linklike/image/button/archive.png"><a id="linkcl" href="/linklike/404">アーカイブ</a></li>
+            <li><img id="imgcl" src="/linklike/image/button/archive.png"><a id="linkcl" href="/linklike/404">サイトマップ</a></li>
 
         </ul>
     `;
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         #imgcl {
             width: 20px;
             height: 20px;
-            margin-right: 10px;
+            margin-right: 8px;
             margin-bottom: -4px;
             margin-left: -3px;
         }

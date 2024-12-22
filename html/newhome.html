@@ -55,11 +55,24 @@
             padding: 10px;
         }
         .hida {
-            height: 100%;
             width: 35%;
             overflow-x: hidden;
             background-color: rgb(255, 255, 255);
             padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+        }
+        .btnindex {
+            width: 100%;
+        }
+        .btnindex a {
+            display: flex;
+            background: linear-gradient(to right, #73a1ff, #73a1ff,rgba(255, 255, 255, 0));
+            color: #fff;
+            margin: 10px 5px 5px 5px;
+            padding: 10px;
+            border-radius: 5px;
         }
         @media screen and (max-width: 600px) {
             .migi {
@@ -69,6 +82,13 @@
                 display: none;
             }
             
+        }
+        h2 {
+            font-weight: 700;
+            margin: 0;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 0;
         }
         h3 {
             background: linear-gradient(to right, #65defc, #938aff);
@@ -100,7 +120,14 @@
 
         </div>
         <div class="hida">
-            a
+            <div class="btnindex">
+                <h2>リンク一覧</h2>
+                <a href="#">aiuro</a>
+                <a href="#">aiuro</a>
+
+                <br>
+                <h2>共有</h2>
+            </div>
         </div>
     </div>
 </body>
