@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         .menu-rcl li {
-            padding: 8px 16px;
+            padding: 6px 16px;
             cursor: pointer;
             color: #ecf0f1;
             transition: background-color 0.3s, color 0.3s;
