@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/contact.html"><button class="btna">リンクラカレンダー</button></a></div>
         <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/item.html"><button class="btna">アイテムリスト</button></a></div>
-        <div class="btnl"><a href="#" id="info1"><button class="btna"><img src="/image/button/news.png">お知らせ</button></a></div>
+        <div class="btnl"><a href="#" id="info1"><button class="btna"><img src="/linklike/image/button/news.png">お知らせ</button></a></div>
 
         <div class="btnmini">
             <div id="btnf">
