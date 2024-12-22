@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         #popup-menu {
             position: fixed;
-            bottom: 65px;
+            bottom: 70px;
             background-color: rgba(255, 255, 255, 0.90);
             padding: 10px;
             border-radius: 10px;
@@ -133,11 +133,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 <a href="/linklike/html/contact" class="alink" id="back-button"><img src="https://hassu-s.github.io/linklike/image/button/mail.png" alt="お問い合わせ"></a>
             </div>
 
-
-            <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
-                <div id="back"><img src="https://hassu-s.github.io/linklike/image/button/mail.png" alt="お問い合わせ"></div>
-            </div>
-
             <div class="vertical-line"><hr class="vertical-hr"></div>
 
             <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
@@ -155,11 +150,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 <a href="/linklike/html/home" class="alink" id="link-button"><img src="https://hassu-s.github.io/linklike/image/button/home.png" alt="リンク"></a>
             </div>
         </div>
-        <script>
-            document.getElementById("back").addEventListener("click", function() {
-                window.history.back();
-            });
-        </script>
     `;
 
     document.body.append(launcherMenu);
