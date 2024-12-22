@@ -47,6 +47,7 @@
     height: 80%;
     min-width: 300px;
     max-width: 500px;
+    box-sizing: border-box;
 }
 .popup.show .popup-content {
     transform: scale(1);
@@ -81,13 +82,16 @@
     overflow-y: scroll;
     position: absolute;
     top: 50px;
-    bottom: 60px;
+    bottom: 50px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 20px;
-    width: 100%;
-    box-sizing: border-box;
+    
     background-color: #fff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 10px;
+
 }
 .fil img {
     width: 20px;
