@@ -123,8 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
             width: 90%;
             justify-content: space-between;
             align-items: center;
-        }
-    `;
+        }    `;
     document.head.append(style);
 
     launcherMenu.innerHTML = `
@@ -155,11 +154,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 <a href="/linklike/html/home" class="alink" id="link-button"><img src="https://hassu-s.github.io/linklike/image/button/home.png" alt="リンク"></a>
             </div>
         </div>
-        <script>
-            document.getElementById("back").addEventListener("click", function() {
-                window.history.back();
-            });
-        </script>
     `;
 
     document.body.append(launcherMenu);
@@ -171,19 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const popupMenu = document.createElement('div');
     popupMenu.id = 'popup-menu';
     popupMenu.innerHTML = `
-        
-        <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/contact.html"><button class="btna">リンクラカレンダー</button></a></div>
-        <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/item.html"><button class="btna">アイテムリスト</button></a></div>
-        <div class="btnl"><a href="#" id="info1"><button class="btna">お知らせ</button></a></div>
-
-        <div class="btnmini">
-            <div id="btnf">
-            <button class="minib">A</button>
-            <button class="minib">B</button>
-            <button class="minib">C</button>
-            <button class="minib">D</button>
-            </div>
-        <div>
+        <!-- Your popup menu content here -->
     `;
     document.body.append(popupMenu);
 
@@ -214,5 +196,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 popupMenu.style.display = 'none';
             }, 200);
         }
+    });
+
+    document.getElementById('back').addEventListener('click', function() {
+        window.history.back();
     });
 });
