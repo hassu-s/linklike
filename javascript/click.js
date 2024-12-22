@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         * {
             outline: none;
             text-decoration: none;
-
+            font-weight: 500;
 
         }
         .body-rcl {
