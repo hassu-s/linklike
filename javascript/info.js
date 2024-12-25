@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <h4 id="h4-2">お知らせ</h4>
         </div>
         <iframe src="https://hassu-s.github.io/info/info/linklike"></iframe>
-        <div class="footer">
-            <button id="close-popup" class="btn-clo">閉じる</button>
-        </div>
+        <button id="close-popup" class="btn-clo">閉じる</button>
     `;
 
     document.body.append(overlay);
@@ -127,18 +125,6 @@ document.addEventListener("DOMContentLoaded", function() {
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
             height: 30px;
-        }
-
-        .footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f7f8f8;
-            padding: 10px;
-            color: white;
-            border-bottom-left-radius: 5px;
-            border-bottom-right-radius: 5px;
-            height: 60px; /* フッターの高さを大きく調整 */
         }
     `;
     document.head.append(style);
