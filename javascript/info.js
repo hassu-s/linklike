@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <h4 id="h4-2">お知らせ</h4>
         </div>
         <iframe src="https://hassu-s.github.io/info/info/linklike"></iframe>
-        <button id="close-popup" class="btn-clo">閉じる</button>
+        <button id="close-popup">閉じる</button>
     `;
 
     document.body.append(overlay);
@@ -94,18 +94,6 @@ document.addEventListener("DOMContentLoaded", function() {
         @keyframes shrink {
             from { transform: scale(1); }
             to { transform: scale(0); }
-        }
-
-        .btn-clo {
-            padding: 5px 20px;
-            background-color: #65defc;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-clo:hover {
-            background-color: #938aff;
         }
 
         #h4-2 {
