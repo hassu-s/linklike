@@ -14,8 +14,11 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="header">
             <h4 id="h4-2">お知らせ</h4>
         </div>
-        <div class="popbtnclo">
-            <button id="close-popup">閉じる</button>
+        <div class="allpop">
+            <iframe id="infoz" src="https://hassu-s.github.io/info/info/linklike"></iframe>
+            <div id="infox">
+                <button id="close-popup">閉じる</button>
+            </div>
         </div>
     `;
 
@@ -52,24 +55,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // スタイルの追加
     const style = document.createElement('style');
     style.textContent = `
-        iframe {
+        #infoz {
             width: 100%;
+            height: calc(100% - 120px); /* 余白を調整 */
             border: none;
-            height: 80%;
-            border-radius: 10px;
-            position: relative;
-            display: flex;
-        }
-        .popbtnclo {
-            display: flex;
-            position: absolute;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            box-sizing: border-box;
-            bottom: 0;
-        }
+            border-radius: 5px;
 
+        }
+        #infox {
+            position: relative;
+            bottom: -10px;
+        }
         .info-popup {
             position: fixed;
             margin: auto;
@@ -78,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
             top: 50px; /* 上下の余白を均等に */
             bottom: 50px;
             width: 90%;
-            height: calc(100% - 100px); /* 上下の余白を確保してポップアップ全体を調整 */
             background-color: #fff;
             padding: 0px;
             border-radius: 5px;
@@ -89,6 +84,13 @@ document.addEventListener("DOMContentLoaded", function() {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+        .allpop {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+
         }
 
         .overlay {
@@ -109,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
             from { transform: scale(1); }
             to { transform: scale(0); }
         }
+
 
         #h4-2 {
             font-size: 20px;
