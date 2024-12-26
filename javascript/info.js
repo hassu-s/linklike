@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="header">
             <h4 id="h4-2">お知らせ</h4>
         </div>
-        <button id="close-popup">閉じる</button>
+        <div class="popbtnclo">
+            <button id="close-popup">閉じる</button>
+        </div>
     `;
 
     document.body.append(overlay);
@@ -55,6 +57,10 @@ document.addEventListener("DOMContentLoaded", function() {
             border: none;
             height: 80%;
             border-radius: 10px;
+        }
+        .popbtnclo {
+            display: flex;
+            position: absolute;
         }
         .info-popup {
             position: fixed;
