@@ -57,11 +57,19 @@ document.addEventListener("DOMContentLoaded", function() {
             border: none;
             height: 80%;
             border-radius: 10px;
+            position: relative;
+            display: flex;
         }
         .popbtnclo {
             display: flex;
             position: absolute;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            bottom: 0;
         }
+
         .info-popup {
             position: fixed;
             margin: auto;
@@ -73,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             height: calc(100% - 100px); /* 上下の余白を確保してポップアップ全体を調整 */
             background-color: #fff;
             padding: 0px;
-            border-radius: 10px;
+            border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1010;
             text-align: center;
