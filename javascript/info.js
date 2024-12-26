@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function() {
             margin: auto;
             left: 0;
             right: 0;
-            top: 40px; /* 上下の余白を均等に */
-            bottom: 60px;
+            top: 50px; /* 上下の余白を均等に */
+            bottom: 50px;
             width: 90%;
             height: calc(100% - 100px); /* 上下の余白を確保してポップアップ全体を調整 */
             background-color: #fff;
