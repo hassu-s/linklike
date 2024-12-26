@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="header">
             <h4 id="h4-2">お知らせ</h4>
         </div>
-        <div class="bgpop">
-            <iframe src="https://hassu-s.github.io/info/info/linklike"></iframe>
-        </div>
         <button id="close-popup">閉じる</button>
     `;
 
@@ -59,11 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
             height: 80%;
             border-radius: 10px;
         }
-        .bgpop {
-            width: 100%;
-            height: 100%;
-            padding: 10px;
-        }
         .info-popup {
             position: fixed;
             margin: auto;
@@ -73,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bottom: 60px;
             width: 90%;
             height: calc(100% - 100px); /* 上下の余白を確保してポップアップ全体を調整 */
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: #fff;
             padding: 0px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
