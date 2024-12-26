@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="header">
             <h4 id="h4-2">お知らせ</h4>
         </div>
-        <div class="popbg">
             <iframe src="https://hassu-s.github.io/info/info/linklike"></iframe>
-        <div>
         <button id="close-popup">閉じる</button>
     `;
 
@@ -56,9 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         iframe {
             width: 100%;
             border: none;
-            position: absolute;
-            top: 20px;
-            bottom: 20px;
+            height: 80%;
         }
         .info-popup {
             position: fixed;
