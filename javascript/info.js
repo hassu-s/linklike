@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <h4 id="h4-2">お知らせ</h4>
         </div>
         <div class="allpop">
-            <iframe id="infoz" src="https://hassu-s.github.io/info/info/linklike"></iframe>
+            <iframe id="infoz" src="https://hassu-s.github.io/linklike/inhtml/news"></iframe>
             <div id="infox">
                 <button id="close-popup">閉じる</button>
             </div>
