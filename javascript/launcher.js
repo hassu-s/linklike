@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
     popupMenu.innerHTML = `
         
         <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/contact.html"><button class="btna">リンクラカレンダー</button></a></div>
-        <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/item.html"><button class="btna">アイテムリスト</button></a></div>
+        <div class="btnl"><a href="https://hassu-s.github.io/linklike/html/item.html"><button class="btna"><img id="lani" src="/linklike/image/button/news.png"><span id="lans">アイテムリスト<span></button></a></div>
         <div class="btnl"><a href="#" id="info1"><button class="btna"><img id="lani" src="/linklike/image/button/news.png"><span id="lans">お知らせ<span></button></a></div>
 
         <div class="btnmini">

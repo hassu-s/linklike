@@ -90,7 +90,6 @@
     border-radius: 5px;
     box-sizing: border-box;
     margin: 10px;
-
 }
 .fil img {
     width: 20px;
@@ -114,7 +113,7 @@
     text-align: center;
     font-weight: 600;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
 }
 label {
     display: block;
@@ -130,4 +129,21 @@ h2 {
     margin: 0;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.popcon {
+    overflow-y: scroll;
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    right: 0;
+    left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    background-color: #f7f8f8;
+    border-radius: 5px;
+    margin: 10px;
+    box-sizing: border-box;
+    overflow-y: scroll;
 }

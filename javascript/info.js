@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         #h4-2 {
-            font-size: 20px;
+            font-size: 16px;
             text-align: center;
             font-weight: 600;
             color: #fff;

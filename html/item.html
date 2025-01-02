@@ -51,6 +51,12 @@
             right: 10px;
             z-index: 1000;
         }
+        .hint {
+            position: fixed;
+            top: 10px;
+            right: 65px;
+            z-index: 1000;
+        }
 
 
         #ai {
@@ -82,6 +88,7 @@
         h3 {
             text-align: left;
             font-weight: 700;
+            font-size: 18px;
         }
         .err {
             font-weight: 700;
@@ -101,6 +108,7 @@
 <body>
     <div id="ai">
         <h1 id="hed">アイテムフィルタ</h1>
+        <button id="filterButton" class="hint"><img src="../image/button/hint.png" alt=""></button>
         <button id="filter-button" class="filterbtntop"><img src="../image/button/filterdata.png" alt=""></button>
     </div>
     <div id="content-area"></div>
@@ -163,8 +171,8 @@
                     <label><input type="checkbox" id="exclude-low-prob"> 除外</label>
                 </div><hr>
                 <div class="popchu">
+                    <p style="color: #b30000; font-weight: 900;">データが読み込まれてから絞り込みを実行してください。</p>    
                     <p>絞り込みは「OR検索」となり、条件に合う項目が一つでもあれば表示の対象となります。</p>
-                    <p>正常な方法で絞り込みを行った際、「絞り込みの結果、該当するステージは発見できませんでした。」と表示させることがありますが、これはAPIの呼び出しに時間がかかるため発生しており不具合ではありません。<br>もし、絞り込み後も同じ表示が発生する場合はフィルターをリセットするか更新してください。</p>    
                 </div>
 
             </div>
@@ -177,6 +185,22 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- ヒント用 -->
+    <div class="overlay" id="overlay" onclick="hidePopup()"></div>
+    <div class="popup" id="popup">
+        <div class="popup-content hide" id="popupContent">
+            <div class="header">
+                <h4 id="header">クイックマニュアル</h4>
+            </div>
+            <div class="popcon">
+                <h3></h3>
+            </div>
+            <div class="popup-buttons">
+                <button id="cancelButton">閉じる</button>
+            </div>
+        </div>
+    </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -364,6 +388,45 @@
                 }, 200);
             });
         });
+    </script>
+    <script>
+        const filterButton = document.getElementById('filterButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const popup = document.getElementById('popup');
+        const popupContent = document.getElementById('popupContent');
+    
+        // ポップアップを表示する関数
+        filterButton.addEventListener('click', function() {
+            popup.classList.add('show');
+            popupContent.style.animation = 'expand 0.2s forwards';
+            saveInitialCheckboxStates(); // Save initial states
+        });
+    
+        // ポップアップを閉じる関数
+        cancelButton.addEventListener('click', function() {
+            popupContent.style.animation = 'shrink 0.2s forwards';
+            setTimeout(() => {
+                popup.classList.remove('show');
+                restoreInitialCheckboxStates(); // Restore initial states
+            }, 200);
+        });
+    
+        // オーバーレイをクリックしてポップアップを閉じる関数
+        function hidePopup() {
+            popupContent.style.animation = 'shrink 0.2s forwards';
+            setTimeout(() => {
+                popup.classList.remove('show');
+                restoreInitialCheckboxStates(); // Restore initial states
+            }, 200);
+        }
+    
+        function saveInitialCheckboxStates() {
+            // チェックボックスの初期状態を保存する関数
+        }
+    
+        function restoreInitialCheckboxStates() {
+            // チェックボックスの初期状態を復元する関数
+        }
     </script>
     
     
