@@ -161,10 +161,10 @@
                 <div>
                     <h3>低確率排出アイテムの除外</h3>
                     <label><input type="checkbox" id="exclude-low-prob"> 除外</label>
-                </div>
+                </div><hr>
                 <div class="popchu">
                     <p>絞り込みは「OR検索」となり、条件に合う項目が一つでもあれば表示の対象となります。</p>
-                    <p>JSONファイルを読み込むまでに時間がかかる場合、正常な絞り込みを行った後「絞り込みの結果、該当する楽曲は発見できませんでした。」と表示させることがありますが、これは不具合ではありません。</p>    
+                    <p>正常な方法で絞り込みを行った際、「絞り込みの結果、該当するステージは発見できませんでした。」と表示させることがありますが、これはAPIの呼び出しに時間がかかるため発生しており不具合ではありません。<br>もし、絞り込み後も同じ表示が発生する場合はフィルターをリセットするか更新してください。</p>    
                 </div>
 
             </div>
@@ -264,7 +264,7 @@
     
                     const keys = ['book', 'piece', 'charm'];
                     if (!excludeLowProbCheckbox.checked) {
-                        keys.push('u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9');
+                        keys.push('u1', 'u2', 'u3', 'u4', 'u5', 'u6', 'u7', 'u8', 'u9', 'u10', 'u11', 'u12');
                     }
     
                     let matchesItem = false;
@@ -315,7 +315,7 @@
                 });
     
                 if (!hasContent) {
-                    contentArea.innerHTML = '<p class="err">絞り込みの結果、該当する楽曲は発見できませんでした。</p>';
+                    contentArea.innerHTML = '<p class="err">絞り込みの結果、該当するステージは発見できませんでした。</p>';
                 }
             }
     
