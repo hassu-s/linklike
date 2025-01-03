@@ -3,14 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <link rel="stylesheet" href="/css/all1.css">
+    <title>Iframe Popup</title>
+    <style>
+        /* ポップアップ全体 */
+        #videoPopup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ポップアップの中身 */
+        #videoPopup .popupContent {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* ポップアップ内のiframe */
+        #popupIframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        /* 閉じるボタン */
+        #closePopup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* クリック領域をカバーする透明なレイヤー */
+        .iframeWrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .iframeOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            cursor: pointer;
+            z-index: 1000;
+        }
+    </style>
 </head>
 <body>
+    <div id="content-area">
+        <!-- iframeの例 -->
+        <div class="iframeWrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            <div class="iframeOverlay"></div>
+        </div>
+    </div>
 
-    <!-- Google Custom Search Engine -->
-    <script async src="https://cse.google.com/cse.js?cx=72025cd2250bc4c7d"></script>
-    <div class="gcse-search"></div>
+    <!-- ポップアップ -->
+    <div id="videoPopup">
+        <div class="popupContent">
+            <iframe id="popupIframe" allowfullscreen></iframe>
+            <button id="closePopup">&times;</button>
+        </div>
+    </div>
 
-</body>
-</html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const videoPopup = document.getElementById('videoPopup');    // ポップアップ全体
+            const popupIframe = document.getElementById('popupIframe'); // ポップアップ内のiframe
+            const closePopup = document.getElementById('closePopup');   // ポップアップを閉じるボタン
+
+            // すべてのクリック領域を設定
+            const overlays = document.querySelectorAll('.iframeOverlay');
+          

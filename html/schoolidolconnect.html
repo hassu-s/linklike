@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>実装準備中</title>
-    <link href="../css/all1.css" rel="stylesheet" type="text/css">
-    <link href="../css/message.css" rel="stylesheet" type="text/css">
+
+    <title>スクコネ</title>
+
     <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
-    <script src="../javascript/maintenance.js"></script>
-    <script src="../javascript/IE.js"></script>
     <script src="../javascript/rule.js"></script>
+    <script src="../javascript/maintenance.js"></script>
+    <script src="../javascript/launcher.js"></script>
+    <script src="../javascript/info.js"></script>
+    <script src="../javascript/loading.js"></script>
+    <script src="../javascript/effect.js"></script>
+    <script src="../javascript/click.js"></script>
+
     <!-- Googleサービスへ通知する内容はじめ -->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -32,28 +37,368 @@
         gtag('config', 'G-B7JH1PTJVC');
     </script>
     <!-- Googleサービスへ通知する内容おわり -->
+
+    <link rel="stylesheet" href="../css/all1.css">
+    <link rel="stylesheet" href="../css/filter-pop.css">
     <style>
-        #button-content {
-            padding-top: 22px;
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .filterbtntop {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        .hint {
+            position: fixed;
+            top: 10px;
+            right: 65px;
+            z-index: 1000;
+        }
+
+
+        #ai {
+            background: linear-gradient(to right, #65defc, #938aff);
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+        }
+        #ai button {
+            width: 50px;
+            padding: 0;
+            box-shadow: none;
+            background: none;
+            border: 1px solid #fff;
+        }
+        #hed {
+            font-size: 20px;
+            color: #fff;
+            margin-left: 10px;
+        }
+        #ai img {
+            width: 40px;
+            margin: 0;
+            margin-top: 7px;
+        }
+        h3 {
+            text-align: left;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .err {
+            font-weight: 700;
+            color: #b30000;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+            border-radius: 5px;
+            padding: 25px;
+            width: 100%;
+        }
+        .popchu p {
+            font-size: 12px;
+        }
+        .popcon li {
+            font-size: 13px;
+        }
+        .rd {
+            margin-bottom: -3px;
+        }
+        .ll {
+            margin-top: -23px;
         }
     </style>
+    <style>
+        .allc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            
+        }
+        .videoa {
+            width: 170px;
+            height: 220px;
+            background-color: #fff;
+            box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .videoa iframe {
+            width: 100%;
+            height: 120px;
+            border: none;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .videoa p {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 0;
+            padding: 5px;
+        }
+        .times {
+
+            margin-left: 5px;
+            font-size: 13px;
+        }
+
+    </style>
 </head>
-    <body>
-        <div class="container">
+<body>
+    <div id="ai">
+        <h1 id="hed">スクコネフィルタ</h1>
+        <button id="filterButton" class="hint"><img src="../image/button/hint.png" alt=""></button>
+        <button id="filter-button" class="filterbtntop"><img src="../image/button/filterdata.png" alt=""></button>
+    </div>
+    <div id="content-area" class="allc"></div>
+
+    <!-- ポップアップ要素 -->
+    <div class="popup" id="itemfilter">
+        <div class="popup-content hide">
             <div class="header">
-                <h4 id="header">お知らせ</h4s>
+                <h4 id="header">フィルタ</h4>
             </div>
-            <div class="content">
-                <div class="mbg">
-                <h1>実装準備中</h1>
-                <h4>お探しのページは開発中です</h4>
-                <p>申し訳ございません。お探しのページは実装に向け開発を行っております。<br>リリース情報は下記のボタンからご確認いただくか、ニュースをご確認ください。</p>
+            <div id="filters">
+                <div class="fil">
+                <div id="ud">
+                    <h3>日付昇降順</h3>
+                    <label><input type="radio" class="rd" name="time" value="asc"> 昇順</label><br>
+                    <label class="ll"><input type="radio" class="rd" name="time" value="desc" checked> 降順（デフォルト）</label>
+                </div>                    
+                <div>
+                    <h3>学期絞り込み</h3>
+                    <label><input type="checkbox" name="period" value="103"> 103期</label>
+                    <label><input type="checkbox" name="period" value="104"> 104期</label>
                 </div>
-                <div id="button-content">
-                    <a href="/linklike/html/home"><button>ホームへ戻る</button></a>
-                    <a href="/linklike/developer/release-schedule.html"><button>開発情報</button></a>
+                <div>
+                    <h3>種類</h3>
+                    <label><input type="checkbox" name="type" value="wm"> With×MEETS</label>
+                    <label><input type="checkbox" name="type" value="fl"> Fes×LIVE</label>
+                </div>
+                <div>
+                    <h3>配信出演</h3>
+                    <label><input type="checkbox" name="cast" value="mg"> 吟子</label>
+                    <label><input type="checkbox" name="cast" value="kk"> 小鈴</label>
+                    <label><input type="checkbox" name="cast" value="ah"> 姫芽</label>
+                    <label><input type="checkbox" name="cast" value="hk"> 花帆</label>
+                    <label><input type="checkbox" name="cast" value="ms"> さやか</label>
+                    <label><input type="checkbox" name="cast" value="or"> 瑠璃乃</label>
+                    <label><input type="checkbox" name="cast" value="ok"> 梢</label>
+                    <label><input type="checkbox" name="cast" value="yt"> 綴理</label>
+                    <label><input type="checkbox" name="cast" value="fm"> 慈</label>
+                </div>
+
+
+            </div>
+            </div>
+            <div class="ppup">
+                <div class="popup-buttons">
+                    <button id="cancel-button">キャンセル</button>
+                    <button id="reset-button">リセット</button>
+                    <button id="ok-button">OK</button>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+    <!-- ヒント用 -->
+    <div class="overlay" id="overlay" onclick="hidePopup()"></div>
+    <div class="popup" id="popup">
+        <div class="popup-content hide" id="popupContent">
+            <div class="header">
+                <h4 id="header">クイックマニュアル</h4>
+            </div>
+            <div class="popcon">
+                <h3>フィルタの使い方</h3>
+            <div class="popup-buttons">
+                <button id="cancelButton">閉じる</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const filterButton = document.getElementById('filter-button');
+            const popup = document.getElementById('itemfilter');
+            const popupContent = document.querySelector('.popup-content');
+            const cancelButton = document.getElementById('cancel-button');
+            const resetButton = document.getElementById('reset-button');
+            const okButton = document.getElementById('ok-button');
+            const contentArea = document.getElementById('content-area');
+    
+            let jsonData = [];
+            const JSON_URL = 'https://script.google.com/macros/s/AKfycbzAJgqFCIpgyTTpPHirhHCuc8LX2Sfh-0Xnhcs70Je6TIij9PWYisw02ylomV6Y578K/exec';
+    
+            let initialStates = {
+                sort: 'desc',
+                checkboxes: {},
+            };
+    
+            function saveInitialStates() {
+                initialStates.sort = document.querySelector('input[name="time"]:checked').value;
+                document.querySelectorAll('#filters input[type="checkbox"]').forEach(cb => {
+                    initialStates.checkboxes[cb.name + '_' + cb.value] = cb.checked;
+                });
+            }
+    
+            function restoreInitialStates() {
+                document.querySelectorAll('input[name="time"]').forEach(radio => {
+                    radio.checked = radio.value === initialStates.sort;
+                });
+                document.querySelectorAll('#filters input[type="checkbox"]').forEach(cb => {
+                    cb.checked = initialStates.checkboxes[cb.name + '_' + cb.value] || false;
+                });
+            }
+    
+            function resetRadioButtons() {
+                const defaultRadio = document.querySelector('input[name="time"][checked]');
+                if (defaultRadio) {
+                    defaultRadio.checked = true;
+                }
+            }
+    
+            function convertToJapanTime(isoString) {
+                const date = new Date(isoString);
+                return `${date.getFullYear()}/${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + date.getDate()).slice(-2)}`;
+            }
+    
+            function convertToEmbedLink(url) {
+                return url.replace("watch?v=", "embed/");
+            }
+    
+            function renderContent() {
+                contentArea.innerHTML = '';
+    
+                jsonData.forEach(item => {
+                    contentArea.innerHTML += `
+                        <div class="videoa">
+                            <iframe src="${convertToEmbedLink(item.link)}" frameborder="0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <span class="times">${convertToJapanTime(item.stream)}</span>
+                            <p>${item.title}</p>
+                        </div>
+                    `;
+                });
+            }
+    
+            function applyFilters() {
+                const periodFilters = Array.from(document.querySelectorAll('input[name="period"]:checked')).map(cb => cb.value);
+                const typeFilters = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(cb => cb.value);
+                const castFilters = Array.from(document.querySelectorAll('input[name="cast"]:checked')).map(cb => cb.value);
+                const sortFilter = document.querySelector('input[name="time"]:checked').value;
+    
+                const filteredData = jsonData.filter(item => {
+                    const matchesPeriod = periodFilters.length === 0 || periodFilters.includes(String(item.period));
+                    const matchesType = typeFilters.length === 0 || typeFilters.includes(item.type);
+                    const matchesCast = castFilters.length === 0 || castFilters.every(cf => item.cast.split('.').includes(cf));
+                    return matchesPeriod && matchesType && matchesCast;
+                });
+    
+                if (sortFilter === 'asc') {
+                    filteredData.sort((a, b) => new Date(a.stream) - new Date(b.stream));
+                } else if (sortFilter === 'desc') {
+                    filteredData.sort((a, b) => new Date(b.stream) - new Date(a.stream));
+                }
+    
+                contentArea.innerHTML = '';
+    
+                if (filteredData.length === 0) {
+                    contentArea.innerHTML = '<p class="err">絞り込みの結果、該当するステージは発見できませんでした。</p>';
+                } else {
+                    filteredData.forEach(item => {
+                        contentArea.innerHTML += `
+                            <div class="videoa">
+                                <iframe src="${convertToEmbedLink(item.link)}" frameborder="0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <span class="times">${convertToJapanTime(item.stream)}</span>
+                                <p>${item.title}</p>
+                            </div>
+                        `;
+                    });
+                }
+            }
+    
+            fetch(JSON_URL)
+                .then(response => response.json())
+                .then(data => {
+                    jsonData = data.reverse();
+                    applyFilters();
+                })
+                .catch(error => console.error('Error fetching JSON data:', error));
+    
+            filterButton.addEventListener('click', function() {
+                popup.classList.add('show');
+                popupContent.style.animation = 'expand 0.2s forwards';
+                saveInitialStates();
+            });
+    
+            cancelButton.addEventListener('click', function() {
+                popupContent.style.animation = 'shrink 0.2s forwards';
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    restoreInitialStates();
+                }, 200);
+            });
+    
+            resetButton.addEventListener('click', function() {
+                document.querySelectorAll('#filters input[type="checkbox"]').forEach(cb => {
+                    cb.checked = false;
+                });
+                resetRadioButtons();
+            });
+    
+            okButton.addEventListener('click', function() {
+                popupContent.style.animation = 'shrink 0.2s forwards';
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                    applyFilters();
+                }, 200);
+            });
+        });
+    </script>
+    
+    <script>
+        const filterButton = document.getElementById('filterButton');
+        const cancelButton = document.getElementById('cancelButton');
+        const popup = document.getElementById('popup');
+        const popupContent = document.getElementById('popupContent');
+    
+        // ポップアップを表示する関数
+        filterButton.addEventListener('click', function() {
+            popup.classList.add('show');
+            popupContent.style.animation = 'expand 0.2s forwards';
+            saveInitialCheckboxStates(); // Save initial states
+        });
+    
+        // ポップアップを閉じる関数
+        cancelButton.addEventListener('click', function() {
+            popupContent.style.animation = 'shrink 0.2s forwards';
+            setTimeout(() => {
+                popup.classList.remove('show');
+                restoreInitialCheckboxStates(); // Restore initial states
+            }, 200);
+        });
+    
+        // オーバーレイをクリックしてポップアップを閉じる関数
+        function hidePopup() {
+            popupContent.style.animation = 'shrink 0.2s forwards';
+            setTimeout(() => {
+                popup.classList.remove('show');
+                restoreInitialCheckboxStates(); // Restore initial states
+            }, 200);
+        }
+    
+        function saveInitialCheckboxStates() {
+            // チェックボックスの初期状態を保存する関数
+        }
+    
+        function restoreInitialCheckboxStates() {
+            // チェックボックスの初期状態を復元する関数
+        }
+    </script>
+    
+    
+</body>
 </html>

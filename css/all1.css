@@ -185,7 +185,7 @@ select option:hover {
 
 /* チェックボタン */
 /* チェックボックスのスタイル */
-input[type="checkbox"] {
+input[type="checkbox"] , input[type="radio"] {
     background: #9f9f9f;
     appearance: none;
     width: 20px;
@@ -198,13 +198,13 @@ input[type="checkbox"] {
 }
   
 /* チェックボックスがチェックされたときのスタイル */
-input[type="checkbox"]:checked {
+input[type="checkbox"]:checked , input[type="radio"]:checked {
     background: linear-gradient(to right, #65defc, #938aff);
     border: 0px solid #ffffff;
 }
   
 /* チェックマークのスタイル */
-input[type="checkbox"]:checked::after {
+input[type="checkbox"]:checked::after , input[type="radio"]:checked::after {
     content: '';
     position: absolute;
     top: 50%;

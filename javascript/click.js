@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <li><img id="imgcl" src="/linklike/image/button/titles.png"><a id="linkcl" href="/linklike/">ログイン画面</a></li>
             <li><img id="imgcl" src="/linklike/image/button/contact.png"><a id="linkcl" href="/linklike/html/contact">お問い合わせ</a></li>
             <li><img id="imgcl" src="/linklike/image/button/calendar.png"><a id="linkcl" href="/linklike/404">カレンダー</a></li>
-            <li><img id="imgcl" src="/linklike/image/button/archive.png"><a id="linkcl" href="/linklike/404">アーカイブ</a></li>
+            <li><img id="imgcl" src="/linklike/image/button/archive.png"><a id="linkcl" href="/linklike/html/archive">アーカイブ</a></li>
             <li><img id="imgcl" src="/linklike/image/button/smap.png"><a id="linkcl" href="/linklike/404">サイトマップ</a></li>
 
         </ul>
