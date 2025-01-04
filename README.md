@@ -9,14 +9,19 @@
 ※βバージョンとして、1.0.0未満の数値でバージョンアップしています
 
 ## 正式版リリースの予定
-正式版（Ver:1.0.0）のリリースは2024年12月1日の15時を予定しております。  
+正式版（Ver:1.0.0）のリリースは2025年1月7日の23時を予定しております。  
 正式版では、リンクラアイテムフィルターをリリース予定です。
 
 ## 今後のアップデート予定  
 未定
 
-## サイトリンク
+### サイトリンク
 https://hassu-s.github.io/linklike/
 
+### お問い合わせ方法
+［サイトについて］https://hassu-s.github.io/linklike/html/contact  
+［コードについて］Coming Soon...  
+［開発者X(DM開放)］https://x.com/biju_mama  
+［メールから問い合わせ］mailto:hassus.linklikelovelive+user@gmail.com
 ## ライセンス情報
 ©はっすーず
