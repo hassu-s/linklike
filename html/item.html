@@ -105,6 +105,35 @@
         .popcon li {
             font-size: 13px;
         }
+
+        .ulall li {
+            margin-bottom: 5px;            
+        }
+
+        .infopop {
+            background-color: #009c08;
+            color: #fff;
+            font-weight: 900;
+            margin-right: 5px;
+            border-radius: 50px;
+            padding: 0 10px;
+        }
+        .searchpop {
+            background-color: #a19900;
+            color: #fff;
+            font-weight: 900;
+            margin-right: 5px;
+            border-radius: 50px;
+            padding: 0 10px;
+        }
+        .bugpop {
+            background-color: #404040;
+            color: #fff;
+            font-weight: 900;
+            margin-right: 5px;
+            border-radius: 50px;
+            padding: 0 10px;
+        }
     </style>
 
 </head>
@@ -197,13 +226,14 @@
                 <h4 id="header">クイックマニュアル</h4>
             </div>
             <div class="popcon">
-                <h3>フィルタの使い方</h3>
-                <ul>
-                    <li style="color: #b30000; font-weight: 900;">絞り込みを実行する際、まずコンテンツがすべて表示されるまで絞り込みをお待ちください</li>
-                    <li style="color: #b30000; font-weight: 900;">Firefox系列のウェブブラウザで、絞り込みをしたまま更新するとフィルタが作動した状態になるが、絞り込みは実行されない不具合が発生しています</li>
-                    <li>フィルタのアイテム詳細絞り込みは一つでも含まれている場合、該当するものすべてが選択されるOR検索を採用しています</li>
+                <h3>フィルタについて</h3>
+                <ul class="ulall">
+                    <li><span class="infopop">お知らせ</span>絞り込みを実行する際、まずコンテンツがすべて表示されるまで絞り込みをお待ちください</li>
+                    <li><span class="bugpop">不具合</span>Firefox系列のウェブブラウザで、絞り込みをしたまま更新するとフィルタが作動した状態になるが、絞り込みは実行されない不具合が発生しています。今後修正予定です</li>
+                    <li><span class="searchpop">検索方法</span>フィルタのアイテム詳細絞り込みは一つでも含まれている場合、該当するものすべてが選択されるOR検索を採用しています</li>
                 </ul>
                 <hr>
+                <h3>フィルタの使い方</h3>
                 <img src="../image/hint/f1.PNG">
                 <img src="../image/hint/f2.PNG">
             </div>

@@ -153,7 +153,34 @@
             margin-left: 5px;
             font-size: 13px;
         }
+        .ulall li {
+            margin-bottom: 5px;            
+        }
 
+        .infopop {
+            background-color: #009c08;
+            color: #fff;
+            font-weight: 900;
+            margin-right: 5px;
+            border-radius: 50px;
+            padding: 0 10px;
+        }
+        .searchpop {
+            background-color: #a19900;
+            color: #fff;
+            font-weight: 900;
+            margin-right: 5px;
+            border-radius: 50px;
+            padding: 0 10px;
+        }
+        .updatepop {
+            background-color: #0046a1;
+            color: #fff;
+            font-weight: 900;
+            margin-right: 5px;
+            border-radius: 50px;
+            padding: 0 10px;
+        }
     </style>
 </head>
 <body>
@@ -220,7 +247,15 @@
                 <h4 id="header">クイックマニュアル</h4>
             </div>
             <div class="popcon">
+                <h3>フィルタについて</h3>
+                <ul class="ulall">
+                    <li><span class="infopop">お知らせ</span>アイテムフィルタと異なり、コンテンツ読み込み前にフィルタを実行しても問題ありません</li>
+                    <li><span class="infopop">お知らせ</span>アイテムフィルタと異なり、入力状態でページを開いても問題ありません</li>
+                    <li><span class="searchpop">検索方法</span>フィルタのアイテム詳細絞り込みは一つでも含まれている場合、該当するものすべてが選択されるAND検索を採用しています</li>
+                    <li><span class="updatepop">更新予定</span>今後のアップデートで、動画タイトルを検索できるアップデートを予定しています</li>
+                </ul><hr>
                 <h3>フィルタの使い方</h3>
+            </div>
             <div class="popup-buttons">
                 <button id="cancelButton">閉じる</button>
             </div>
