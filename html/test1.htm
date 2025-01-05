@@ -1,35 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        #text {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: #ffffffc4;
-            padding: 10px;
-            margin: 10px;
-            border: 1px solid #73a1ff;
-            border-radius: 5px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        span {
+            font-size: 13px;
         }
-        /* Show the text element with animation when the parent is hovered */
-        #parent:hover #text {
-            opacity: 1;
-            visibility: visible;
+
+        input[type="url"], input[type="email"], input[type="text"], select, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        input, select, textarea {
+            padding: 10px;
         }
     </style>
 </head>
 <body>
+    <h3>開発お問い合わせ</h3>
+    <form id="my-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdLYZR3PdMZqovRU5aEAn_Fymfmt2xajWUL2MV3Ip5XQXOaQQ/formResponse">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" name="entry.1651412775" required><br><br>
 
-<div id="parent">
-    Hover over me!
-    <div id="text">
-        This is some text.
-    </div>
-</div>
+        <label for="name">お名前</label>
+        <input type="text" id="name" name="entry.1263611254"><br><br>
 
+        <label for="site">サイト選択</label>
+        <select id="site" name="entry.1936128801">
+            <option value="" disabled selected>選択してください</option>
+            <option value="はっすーずリンクラ攻略部">はっすーずリンクラ攻略部</option>
+        </select><br><br>
+
+        <label for="category">お問い合わせ種別</label>
+        <select name="entry.507498580" id="category" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="コードの不具合の報告">コードの不具合の報告</option>
+            <option value="コードの懸念点">コードの懸念点</option>
+            <option value="コードの不具合の修正点">コードの不具合の修正点</option>
+            <option value="法的な懸念点">法的な懸念点</option>
+        </select><br><br>
+
+        <label for="url">該当するページのURL</label>
+        <input type="url" id="url" name="entry.1265558158" placeholder="https://github.com/linklike" required><br>
+        <span>※該当するURLは、はっすーずリンクラ攻略部のサイトURLでも、GitHubのコードのURLでも構いません</span>
+        <br><br>
+
+        <label for="content">お問い合わせ内容</label>
+        <textarea id="content" name="entry.839522154" style="height: 100px;" placeholder="3行目の部分を修正すればよい" required></textarea>
+        <br><br>
+
+        <label for="ua">ユーザーエージェント</label>
+        <textarea id="ua" name="entry.1229283587" style="height: 70px;" required readonly></textarea>
+        <br><br>
+
+        <label>プライバシーポリシーに同意</label><br>
+        <input type="radio" name="entry.425918425" value="同意" required>プライバシーポリシーに同意
+        <br><br>
+        <button type="submit" disabled>送信</button>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton = document.querySelector('button[type="submit"]');
+            const form = document.getElementById('my-form');
+
+            // フォームを検証
+            form.addEventListener('input', () => {
+                const isValid = form.checkValidity();
+                submitButton.disabled = !isValid;
+            });
+
+            // URLパラメータからフォームフィールドを事前入力
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.forEach((value, key) => {
+                const inputField = document.querySelector(`[name="${key}"]`);
+                if (inputField) {
+                    inputField.value = value;
+                }
+            });
+
+            // フォーム送信後にリダイレクト
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const formData = new FormData(form);
+                const queryString = new URLSearchParams(formData).toString();
+                const actionUrl = form.action + '?' + queryString;
+                fetch(actionUrl, {
+                    method: 'POST',
+                    mode: 'no-cors'
+                }).then(() => {
+                    window.location.href = '../html/thanks';
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        var userAgentTextArea = document.getElementById('ua');
+        if (userAgentTextArea) {
+            userAgentTextArea.value = navigator.userAgent;
+        }
+    });
+
+    </script>
 </body>
 </html>
