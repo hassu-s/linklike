@@ -20,7 +20,7 @@ https://hassu-s.github.io/linklike/
 
 ### お問い合わせ方法
 ［サイトについて］https://hassu-s.github.io/linklike/html/contact  
-［コードについて］Coming Soon...  
+［コードについて］https://hassu-s.github.io/linklike/developer/dc?entry.1936128801=はっすーずリンクラ攻略部  
 ［開発者X(DM開放)］https://x.com/biju_mama  
 ［メールから問い合わせ］mailto:hassus.linklikelovelive+user@gmail.com
 ## ライセンス情報
