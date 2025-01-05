@@ -4,6 +4,19 @@
     outline: none;
 }
 
+body {
+    -webkit-overflow-scrolling: touch;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
 button {
     width: 30px;
     height: 30px;
