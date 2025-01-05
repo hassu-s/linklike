@@ -5,8 +5,19 @@
   <title>カスタムテキストエディタ</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+  <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
+  <script src="../javascript/maintenance.js"></script>
+  <script src="../javascript/launcher.js"></script>
+  <script src="../javascript/info.js"></script>
+  <script src="../javascript/loading.js"></script>
+  <script src="../javascript/effect.js"></script>
+  <script src="../javascript/click.js"></script>
+  
   <link rel="stylesheet" href="../css/dev.css">
+
+  <script>
+
+  </script>
   <style>
 
     .editor {
@@ -19,8 +30,8 @@
       height: 300px;
       border: 1px solid #000;
       padding: 10px;
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
       box-sizing: border-box;
       font-size: 15px;
       overflow-y: scroll;
@@ -50,6 +61,11 @@
   </style>
 </head>
 <body>
+
+  <form id="textEditorForm" onsubmit="return submitForm(event)" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSexEpwsRoHPEnM5t_4epB4YmMreTHsczGe-ky-Q1M7tkhrisw/formResponse" method="POST">
+
+  <div contenteditable="true" id="textc" class="visible-editor"></div>
+  <textarea class="editor" required id="hiddenEditor" name="entry.1846154297"></textarea>
   <div class="toolbar">
     <button onclick="execCmd('bold')"><img src="../image/dev/bo.png" title="太字"></button>
     <button onclick="execCmd('italic')"><img src="../image/dev/it.png" title="斜体"></button>
@@ -62,13 +78,12 @@
     <button onclick="execCmd('insertUnorderedList')"><img src="../image/dev/ls.png" title="箇条書き"></button>
     <button onclick="clearFormatting()"><img src="../image/dev/cl.png" title="リセット"></button>
   </div>
-  <form id="textEditorForm" onsubmit="return submitForm(event)" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSexEpwsRoHPEnM5t_4epB4YmMreTHsczGe-ky-Q1M7tkhrisw/formResponse" method="POST">
 
-  <div contenteditable="true" class="visible-editor"></div>
-  <textarea class="editor" required id="hiddenEditor" name="entry.1846154297"></textarea>
-  
+
+
     <button type="submit">送信</button>
   </form>
+
   
   <!-- ハイライト用ポップアップ -->
   <div id="highlightPopup" class="popup">

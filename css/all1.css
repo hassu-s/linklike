@@ -11,6 +11,11 @@
     -webkit-focus-ring-color: #ffffff00;
     outline: none;
     word-break: break-all;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* 近代ブラウザ */
 }
 
 body {
