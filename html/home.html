@@ -15,6 +15,8 @@
     <script src="../javascript/effect.js"></script>
     <script src="../javascript/click.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.min.css">
+
 
     <!-- Googleサービスへ通知する内容はじめ -->
     <!-- Google Tag Manager -->
@@ -40,15 +42,23 @@
     <!-- Googleサービスへ通知する内容おわり -->
      <style>
         .a1 {
-            width: 100%;
-            height: 320px;
+            height: auto;
             position: absolute;
             left: 0;
+            right: 0;
+            top: 0;
+            padding: 10px;
+
         }
         .all {
             width: 100%;
             display: flex;
-            margin-top: 320px;
+            margin-top: 220px;
+        }
+        @media screen and (max-width: 500px) {
+            .all {
+                margin-top: 160px;
+            }
         }
         .migi {
             height: auto;
@@ -103,6 +113,8 @@
             padding: 15px;
             box-shadow: 0px 0px 2px 0px rgba(100, 100, 100);
             border-radius: 5px;
+            margin: 0;
+            margin-bottom: 10px;
         }
         .hida h3 {
             font-weight: 700;
@@ -142,17 +154,8 @@
             margin: 0;
             box-sizing: border-box;
             border-radius: 5px;
+            margin-bottom: 15px;
         }
-        .inhtml1 {
-            display: flex;
-            width: 100%;
-            height: 330px;
-            border: none;
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
-
         .a2 a {
             position: relative;
         }
@@ -179,12 +182,57 @@
         .a2 a:hover {
             color: #73a1ff;
         }
+     </style>
+     <style>
+        .flickity-viewport {
+            border-radius: 5px;
+        }
+        .carousel-cell-fty {
+            width: 450px;
+            height: 180px;
+            background-size: cover;
+            border-radius: 5px;
+            display: flex;
+            margin-left: 5px;
+            margin-right: 5px;
+            padding: 0;
+        }
+        @media screen and (max-width: 500px) {
+            .carousel-cell-fty {
+                width: 290px;
+                height: 116px;
+            }
+        }
 
+        .carousel-fty {
+            background-color: #ffffff00;
+
+        }
+        .carousel-fty button {
+            background: linear-gradient(to right, #65defc, #938aff);
+
+        }
+        .carousel-fty button:hover {
+            background: linear-gradient(to right, #65defc, #938aff);
+        }
+        .flickity-button-icon {
+            fill: #fff;
+        }
+        .flickity-prev-next-button {
+            transform: none;
+            margin-top: -23px;
+        }
      </style>
 </head>
 <body>
     <div class="a1">
-        <iframe class="inhtml1" src="../inhtml/topslide.html" frameborder="0"></iframe>
+        <div class="carousel-fty" data-flickity='{ "autoPlay": 5000, "wrapAround": true }'>
+            <div class="carousel-cell-fty" style="background-image: url('../image/info/お知らせ.png');"></div>
+            <div class="carousel-cell-fty" style="background-image: url('../image/info/アップデート.png');"></div>
+            <div class="carousel-cell-fty" style="background-image: url('../image/info/アンケート.png');"></div>
+        </div>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/2.2.2/flickity.pkgd.min.js"></script>
     </div>
     <div class="all">
         <div class="migi">
