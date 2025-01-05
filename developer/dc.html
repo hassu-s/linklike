@@ -3,8 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>開発お問い合わせ</title>
+    <link rel="stylesheet" href="../css/all1.css">
+    <link href="../favicon/HASU.png" rel="shortcut icon" type="image/x-icon">
+    <script src="../javascript/rule.js"></script>
+    <script src="../javascript/maintenance.js"></script>
+    <script src="../javascript/launcher.js"></script>
+    <script src="../javascript/info.js"></script>
+    <script src="../javascript/loading.js"></script>
+    <script src="../javascript/effect.js"></script>
+    <script src="../javascript/click.js"></script>
+
+    <!-- Googleサービスへ通知する内容はじめ -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-K43XP4KG');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K43XP4KG"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7JH1PTJVC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-B7JH1PTJVC');
+    </script>
+    <!-- Googleサービスへ通知する内容おわり -->
+
     <style>
+        h3 {
+            font-weight: 900;
+        }
         span {
             font-size: 13px;
         }
@@ -12,10 +48,12 @@
         input[type="url"], input[type="email"], input[type="text"], select, textarea {
             width: 100%;
             box-sizing: border-box;
-            resize: vertical;
         }
         input, select, textarea {
             padding: 10px;
+        }
+        textarea {
+            resize: vertical;
         }
     </style>
 </head>
@@ -53,11 +91,14 @@
         <br><br>
 
         <label for="ua">ユーザーエージェント</label>
-        <textarea id="ua" name="entry.1229283587" style="height: 70px;" required readonly></textarea>
+        <textarea id="ua" name="entry.1229283587" style="height: 100px;" required readonly></textarea>
         <br><br>
 
         <label>プライバシーポリシーに同意</label><br>
-        <input type="radio" name="entry.425918425" value="同意" required>プライバシーポリシーに同意
+        <input type="radio" name="entry.425918425" value="同意" required>
+        <span>プライバシーポリシーに同意</span><br>
+        <a class="link" href="../inhtml/privacy.html">プライバシーポリシー</a>
+
         <br><br>
         <button type="submit" disabled>送信</button>
     </form>

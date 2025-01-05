@@ -58,6 +58,7 @@
             z-index: 1000;
         }
 
+
         #ai {
             background: linear-gradient(to right, #65defc, #938aff);
             width: 100%;
@@ -141,7 +142,6 @@
         <h1 id="hed">アイテムフィルタ</h1>
         <button id="filterButton" class="hint"><img src="../image/button/hint.png" alt=""></button>
         <button id="filter-button" class="filterbtntop"><img src="../image/button/filterdata.png" alt=""></button>
-
     </div>
     <div id="content-area"></div>
 
@@ -223,26 +223,19 @@
     <div class="popup" id="popup">
         <div class="popup-content hide" id="popupContent">
             <div class="header">
-                <h4 id="header">フォーラム投稿</h4>
+                <h4 id="header">クイックマニュアル</h4>
             </div>
             <div class="popcon">
                 <h3>フィルタについて</h3>
-            </div>
-            <div class="popup-buttons">
-                <button id="cancelButton">閉じる</button>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="overlay" id="overlay" onclick="hidePopup()"></div>
-    <div class="popup" id="popup">
-        <div class="popup-content hide" id="popupContent">
-            <div class="header">
-                <h4 id="header">フォーラム投稿</h4>
-            </div>
-            <div class="popcon">
-                <h3>フォーラムについて</h3>
+                <ul class="ulall">
+                    <li><span class="infopop">お知らせ</span>絞り込みを実行する際、まずコンテンツがすべて表示されるまで絞り込みをお待ちください</li>
+                    <li><span class="bugpop">不具合</span>Firefox系列のウェブブラウザで、絞り込みをしたまま更新するとフィルタが作動した状態になるが、絞り込みは実行されない不具合が発生しています。今後修正予定です</li>
+                    <li><span class="searchpop">検索方法</span>フィルタのアイテム詳細絞り込みは一つでも含まれている場合、該当するものすべてが選択されるOR検索を採用しています</li>
+                </ul>
+                <hr>
+                <h3>フィルタの使い方</h3>
+                <img src="../image/hint/f1.PNG">
+                <img src="../image/hint/f2.PNG">
             </div>
             <div class="popup-buttons">
                 <button id="cancelButton">閉じる</button>

@@ -130,7 +130,7 @@ h2 {
 /* inputタグの指定 */
 /* 通常のinput、textarea、selectのスタイル */
 /* 通常のinputスタイル */
-input[type="email,text,tel,password"],
+input[type="email,text,tel,password,url"],
 textarea {
     border: 1px solid #73a1ff;
     border-radius: 5px;
@@ -142,6 +142,7 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="password"],
+input[type="url"],
 textarea {
     border: 1px solid #73a1ff;
     border-radius: 5px;
@@ -156,6 +157,8 @@ input[type="tel"]:hover,
 input[type="tel"]:focus,
 input[type="password"]:hover,
 input[type="password"]:focus,
+input[type="url"]:hover,
+input[type="url"]:focus,
 textarea:hover,
 textarea:focus {
     background-color: rgba(115, 161, 255, 0.03);

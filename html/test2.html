@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カスタムテキストエディタ</title>
+  <link rel="stylesheet" href="../css/dev.css">
+  <style>
+
+    .editor {
+      width: 100%;
+      height: 300px;
+      display: none;
+    }
+    .visible-editor {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #000;
+      padding: 10px;
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border: 1px solid black;
+      z-index: 9999;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9998;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button onclick="execCmd('bold')"><img src="../image/dev/bo.png" title="太字"></button>
+    <button onclick="execCmd('italic')"><img src="../image/dev/it.png" title="斜体"></button>
+    <button onclick="execCmd('underline')"><img src="../image/dev/un.png" title="下線"></button>
+    <button onclick="execCmd('strikeThrough')"><img src="../image/dev/st.png" title="取り消し線"></button>
+    <button onclick="openPopup('highlightPopup')"><img src="../image/dev/hi.png" title="ハイライト"></button>
+    <button onclick="openPopup('colorPickerPopup')"><img src="../image/dev/co.png" title="文字色"></button>
+    <button onclick="openLinkPopup()"><img src="../image/dev/li.png" title="リンク"></button>
+    <button onclick="openPopup('tablePopup')"><img src="../image/dev/ta.png" title="テーブル"></button>
+    <button onclick="execCmd('insertUnorderedList')"><img src="../image/dev/ls.png" title="箇条書き"></button>
+    <button onclick="clearFormatting()"><img src="../image/dev/cl.png" title="リセット"></button>
+  </div>
+  <form id="textEditorForm" onsubmit="return submitForm(event)" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSexEpwsRoHPEnM5t_4epB4YmMreTHsczGe-ky-Q1M7tkhrisw/formResponse" method="POST">
+
+  <div contenteditable="true" class="visible-editor"></div>
+  <textarea class="editor" required id="hiddenEditor" name="entry.1846154297"></textarea>
+  
+    <button type="submit">送信</button>
+  </form>
+  
+  <!-- ハイライト用ポップアップ -->
+  <div id="highlightPopup" class="popup">
+    <h3>ハイライトを選択</h3>
+    <button onclick="applyHighlight('yellow')" style="background-color: yellow;"></button>
+    <button onclick="applyHighlight('green')"></button>
+    <button onclick="applyHighlight('red')"></button>
+    <button onclick="applyHighlight('blue')"></button>
+    <button onclick="applyHighlight('black')"></button>
+    <button onclick="closePopup('highlightPopup')">キャンセル</button>
+  </div>
+  
+  <!-- カラーピッカー用ポップアップ -->
+  <div id="colorPickerPopup" class="popup">
+    <h3>文字色を選択</h3>
+    <button onclick="applyColor('black')">黒</button>
+    <button onclick="applyColor('green')">緑</button>
+    <button onclick="applyColor('red')">赤</button>
+    <button onclick="applyColor('blue')">青</button>
+    <button onclick="applyColor('yellow')">黄</button>
+    <button onclick="closePopup('colorPickerPopup')">キャンセル</button>
+  </div>
+  
+  <!-- リンク挿入用ポップアップ -->
+  <div id="linkPopup" class="popup">
+    <h3>リンクを挿入</h3>
+    <input type="text" id="linkURL" placeholder="URLを入力">
+    <button onclick="insertLink()">OK</button>
+    <button onclick="closeLinkPopup()">キャンセル</button>
+  </div>
+  
+  <!-- テーブル挿入用ポップアップ -->
+  <div id="tablePopup" class="popup">
+    <h3>テーブルを挿入</h3>
+    <input type="number" id="tableRows" placeholder="行数" min="1">
+    <input type="number" id="tableCols" placeholder="列数" min="1">
+    <button onclick="insertTable()">OK</button>
+    <button onclick="closePopup('tablePopup')">キャンセル</button>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <script>
+    let editorRange = null;
+
+function execCmd(command, value = null) {
+  document.execCommand(command, false, value);
+}
+
+function openPopup(popupId) {
+  editorRange = document.getSelection().getRangeAt(0); // 現在の選択範囲を保存
+  document.getElementById(popupId).style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+
+function closePopup(popupId) {
+  document.getElementById(popupId).style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+}
+
+function applyHighlight(color) {
+  execCmd('hiliteColor', color);
+  closePopup('highlightPopup');
+}
+
+function applyColor(color) {
+  execCmd('foreColor', color);
+  closePopup('colorPickerPopup');
+}
+
+let tempLink = null;
+
+function insertLink() {
+  const url = document.getElementById('linkURL').value.trim();
+  if (url === '') {
+    closeLinkPopup();
+    return;
+  }
+  const completeURL = url.startsWith('https://') ? url : 'https://' + url;
+  if (tempLink) {
+    tempLink.setAttribute('href', completeURL);
+  }
+  document.getElementById('linkURL').value = ''; // リンク入力欄をクリア
+  closePopup('linkPopup');
+}
+
+function openLinkPopup() {
+  const selection = document.getSelection();
+  const range = selection.getRangeAt(0);
+  tempLink = document.createElement('a');
+  tempLink.href = '#';
+  range.surroundContents(tempLink);
+  openPopup('linkPopup');
+}
+
+function closeLinkPopup() {
+  if (tempLink) {
+    const parent = tempLink.parentNode;
+    while (tempLink.firstChild) {
+      parent.insertBefore(tempLink.firstChild, tempLink);
+    }
+    parent.removeChild(tempLink);
+  }
+  document.getElementById('linkURL').value = ''; // リンク入力欄をクリア
+  closePopup('linkPopup');
+}
+
+function insertTable() {
+  const rows = document.getElementById('tableRows').value;
+  const cols = document.getElementById('tableCols').value;
+  let table = '<table border="1">';
+  for (let i = 0; i < rows; i++) {
+    table += '<tr>';
+    for (let j = 0; j < cols; j++) {
+      table += '<td>&nbsp;</td>';
+    }
+    table += '</tr>';
+  }
+  table += '</table>';
+  document.getElementById('tableRows').value = ''; // テーブル行数をクリア
+  document.getElementById('tableCols').value = ''; // テーブル列数をクリア
+  
+  if (editorRange) {
+    const selection = document.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(editorRange); // エディタ内の選択範囲を復元
+    document.execCommand('insertHTML', false, table);
+  }
+  closePopup('tablePopup');
+}
+
+function clearFormatting() {
+  const editor = document.querySelector('.visible-editor');
+  editor.focus();
+  document.execCommand('selectAll', false, null);
+  document.execCommand('removeFormat', false, null); // フォーマットリセット
+  document.getSelection().removeAllRanges(); // 選択解除
+}
+
+function submitForm(event) {
+  event.preventDefault(); // 送信動作を阻止
+  const visibleEditorContent = document.querySelector('.visible-editor').innerHTML;
+  document.getElementById('hiddenEditor').value = visibleEditorContent;
+
+  const formData = new FormData(event.target);
+
+  fetch(event.target.action, {
+    method: 'POST',
+    body: formData,
+    mode: 'no-cors'
+  }).then(() => {
+    clearForm();
+  }).catch(error => console.error('送信エラー:', error));
+}
+
+function clearForm() {
+  const editor = document.querySelector('.visible-editor');
+  editor.innerHTML = '';
+  document.getElementById('hiddenEditor').value = '';
+}
+
+  </script>
+</body>
+</html>
