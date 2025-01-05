@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 * {
     font-family: 'Noto Sans JP', sans-serif;
-    outline: none;
 }
 
 body {
@@ -17,16 +16,7 @@ body {
     display: none;
 }
 
-form button {
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
-    border: 1px solid #c9c9c9;
-}
+
 .toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -35,6 +25,16 @@ form button {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 10px;
+}
+.toolbar button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid #c9c9c9;
 }
 .toolbar img {
     width: 20px;

@@ -61,26 +61,29 @@
   </style>
 </head>
 <body>
+    <div contenteditable="true" id="textc" class="visible-editor"></div>
+
+    <div class="toolbar">
+        <button onclick="execCmd('bold')"><img src="../image/dev/bo.png" title="太字"></button>
+        <button onclick="execCmd('italic')"><img src="../image/dev/it.png" title="斜体"></button>
+        <button onclick="execCmd('underline')"><img src="../image/dev/un.png" title="下線"></button>
+        <button onclick="execCmd('strikeThrough')"><img src="../image/dev/st.png" title="取り消し線"></button>
+        <button onclick="openPopup('highlightPopup')"><img src="../image/dev/hi.png" title="ハイライト"></button>
+        <button onclick="openPopup('colorPickerPopup')"><img src="../image/dev/co.png" title="文字色"></button>
+        <button onclick="openLinkPopup()"><img src="../image/dev/li.png" title="リンク"></button>
+        <button onclick="openPopup('tablePopup')"><img src="../image/dev/ta.png" title="テーブル"></button>
+        <button onclick="execCmd('insertUnorderedList')"><img src="../image/dev/ls.png" title="箇条書き"></button>
+        <button onclick="clearFormatting()"><img src="../image/dev/cl.png" title="リセット"></button>
+    </div>
+
 
   <form id="textEditorForm" onsubmit="return submitForm(event)" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSexEpwsRoHPEnM5t_4epB4YmMreTHsczGe-ky-Q1M7tkhrisw/formResponse" method="POST">
 
-  <div contenteditable="true" id="textc" class="visible-editor"></div>
-  <textarea class="editor" required id="hiddenEditor" name="entry.1846154297"></textarea>
-  <div class="toolbar">
-    <button onclick="execCmd('bold')"><img src="../image/dev/bo.png" title="太字"></button>
-    <button onclick="execCmd('italic')"><img src="../image/dev/it.png" title="斜体"></button>
-    <button onclick="execCmd('underline')"><img src="../image/dev/un.png" title="下線"></button>
-    <button onclick="execCmd('strikeThrough')"><img src="../image/dev/st.png" title="取り消し線"></button>
-    <button onclick="openPopup('highlightPopup')"><img src="../image/dev/hi.png" title="ハイライト"></button>
-    <button onclick="openPopup('colorPickerPopup')"><img src="../image/dev/co.png" title="文字色"></button>
-    <button onclick="openLinkPopup()"><img src="../image/dev/li.png" title="リンク"></button>
-    <button onclick="openPopup('tablePopup')"><img src="../image/dev/ta.png" title="テーブル"></button>
-    <button onclick="execCmd('insertUnorderedList')"><img src="../image/dev/ls.png" title="箇条書き"></button>
-    <button onclick="clearFormatting()"><img src="../image/dev/cl.png" title="リセット"></button>
-  </div>
+  <textarea class="editor" id="hiddenEditor" name="entry.1846154297"></textarea>
 
 
 
+<br>
     <button type="submit">送信</button>
   </form>
 

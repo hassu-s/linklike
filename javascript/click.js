@@ -21,7 +21,13 @@ document.addEventListener('DOMContentLoaded', function () {
     style.innerHTML = `
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
-        * {
+        .body-rcl {
+            outline: none;
+            text-decoration: none;
+            font-weight: 500;
+
+        }
+        #linkcl {
             outline: none;
             text-decoration: none;
             font-weight: 500;
