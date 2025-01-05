@@ -53,7 +53,7 @@
         .all {
             width: 100%;
             display: flex;
-            margin-top: 220px;
+            margin-top: 240px;
         }
         @media screen and (max-width: 500px) {
             .all {
@@ -188,8 +188,8 @@
             border-radius: 5px;
         }
         .carousel-cell-fty {
-            width: 450px;
-            height: 180px;
+            width: 500px;
+            height: 200px;
             background-size: cover;
             border-radius: 5px;
             display: flex;
@@ -222,12 +222,55 @@
             transform: none;
             margin-top: -23px;
         }
+
+        #text {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            top: 0;
+            background-color: #ffffffe8;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #73a1ff;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            overflow-y: scroll;
+        }
+        #text a {
+            background-color: #73a1ff;
+            padding: 0 13px;
+            color: #fff;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+
+        #text a:hover {
+            background-color: #4d7fff;
+        }
+
+        #text a::after {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .carousel-cell-fty:hover #text {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
      </style>
 </head>
 <body>
     <div class="a1">
         <div class="carousel-fty" data-flickity='{ "autoPlay": 5000, "wrapAround": true }'>
-            <div class="carousel-cell-fty" style="background-image: url('../image/info/お知らせ.png');"></div>
+            <div class="carousel-cell-fty" style="background-image: url('../image/info/お知らせ.png');">
+                <div id="text">
+                    a<br>
+                    <a href="#">LINK</a>
+                </div>
+            </div>
             <div class="carousel-cell-fty" style="background-image: url('../image/info/アップデート.png');"></div>
             <div class="carousel-cell-fty" style="background-image: url('../image/info/アンケート.png');"></div>
         </div>

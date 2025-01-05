@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>サンプル表</title>
+    <style>
+        #text {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #ffffffc4;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #73a1ff;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        /* Show the text element with animation when the parent is hovered */
+        #parent:hover #text {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>ヘッダー1</th>
-                <th>ヘッダー2</th>
-                <th>ヘッダー3</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>データ1</td>
-                <td>データ2</td>
-                <td>データ3</td>
-            </tr>
-            <tr>
-                <td>データ4</td>
-                <td>データ5</td>
-                <td>データ6</td>
-            </tr>
-        </tbody>
-    </table>
+
+<div id="parent">
+    Hover over me!
+    <div id="text">
+        This is some text.
+    </div>
+</div>
+
 </body>
 </html>
