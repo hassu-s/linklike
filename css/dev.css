@@ -40,3 +40,12 @@ form button {
     width: 20px;
     margin-top: 4px;
 }
+table {
+    width: auto;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid rgb(211, 211, 211);
+    padding: 0px 10px;
+}

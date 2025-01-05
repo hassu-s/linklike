@@ -118,8 +118,8 @@
   <!-- テーブル挿入用ポップアップ -->
   <div id="tablePopup" class="popup">
     <h3>テーブルを挿入</h3>
-    <input type="number" id="tableRows" placeholder="行数" min="1">
-    <input type="number" id="tableCols" placeholder="列数" min="1">
+    <input type="number" id="tableRows" placeholder="行数" min="1" max="8">
+    <input type="number" id="tableCols" placeholder="列数" min="1" max="8">
     <button onclick="insertTable()">OK</button>
     <button onclick="closePopup('tablePopup')">キャンセル</button>
   </div>
